@@ -2,14 +2,18 @@
     "name": "ngx-matomo",
     "version": "0.0.3",
     "author": "Arnaud Mouronval <arnaud.mouronval@gmail.com>",
-    "description":
-        "Matomo (aka. Piwik) web analytics for Angular 5 applications.",
-    "keywords": ["matomo", "piwik", "angular", "aot", "web analytics"],
+    "description": "Matomo (aka. Piwik) web analytics for Angular 5 applications.",
+    "keywords": [
+        "matomo",
+        "piwik",
+        "angular",
+        "aot",
+        "web analytics"
+    ],
     "main": "./bundles/ngx-matomo.umd.js",
     "module": "./ngx-matomo.es5.js",
     "es2015": "./ngx-matomo.js",
     "typings": "./ngx-matomo.d.ts",
-    "author": "",
     "license": "MIT",
     "repository": {
         "type": "git",
@@ -31,13 +35,11 @@
         "build-test": "tsc -p src/lib/tsconfig.spec.json",
         "build-test:watch": "tsc -p src/lib/tsconfig.spec.json -w",
         "pretest": "npm run build-test",
-        "test":
-            "concurrently \"npm run build-test:watch\" \"karma start karma.conf.js\"",
+        "test": "concurrently \"npm run build-test:watch\" \"karma start karma.conf.js\"",
         "coverage": "karma start karma-coverage.conf.js --single-run",
         "pretest:once": "npm run build-test",
         "test:once": "karma start karma.conf.js --single-run",
-        "preintegration":
-            "npm run build && cd integration && npm run clean && npm install",
+        "preintegration": "npm run build && cd integration && npm run clean && npm install",
         "integration": "npm run integration:aot && npm run integration:jit",
         "integration:jit": "cd integration && npm run e2e",
         "integration:aot": "cd integration && npm run e2e:aot",
