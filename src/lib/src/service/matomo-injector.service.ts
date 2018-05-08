@@ -4,7 +4,7 @@ import { CompilerConfig } from '@angular/compiler';
 declare var window: {
     [key: string]: any;
     prototype: Window;
-    new(): Window;
+    new (): Window;
 };
 
 /**
@@ -14,7 +14,6 @@ declare var window: {
  */
 @Injectable()
 export class MatomoInjector {
-
     /**
      * Creates an instance of MatomoInjector.
      *
@@ -38,7 +37,9 @@ export class MatomoInjector {
             const u = url;
             window._paq.push(['setTrackerUrl', u + 'piwik.php']);
             window._paq.push(['setSiteId', id.toString()]);
-            const d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
+            const d = document,
+                g = d.createElement('script'),
+                s = d.getElementsByTagName('script')[0];
             g.type = 'text/javascript';
             g.async = true;
             g.defer = true;
@@ -46,5 +47,4 @@ export class MatomoInjector {
             s.parentNode.insertBefore(g, s);
         })();
     }
-
 }

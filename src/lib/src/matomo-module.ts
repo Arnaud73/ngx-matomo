@@ -4,9 +4,6 @@ import { MatomoInjector } from './service/matomo-injector.service';
 import { MatomoTracker } from './service/matomo-tracker.service';
 
 @NgModule({
-    providers: [
-        MatomoInjector,
-        MatomoTracker
-    ]
+    providers: [MatomoInjector, MatomoTracker]
 })
-export class MatomoModule { }
+export class MatomoModule {}

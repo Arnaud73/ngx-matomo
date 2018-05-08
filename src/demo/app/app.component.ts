@@ -6,7 +6,6 @@ import { MatomoTracker, MatomoInjector } from 'ngx-matomo';
     templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit, AfterViewInit {
-
     /**
      * Creates an instance of AppComponent.
      *
@@ -14,10 +13,7 @@ export class AppComponent implements OnInit, AfterViewInit {
      * @param matomoTracker
      * @memberof AppComponent
      */
-    constructor(
-        private matomoInjector: MatomoInjector,
-        private matomoTracker: MatomoTracker
-    ) {
+    constructor(private matomoInjector: MatomoInjector, private matomoTracker: MatomoTracker) {
         this.matomoInjector.init('http://localhost:44444/', 1);
     }
 
@@ -30,5 +26,4 @@ export class AppComponent implements OnInit, AfterViewInit {
         this.matomoTracker.trackPageView('It Works!');
         this.matomoTracker.trackEvent('category', 'action', 'name', 1);
     }
-
 }

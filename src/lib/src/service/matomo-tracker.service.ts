@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 declare var window: {
     [key: string]: any;
     prototype: Window;
-    new(): Window;
+    new (): Window;
 };
 
 /**
@@ -13,7 +13,6 @@ declare var window: {
  */
 @Injectable()
 export class MatomoTracker {
-
     /**
      * Creates an instance of MatomoTracker.
      *
@@ -38,8 +37,12 @@ export class MatomoTracker {
     trackEvent(category: string, action: string, name?: string, value?: number): void {
         try {
             const args: any[] = [category, action];
-            if (!!name) { args.push(name); }
-            if (!!value) { args.push(value); }
+            if (!!name) {
+                args.push(name);
+            }
+            if (!!value) {
+                args.push(value);
+            }
             window._paq.push(['trackEvent', ...args]);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
@@ -57,7 +60,9 @@ export class MatomoTracker {
     trackPageView(customTitle?: string): void {
         try {
             const args: any[] = [];
-            if (!!customTitle) { args.push(customTitle); }
+            if (!!customTitle) {
+                args.push(customTitle);
+            }
             window._paq.push(['trackPageView', ...args]);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
@@ -78,8 +83,12 @@ export class MatomoTracker {
     trackSiteSearch(keyword: string, category?: string, resultsCount?: number): void {
         try {
             const args: any[] = [keyword];
-            if (!!category) { args.push(category); }
-            if (!!resultsCount) { args.push(resultsCount); }
+            if (!!category) {
+                args.push(category);
+            }
+            if (!!resultsCount) {
+                args.push(resultsCount);
+            }
             window._paq.push(['trackSiteSearch', ...args]);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
@@ -98,7 +107,9 @@ export class MatomoTracker {
     trackGoal(idGoal: number, customRevenue?: number): void {
         try {
             const args: any[] = [idGoal];
-            if (!!customRevenue) { args.push(customRevenue); }
+            if (!!customRevenue) {
+                args.push(customRevenue);
+            }
             window._paq.push(['trackGoal', ...args]);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
@@ -223,7 +234,12 @@ export class MatomoTracker {
      * @param contentTarget
      * @memberof MatomoTracker
      */
-    trackContentInteraction(contentInteraction: string, contentName: string, contentPiece: string, contentTarget: string): void {
+    trackContentInteraction(
+        contentInteraction: string,
+        contentName: string,
+        contentPiece: string,
+        contentTarget: string
+    ): void {
         try {
             const args: any[] = [contentInteraction, contentName, contentPiece, contentTarget];
             window._paq.push(['trackContentInteraction', ...args]);
@@ -807,7 +823,9 @@ export class MatomoTracker {
     getAttributionCampaignName(): Promise<string> {
         return new Promise((resolve, reject) => {
             try {
-                window._paq.push([() => resolve(window.Piwik.getTracker().getAttributionCampaignName())]);
+                window._paq.push([
+                    () => resolve(window.Piwik.getTracker().getAttributionCampaignName())
+                ]);
             } catch (e) {
                 if (!(e instanceof ReferenceError)) {
                     reject(e);
@@ -824,7 +842,9 @@ export class MatomoTracker {
     getAttributionCampaignKeyword(): Promise<string> {
         return new Promise((resolve, reject) => {
             try {
-                window._paq.push([() => resolve(window.Piwik.getTracker().getAttributionCampaignKeyword())]);
+                window._paq.push([
+                    () => resolve(window.Piwik.getTracker().getAttributionCampaignKeyword())
+                ]);
             } catch (e) {
                 if (!(e instanceof ReferenceError)) {
                     reject(e);
@@ -841,7 +861,9 @@ export class MatomoTracker {
     getAttributionReferrerTimestamp(): Promise<string> {
         return new Promise((resolve, reject) => {
             try {
-                window._paq.push([() => resolve(window.Piwik.getTracker().getAttributionReferrerTimestamp())]);
+                window._paq.push([
+                    () => resolve(window.Piwik.getTracker().getAttributionReferrerTimestamp())
+                ]);
             } catch (e) {
                 if (!(e instanceof ReferenceError)) {
                     reject(e);
@@ -858,7 +880,9 @@ export class MatomoTracker {
     getAttributionReferrerUrl(): Promise<string> {
         return new Promise((resolve, reject) => {
             try {
-                window._paq.push([() => resolve(window.Piwik.getTracker().getAttributionReferrerUrl())]);
+                window._paq.push([
+                    () => resolve(window.Piwik.getTracker().getAttributionReferrerUrl())
+                ]);
             } catch (e) {
                 if (!(e instanceof ReferenceError)) {
                     reject(e);
@@ -964,7 +988,9 @@ export class MatomoTracker {
     getCustomVariable(index: number, scope: string): Promise<string> {
         return new Promise((resolve, reject) => {
             try {
-                window._paq.push([() => resolve(window.Piwik.getTracker().getCustomVariable(index, scope))]);
+                window._paq.push([
+                    () => resolve(window.Piwik.getTracker().getCustomVariable(index, scope))
+                ]);
             } catch (e) {
                 if (!(e instanceof ReferenceError)) {
                     reject(e);
@@ -1037,7 +1063,9 @@ export class MatomoTracker {
     getCustomDimension(customDimensionId: number): Promise<string> {
         return new Promise((resolve, reject) => {
             try {
-                window._paq.push([() => resolve(window.Piwik.getTracker().getCustomDimension(customDimensionId))]);
+                window._paq.push([
+                    () => resolve(window.Piwik.getTracker().getCustomDimension(customDimensionId))
+                ]);
             } catch (e) {
                 if (!(e instanceof ReferenceError)) {
                     reject(e);
@@ -1108,7 +1136,12 @@ export class MatomoTracker {
      * @param price
      * @memberof MatomoTracker
      */
-    setEcommerceView(productSKU: string, productName: string, categoryName: string, price: number): void {
+    setEcommerceView(
+        productSKU: string,
+        productName: string,
+        categoryName: string,
+        price: number
+    ): void {
         try {
             const args: any[] = [productSKU, productName, categoryName, price];
             window._paq.push(['setEcommerceView', ...args]);
@@ -1129,13 +1162,27 @@ export class MatomoTracker {
      * @param [quantity]
      * @memberof MatomoTracker
      */
-    addEcommerceItem(productSKU: string, productName?: string, productCategory?: string, price?: number, quantity?: number): void {
+    addEcommerceItem(
+        productSKU: string,
+        productName?: string,
+        productCategory?: string,
+        price?: number,
+        quantity?: number
+    ): void {
         try {
             const args: any[] = [productSKU];
-            if (!!productName) { args.push(productName); }
-            if (!!productCategory) { args.push(productCategory); }
-            if (!!price) { args.push(price); }
-            if (!!quantity) { args.push(quantity); }
+            if (!!productName) {
+                args.push(productName);
+            }
+            if (!!productCategory) {
+                args.push(productCategory);
+            }
+            if (!!price) {
+                args.push(price);
+            }
+            if (!!quantity) {
+                args.push(quantity);
+            }
             window._paq.push(['addEcommerceItem', ...args]);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
@@ -1173,13 +1220,28 @@ export class MatomoTracker {
      * @param [discount]
      * @memberof MatomoTracker
      */
-    trackEcommerceOrder(orderId: string, grandTotal: number, subTotal?: number, tax?: number, shipping?: number, discount?: number): void {
+    trackEcommerceOrder(
+        orderId: string,
+        grandTotal: number,
+        subTotal?: number,
+        tax?: number,
+        shipping?: number,
+        discount?: number
+    ): void {
         try {
             const args: any[] = [orderId, grandTotal];
-            if (!!subTotal) { args.push(subTotal); }
-            if (!!tax) { args.push(tax); }
-            if (!!shipping) { args.push(shipping); }
-            if (!!discount) { args.push(discount); }
+            if (!!subTotal) {
+                args.push(subTotal);
+            }
+            if (!!tax) {
+                args.push(tax);
+            }
+            if (!!shipping) {
+                args.push(shipping);
+            }
+            if (!!discount) {
+                args.push(discount);
+            }
             window._paq.push(['trackEcommerceOrder', ...args]);
         } catch (e) {
             if (!(e instanceof ReferenceError)) {
@@ -1434,5 +1496,4 @@ export class MatomoTracker {
             }
         }
     }
-
 }
