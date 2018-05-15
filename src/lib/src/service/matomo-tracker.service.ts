@@ -20,7 +20,7 @@ export class MatomoTracker {
      */
     constructor() {
         if (typeof window._paq === 'undefined') {
-            console.warn('Matomo has not been initialized!');
+            console.warn('Matomo has not yet been initialized! (Did you forget to inject it?)');
         }
     }
 
