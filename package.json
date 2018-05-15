@@ -1,6 +1,6 @@
 {
     "name": "ngx-matomo",
-    "version": "0.0.3",
+    "version": "0.1.0",
     "author": "Arnaud Mouronval <arnaud.mouronval@gmail.com>",
     "description": "Matomo (aka. Piwik) web analytics for Angular 5 applications.",
     "keywords": [
@@ -85,5 +85,10 @@
         "tslint": "^4.4.2",
         "typescript": "~2.4.2",
         "zone.js": "^0.8.26"
+    },
+    "standard-version": {
+        "skip": {
+            "commit": true
+        }
     }
 }
