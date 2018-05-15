@@ -47,9 +47,7 @@
         "release": "standard-version"
     },
     "peerDependencies": {
-        "@angular/core": ">=5.0.0 <6.0.0",
-        "@angular/router": ">=5.0.0 <6.0.0",
-        "rxjs": "^5.0.0"
+        "@angular/core": ">=5.0.0 <6.0.0"
     },
     "devDependencies": {
         "@angular/common": "^5.2.9",
