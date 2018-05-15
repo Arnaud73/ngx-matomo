@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { CompilerConfig } from '@angular/compiler';
 
 declare var window: {
     [key: string]: any;
