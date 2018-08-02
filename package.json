@@ -47,7 +47,7 @@
         "release": "standard-version"
     },
     "peerDependencies": {
-        "@angular/core": ">=5.0.0 <6.0.0"
+        "@angular/core": ">=5.0.0 <7.0.0"
     },
     "devDependencies": {
         "@angular/common": "^5.2.9",
