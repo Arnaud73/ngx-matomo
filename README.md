@@ -6,7 +6,7 @@ Wrapper for Matomo (aka. Piwik) analytics tracker for Angular 5+ applications.
 
 Download directly from github and place the src files in your Angular 5+ application. 
 
-##npm install
+## npm install
 
 ```npm install --save ngx-matomo```
 
