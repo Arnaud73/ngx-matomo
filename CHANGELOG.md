@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.1.2"></a>
+## [0.1.2](https://github.com/Arnaud73/ngx-matomo/compare/v0.1.1...v0.1.2) (2019-01-10)
+
+
+### Bug Fixes
+
+* **config:** Accept Angular 5, 6 & 7 ([bf343fa](https://github.com/Arnaud73/ngx-matomo/commit/bf343fa))
+
+
+
 <a name="0.1.1"></a>
 ## [0.1.1](https://github.com/Arnaud73/ngx-matomo/compare/v0.1.0...v0.1.1) (2018-08-02)
 
