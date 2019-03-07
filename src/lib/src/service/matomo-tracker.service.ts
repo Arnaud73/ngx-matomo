@@ -86,7 +86,7 @@ export class MatomoTracker {
             if (!!category) {
                 args.push(category);
             }
-            if (!!resultsCount) {
+            if (resultsCount !== undefined && typeof resultsCount === "number") {
                 args.push(resultsCount);
             }
             window._paq.push(['trackSiteSearch', ...args]);
