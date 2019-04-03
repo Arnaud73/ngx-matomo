@@ -40,7 +40,7 @@ export class MatomoTracker {
             if (!!name) {
                 args.push(name);
             }
-            if (!!value) {
+            if (typeof value === 'number') {
                 args.push(value);
             }
             window._paq.push(['trackEvent', ...args]);
@@ -86,7 +86,7 @@ export class MatomoTracker {
             if (!!category) {
                 args.push(category);
             }
-            if (!!resultsCount) {
+            if (typeof resultsCount === 'number') {
                 args.push(resultsCount);
             }
             window._paq.push(['trackSiteSearch', ...args]);
@@ -107,7 +107,7 @@ export class MatomoTracker {
     trackGoal(idGoal: number, customRevenue?: number): void {
         try {
             const args: any[] = [idGoal];
-            if (!!customRevenue) {
+            if (typeof customRevenue === 'number') {
                 args.push(customRevenue);
             }
             window._paq.push(['trackGoal', ...args]);
@@ -1177,10 +1177,10 @@ export class MatomoTracker {
             if (!!productCategory) {
                 args.push(productCategory);
             }
-            if (!!price) {
+            if (typeof price === 'number') {
                 args.push(price);
             }
-            if (!!quantity) {
+            if (typeof quantity === 'number') {
                 args.push(quantity);
             }
             window._paq.push(['addEcommerceItem', ...args]);
@@ -1230,16 +1230,16 @@ export class MatomoTracker {
     ): void {
         try {
             const args: any[] = [orderId, grandTotal];
-            if (!!subTotal) {
+            if (typeof subTotal === 'number') {
                 args.push(subTotal);
             }
-            if (!!tax) {
+            if (typeof tax === 'number') {
                 args.push(tax);
             }
-            if (!!shipping) {
+            if (typeof shipping === 'number') {
                 args.push(shipping);
             }
-            if (!!discount) {
+            if (typeof discount === 'number') {
                 args.push(discount);
             }
             window._paq.push(['trackEcommerceOrder', ...args]);
