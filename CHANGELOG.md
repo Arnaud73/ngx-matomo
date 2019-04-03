@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.1.3"></a>
+## [0.1.3](https://github.com/Arnaud73/ngx-matomo/compare/v0.1.2...v0.1.3) (2019-04-03)
+
+
+### Bug Fixes
+
+* **matomo-tracker:** Fix value 0 passed to several tracker functions ([#12](https://github.com/Arnaud73/ngx-matomo/issues/12)) ([65ce508](https://github.com/Arnaud73/ngx-matomo/commit/65ce508))
+
+
+
 <a name="0.1.2"></a>
 ## [0.1.2](https://github.com/Arnaud73/ngx-matomo/compare/v0.1.1...v0.1.2) (2019-01-10)
 
