@@ -14,7 +14,7 @@ export class AppComponent implements OnInit, AfterViewInit {
      * @memberof AppComponent
      */
     constructor(private matomoInjector: MatomoInjector, private matomoTracker: MatomoTracker) {
-        this.matomoInjector.init('http://localhost:44444/', 1);
+        this.matomoInjector.init('http://localhost:5555/', 1);
     }
 
     ngOnInit() {
@@ -25,5 +25,16 @@ export class AppComponent implements OnInit, AfterViewInit {
     ngAfterViewInit() {
         this.matomoTracker.trackPageView('It Works!');
         this.matomoTracker.trackEvent('category', 'action', 'name', 1);
+
+        this.matomoTracker.getUserId().then((userId: string) => console.log('User ID:', userId));
+        this.matomoTracker
+            .getVisitorId()
+            .then((visitorId: string) => console.log('Visitor ID:', visitorId));
+        this.matomoTracker
+            .getVisitorInfo()
+            .then((visitorInfo: string[]) => console.log('Visitor Info:', visitorInfo));
+        this.matomoTracker
+            .hasCookies()
+            .then((hasCookies: boolean) => console.log('Has Cookies:', hasCookies));
     }
 }
