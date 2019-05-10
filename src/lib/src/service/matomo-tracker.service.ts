@@ -476,7 +476,11 @@ export class MatomoTracker {
     getPiwikUrl(): Promise<string> {
         return new Promise((resolve, reject) => {
             try {
-                window._paq.push([() => resolve(window.Piwik.getTracker().getPiwikUrl())]);
+                window._paq.push([
+                    function() {
+                        resolve(this.getPiwikUrl());
+                    }
+                ]);
             } catch (e) {
                 if (!(e instanceof ReferenceError)) {
                     reject(e);
@@ -494,7 +498,11 @@ export class MatomoTracker {
     getCurrentUrl(): Promise<string> {
         return new Promise((resolve, reject) => {
             try {
-                window._paq.push([() => resolve(window.Piwik.getTracker().getCurrentUrl())]);
+                window._paq.push([
+                    function() {
+                        resolve(this.getCurrentUrl());
+                    }
+                ]);
             } catch (e) {
                 if (!(e instanceof ReferenceError)) {
                     reject(e);
@@ -633,7 +641,11 @@ export class MatomoTracker {
     getLinkTrackingTimer(): Promise<number> {
         return new Promise((resolve, reject) => {
             try {
-                window._paq.push([() => resolve(window.Piwik.getTracker().getLinkTrackingTimer())]);
+                window._paq.push([
+                    function() {
+                        resolve(this.getLinkTrackingTimer());
+                    }
+                ]);
             } catch (e) {
                 if (!(e instanceof ReferenceError)) {
                     reject(e);
@@ -770,7 +782,11 @@ export class MatomoTracker {
     getVisitorId(): Promise<string> {
         return new Promise((resolve, reject) => {
             try {
-                window._paq.push([() => resolve(window.Piwik.getTracker().getVisitorId())]);
+                window._paq.push([
+                    function() {
+                        resolve(this.getVisitorId());
+                    }
+                ]);
             } catch (e) {
                 if (!(e instanceof ReferenceError)) {
                     reject(e);
@@ -787,7 +803,11 @@ export class MatomoTracker {
     getVisitorInfo(): Promise<any[]> {
         return new Promise((resolve, reject) => {
             try {
-                window._paq.push([() => resolve(window.Piwik.getTracker().getVisitorInfo())]);
+                window._paq.push([
+                    function() {
+                        resolve(this.getVisitorInfo());
+                    }
+                ]);
             } catch (e) {
                 if (!(e instanceof ReferenceError)) {
                     reject(e);
@@ -806,7 +826,11 @@ export class MatomoTracker {
     getAttributionInfo(): Promise<any[]> {
         return new Promise((resolve, reject) => {
             try {
-                window._paq.push([() => resolve(window.Piwik.getTracker().getAttributionInfo())]);
+                window._paq.push([
+                    function() {
+                        resolve(this.getAttributionInfo());
+                    }
+                ]);
             } catch (e) {
                 if (!(e instanceof ReferenceError)) {
                     reject(e);
@@ -824,7 +848,9 @@ export class MatomoTracker {
         return new Promise((resolve, reject) => {
             try {
                 window._paq.push([
-                    () => resolve(window.Piwik.getTracker().getAttributionCampaignName())
+                    function() {
+                        resolve(this.getAttributionCampaignName());
+                    }
                 ]);
             } catch (e) {
                 if (!(e instanceof ReferenceError)) {
@@ -843,7 +869,9 @@ export class MatomoTracker {
         return new Promise((resolve, reject) => {
             try {
                 window._paq.push([
-                    () => resolve(window.Piwik.getTracker().getAttributionCampaignKeyword())
+                    function() {
+                        resolve(this.getAttributionCampaignKeyword());
+                    }
                 ]);
             } catch (e) {
                 if (!(e instanceof ReferenceError)) {
@@ -862,7 +890,9 @@ export class MatomoTracker {
         return new Promise((resolve, reject) => {
             try {
                 window._paq.push([
-                    () => resolve(window.Piwik.getTracker().getAttributionReferrerTimestamp())
+                    function() {
+                        resolve(this.getAttributionReferrerTimestamp());
+                    }
                 ]);
             } catch (e) {
                 if (!(e instanceof ReferenceError)) {
@@ -881,7 +911,9 @@ export class MatomoTracker {
         return new Promise((resolve, reject) => {
             try {
                 window._paq.push([
-                    () => resolve(window.Piwik.getTracker().getAttributionReferrerUrl())
+                    function() {
+                        resolve(this.getAttributionReferrerUrl());
+                    }
                 ]);
             } catch (e) {
                 if (!(e instanceof ReferenceError)) {
@@ -899,7 +931,11 @@ export class MatomoTracker {
     getUserId(): Promise<string> {
         return new Promise((resolve, reject) => {
             try {
-                window._paq.push([() => resolve(window.Piwik.getTracker().getUserId())]);
+                window._paq.push([
+                    function() {
+                        resolve(this.getUserId());
+                    }
+                ]);
             } catch (e) {
                 if (!(e instanceof ReferenceError)) {
                     reject(e);
@@ -989,7 +1025,9 @@ export class MatomoTracker {
         return new Promise((resolve, reject) => {
             try {
                 window._paq.push([
-                    () => resolve(window.Piwik.getTracker().getCustomVariable(index, scope))
+                    function() {
+                        resolve(this.getCustomVariable(index, scope));
+                    }
                 ]);
             } catch (e) {
                 if (!(e instanceof ReferenceError)) {
@@ -1064,7 +1102,9 @@ export class MatomoTracker {
         return new Promise((resolve, reject) => {
             try {
                 window._paq.push([
-                    () => resolve(window.Piwik.getTracker().getCustomDimension(customDimensionId))
+                    function() {
+                        resolve(this.getCustomDimension(customDimensionId));
+                    }
                 ]);
             } catch (e) {
                 if (!(e instanceof ReferenceError)) {
@@ -1288,7 +1328,11 @@ export class MatomoTracker {
     hasCookies(): Promise<boolean> {
         return new Promise((resolve, reject) => {
             try {
-                window._paq.push([() => resolve(window.Piwik.getTracker().hasCookies())]);
+                window._paq.push([
+                    function() {
+                        resolve(this.hasCookies());
+                    }
+                ]);
             } catch (e) {
                 if (!(e instanceof ReferenceError)) {
                     reject(e);
