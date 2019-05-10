@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.1.4"></a>
+## [0.1.4](https://github.com/Arnaud73/ngx-matomo/compare/v0.1.3...v0.1.4) (2019-05-10)
+
+
+### Bug Fixes
+
+* **config:** Accept Angular 5, 6, 7 & 8 ([11d7dd8](https://github.com/Arnaud73/ngx-matomo/commit/11d7dd8))
+* **matomo-tracker:** Fix tracker getter functions ([#14](https://github.com/Arnaud73/ngx-matomo/issues/14)) ([3ad96cf](https://github.com/Arnaud73/ngx-matomo/commit/3ad96cf))
+
+
+
 <a name="0.1.3"></a>
 ## [0.1.3](https://github.com/Arnaud73/ngx-matomo/compare/v0.1.2...v0.1.3) (2019-04-03)
 
