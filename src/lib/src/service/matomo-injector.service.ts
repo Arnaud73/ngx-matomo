@@ -33,18 +33,16 @@ export class MatomoInjector {
     init(url: string, id: number = 1, scriptName: string = 'matomo') {
         window._paq.push(['trackPageView']);
         window._paq.push(['enableLinkTracking']);
-        (() => {
-            const u = url;
-            window._paq.push(['setTrackerUrl', u + `${scriptName}.php`]);
-            window._paq.push(['setSiteId', id.toString()]);
-            const d = document,
-                g = d.createElement('script'),
-                s = d.getElementsByTagName('script')[0];
-            g.type = 'text/javascript';
-            g.async = true;
-            g.defer = true;
-            g.src = u + `${scriptName}.js`;
-            s.parentNode.insertBefore(g, s);
-        })();
+        const u = url;
+        window._paq.push(['setTrackerUrl', u + `${scriptName}.php`]);
+        window._paq.push(['setSiteId', id.toString()]);
+        const d = document,
+            g = d.createElement('script'),
+            s = d.getElementsByTagName('script')[0];
+        g.type = 'text/javascript';
+        g.async = true;
+        g.defer = true;
+        g.src = u + `${scriptName}.js`;
+        s.parentNode.insertBefore(g, s);
     }
 }
