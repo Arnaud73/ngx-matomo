@@ -39,28 +39,7 @@ Make sure you replace the MATOMO_URL with your Matomo server. You can remove all
 
 ### Initialize Matomo via root component and MatomoInjector service
 
-To enable Matomo via your root component you can now inject the MatomoInjector in your root component.
-
-```ts
-import { Component } from '@angular/core';
-import { MatomoInjector } from 'ngx-matomo';
-
-@Component({
-  selector: 'app',
-  template: `<router-outlet></router-outlet>`
-})
-export class AppComponent {
-  constructor(
-    private matomoInjector: MatomoInjector
-  ) {
-    this.matomoInjector.init('YOUR_MATOMO_URL', YOUR_SITE_ID);
-  }
-}
-```
-
-## Include it in your application
-
-Bootrapping this application is easy. Import ```MatomoModule``` into your root ```NgModule```.
+Import ```MatomoModule``` into your root ```NgModule```.
 
 ```ts
 import { NgModule } from '@angular/core';
@@ -79,6 +58,28 @@ import { AppComponent } from './app.component';
 })
 export class AppModule { }
 ```
+
+To enable Matomo via your root component you can now inject the MatomoInjector in your root component.
+Inject Matomo into your root component and call `init` function.
+
+```ts
+import { Component } from '@angular/core';
+import { MatomoInjector } from 'ngx-matomo';
+
+@Component({
+  selector: 'app',
+  template: `<router-outlet></router-outlet>`
+})
+export class AppComponent {
+  constructor(
+    private matomoInjector: MatomoInjector
+  ) {
+    this.matomoInjector.init('YOUR_MATOMO_URL'); // For example '//analytics.my-website.com/'
+  }
+}
+```
+
+Bootrapping this application is easy. 
 
 Once that's done you can import ```MatomoTracker``` into any component in your application.
 
