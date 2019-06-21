@@ -11,33 +11,11 @@ This new release of ngx-Matomo has been rebuilt with Angular CLI v8. As a result
 Use `npm` or `yarn` to add the module to your current project:
 ```npm install --save ngx-matomo```
 
-## Adding Matomo into to your Angular application
+## Adding Matomo
 
-You can add Matomo either via script tag or using the MatomoInjector in your root component.
+You can add Matomo either via script tag or using the (recommended) MatomoInjector in your root component.
 
-### Initialize Matomo via Script Tag
-
-To illustrate the set up, here's the code to inject into your header to initialize Matomo in your application. Matomo's [site](https://developer.matomo.org/guides/tracking-javascript-guide) has the detailed documentation on how to set up communication between Matomo and your application.
-Make sure you replace the MATOMO_URL with your Matomo server. You can remove all the _paq methods in this script and set them up in your Angular 5+ application.
-
-```html
-<!-- Matomo -->
-<script type="text/javascript">
-  var _paq = _paq || [];
-  _paq.push(['trackPageView']);
-  _paq.push(['enableLinkTracking']);
-  (function() {
-    var u="//{$MATOMO_URL}/";
-    _paq.push(['setTrackerUrl', u+'matomo.php']);
-    _paq.push(['setSiteId', {$IDSITE}]);
-    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
-  })();
-</script>
-<!-- End Matomo Code -->
-```
-
-### Initialize Matomo via root component and MatomoInjector service
+### (Recommended) Initialize Matomo via root component and MatomoInjector service
 
 Import ```MatomoModule``` into your root ```NgModule```.
 
@@ -59,7 +37,6 @@ import { AppComponent } from './app.component';
 export class AppModule { }
 ```
 
-To enable Matomo via your root component you can now inject the MatomoInjector in your root component.
 Inject Matomo into your root component and call `init` function.
 
 ```ts
@@ -79,9 +56,7 @@ export class AppComponent {
 }
 ```
 
-Bootrapping this application is easy. 
-
-Once that's done you can import ```MatomoTracker``` into any component in your application.
+Once that's done you can import ```MatomoTracker``` into any component of your application.
 
 ```ts
 // component
@@ -102,6 +77,33 @@ export class AppComponent {
     this.matomoTracker.setDocumentTitle('ngx-Matomo Test');
   }
 }
+```
+
+### (alternative) Adding Matomo into your application via script tag.
+
+You can skip this part if you have initialized Matomo via Root component.
+
+Matomo provide this script when you set up a new website to be tracked.
+
+Inject the code into your header to initialize Matomo in your application.  
+Make sure to replace the $MATOMO_URL with your Matomo server url, and $IDSITE by the id of your website on Matomo. 
+You can remove all the `_paq` methods in this script and set them up in your Angular 5+ application. 
+
+```html
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq || [];
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//{$MATOMO_URL}/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', {$IDSITE}]);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
 ```
 
 ## Tracking events
@@ -138,6 +140,9 @@ export class MyComponent {
 ## Original Source
 
 This module is lousily inspired from [Angular2Piwik](https://github.com/awronka/Angular2Piwik), which was also inspired from [Angulartics 2](https://github.com/angulartics/angulartics2).
+
+## Matomo documentation
+Matomo's [site](https://developer.matomo.org/guides/tracking-javascript-guide) has the detailed documentation on how to set up communication between Matomo and your application.
 
 ## License
 
