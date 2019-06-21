@@ -47,10 +47,13 @@ import { MatomoInjector } from 'ngx-matomo';
   selector: 'app',
   template: `<router-outlet></router-outlet>`
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
   constructor(
     private matomoInjector: MatomoInjector
-  ) {
+  ) {}
+  
+  // By initializing Matomo after the view has been generated, you allow Matomo to track outlinks generated on the first view.
+  ngAfterViewInit() {
     // For example if you installed Matomo in the subdomain analytics.my-website.com on https
     this.matomoInjector.init('https://analytics.my-website.com/');
   }
@@ -105,8 +108,7 @@ You can remove all the `_paq` methods in this script and set them up in your Ang
 <!-- End Matomo Code -->
 ```
 
-## Tracking events
-For now tracking events and actions is manual and is not injected into the html. 
+## Manually trigger events
 
 ```html
 <button (click)="whatHappensOnClick(1)"></button>
