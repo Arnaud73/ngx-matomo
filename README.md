@@ -8,7 +8,7 @@ This new release of ngx-Matomo has been rebuilt with Angular CLI v8. As a result
 
 ## Installation
 
-Use `npm` or `yarn` to add the module to your current project:
+Use `npm` or `yarn` to add the module to your current project:  
 ```npm install --save ngx-matomo```
 
 ## Adding Matomo
@@ -51,7 +51,8 @@ export class AppComponent {
   constructor(
     private matomoInjector: MatomoInjector
   ) {
-    this.matomoInjector.init('YOUR_MATOMO_URL'); // For example '//analytics.my-website.com/'
+    // For example if you installed Matomo in the subdomain analytics.my-website.com
+    this.matomoInjector.init('//analytics.my-website.com/');
   }
 }
 ```
@@ -80,8 +81,7 @@ export class AppComponent {
 ```
 
 ### (alternative) Adding Matomo into your application via script tag.
-
-You can skip this part if you have initialized Matomo via Root component.
+*You can skip this part if you have initialized Matomo via Root component.*
 
 Matomo provide this script when you set up a new website to be tracked.
 
@@ -107,7 +107,6 @@ You can remove all the `_paq` methods in this script and set them up in your Ang
 ```
 
 ## Tracking events
-
 For now tracking events and actions is manual and is not injected into the html. 
 
 ```html
@@ -137,12 +136,21 @@ export class MyComponent {
 }
 ```
 
-## Original Source
+## Tips
+You can add two websites on Matomo, one for production, and another one for dev environment. And use them like that: 
 
-This module is lousily inspired from [Angular2Piwik](https://github.com/awronka/Angular2Piwik), which was also inspired from [Angulartics 2](https://github.com/angulartics/angulartics2).
+```ts
+    this.matomoInjector.init(
+      '//analytics.my-website.com/',
+      environment.production ? 1 : 2
+    );
+```
 
 ## Matomo documentation
 Matomo's [site](https://developer.matomo.org/guides/tracking-javascript-guide) has the detailed documentation on how to set up communication between Matomo and your application.
+
+## Original Source
+This module is lousily inspired from [Angular2Piwik](https://github.com/awronka/Angular2Piwik), which was also inspired from [Angulartics 2](https://github.com/angulartics/angulartics2).
 
 ## License
 
