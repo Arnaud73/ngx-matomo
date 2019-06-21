@@ -74,8 +74,7 @@ export class AppComponent {
   ) { }
 
   ngOnInit() {
-    this.matomoTracker.setUserId('UserId');
-    this.matomoTracker.setDocumentTitle('ngx-Matomo Test');
+    // Do something with this.matomoTracker...
   }
 }
 ```
@@ -148,6 +147,7 @@ You can add two websites on Matomo, one for production, and another one for dev 
 
 ## Matomo documentation
 Matomo's [site](https://developer.matomo.org/guides/tracking-javascript-guide) has the detailed documentation on how to set up communication between Matomo and your application.
+See also https://developer.matomo.org/guides/spa-tracking
 
 ## Original Source
 This module is lousily inspired from [Angular2Piwik](https://github.com/awronka/Angular2Piwik), which was also inspired from [Angulartics 2](https://github.com/angulartics/angulartics2).
