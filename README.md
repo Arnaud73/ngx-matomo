@@ -51,8 +51,8 @@ export class AppComponent {
   constructor(
     private matomoInjector: MatomoInjector
   ) {
-    // For example if you installed Matomo in the subdomain analytics.my-website.com
-    this.matomoInjector.init('//analytics.my-website.com/');
+    // For example if you installed Matomo in the subdomain analytics.my-website.com on https
+    this.matomoInjector.init('https://analytics.my-website.com/');
   }
 }
 ```
