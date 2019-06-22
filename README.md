@@ -137,6 +137,10 @@ export class MyComponent {
 }
 ```
 
+## Track newly generated outlinks and downloads
+If you use the link tracking feature to measure outlinks and downloads, Matomo needs to re-scan the entire DOM for newly added links whenever your DOM changes.
+Just call ```this.matomoTracker.enableLinkTracking();``` after your DOM has been modified.
+
 ## Tips
 You can add two websites on Matomo, one for production, and another one for dev environment. And use them like that: 
 

@@ -274,7 +274,7 @@ export class MatomoTracker {
    * @param enable
    * @memberof MatomoTracker
    */
-  enableLinkTracking(enable: boolean): void {
+  enableLinkTracking(enable: boolean = false): void {
     try {
       const args: any[] = [enable];
       window._paq.push(['enableLinkTracking', ...args]);
