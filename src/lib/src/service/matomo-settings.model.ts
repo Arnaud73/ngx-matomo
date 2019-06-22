@@ -1,4 +1,4 @@
-export class MatomoSettings {
+export class MatomoInitSettings {
     /**
      * URL of the Matomo instance to connect to. For example '//analytics.my-website.com/'
      */

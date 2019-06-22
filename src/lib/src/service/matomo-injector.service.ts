@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { MatomoSettings } from './matomo-settings.model';
+import { MatomoInitSettings } from './matomo-settings.model';
+import { MatomoScanSettings } from './matomo-scan-settings.model';
 
 declare var window: {
     [key: string]: any;
@@ -14,6 +15,7 @@ declare var window: {
  */
 @Injectable()
 export class MatomoInjector {
+
     /**
      * Creates an instance of MatomoInjector.
      *
@@ -30,8 +32,8 @@ export class MatomoInjector {
      * @param settings Matomo settings for initialization.
      * @memberof MatomoInjector
      */
-    init(settings: MatomoSettings) {
-        let { url, id, scriptName, enableLinkTracking } = settings;
+    init(settings: MatomoInitSettings) {
+        let { url, id, scriptName, enableLinkTracking } = Object.assign(new MatomoInitSettings(), settings);
         window._paq.push(['trackPageView']);
 
         if (enableLinkTracking) {
@@ -50,4 +52,49 @@ export class MatomoInjector {
         g.src = u + `${scriptName}.js`;
         s.parentNode.insertBefore(g, s);
     }
+
+    /**
+     *
+     * @param settings
+     * @see https://developer.matomo.org/guides/spa-tracking
+     */
+    onPageChange(settings: MatomoScanSettings) {
+        let {
+            previousURL,
+            customURL,
+            documentTitle,
+            timeItTookToLoadPage,
+            enableLinkTracking,
+        } = Object.assign(new MatomoScanSettings(), settings);
+
+        if (previousURL) {
+            window._paq.push(['setReferrerUrl', previousURL]);
+        }
+
+        if (customURL) {
+            window._paq.push(['setCustomUrl', customURL]);
+        }
+
+        if (documentTitle) {
+            window._paq.push(['setDocumentTitle', documentTitle]);
+        }
+
+        // remove all previously assigned custom variables, requires Matomo (formerly Piwik) 3.0.2
+        window._paq.push(['deleteCustomVariables', 'page']);
+        window._paq.push(['setGenerationTimeMs', timeItTookToLoadPage]);
+        window._paq.push(['trackPageView']);
+
+        // todo
+        // make Matomo aware of newly added content
+        // let content = document.getElementById('content');
+        // _paq.push(['MediaAnalytics::scanForMedia', content]);
+        // _paq.push(['FormAnalytics::scanForForms', content]);
+        // _paq.push(['trackContentImpressionsWithinNode', content]);
+
+        if (enableLinkTracking) {
+            window._paq.push(['enableLinkTracking']);
+        }
+    }
+
+
 }
