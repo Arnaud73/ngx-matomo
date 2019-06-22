@@ -141,12 +141,53 @@ export class MyComponent {
 If you use the link tracking feature to measure outlinks and downloads, Matomo needs to re-scan the entire DOM for newly added links whenever your DOM changes.
 Just call ```this.matomoTracker.enableLinkTracking();``` after your DOM has been modified.
 
+## Track router events
+
+```ts
+import { Component } from '@angular/core';
+import { MatomoInjector } from 'ngx-matomo';
+import { NavigationEnd, Router } from '@angular/router';
+
+
+@Component({
+  selector: 'app',
+  template: `<router-outlet></router-outlet>`
+})
+export class AppComponent implements AfterViewInit {
+  constructor(
+    private matomoInjector: MatomoInjector,
+    private router: Router,
+  ) {}
+  
+  // By initializing Matomo after the view has been generated, you allow Matomo to track outlinks generated on the first view.
+  ngAfterViewInit() {
+    // For example if you installed Matomo in the subdomain analytics.my-website.com on https
+    this.matomoInjector.init('https://analytics.my-website.com/');
+    
+    let previousURL: string = window.location.href;
+    
+    this.router.events.pipe(
+      // filter out NavigationStart, Resolver, ...
+      filter(e => e instanceof NavigationEnd),
+      // skip first NavigationEnd fired when subscribing, already handled by init().
+      skip(1),
+      // idk why, used in angulartics2 lib.
+      delay(0),
+    ).subscribe(next => {
+      // referrer is optional
+      this.matomoInjector.onPageChange({ referrer: previousURL });
+      previousURL = window.location.href;
+    });
+  }
+}
+```
+
 ## Tips
 You can add two websites on Matomo, one for production, and another one for dev environment. And use them like that: 
 
 ```ts
     this.matomoInjector.init(
-      '//analytics.my-website.com/',
+      'https://analytics.my-website.com/',
       environment.production ? 1 : 2
     );
 ```
