@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
+import { MatomoSettings } from './matomo-settings.model';
 
 declare var window: {
     [key: string]: any;
     prototype: Window;
-    new (): Window;
+    new(): Window;
 };
 
 /**
@@ -22,17 +23,21 @@ export class MatomoInjector {
         window._paq = window._paq || [];
     }
 
+
     /**
      * Injects the Matomo tracker in the DOM.
      *
-     * @param url: URL of the Matomo instance to connect to. For example '//analytics.my-website.com/'
-     * @param id : SiteId for this application/site. If this is the first website your matomo is tracking, Id will be 1.
-     * @param scriptName : Name of the script, for legacy support you can use 'piwik'.
+     * @param settings Matomo settings for initialization.
      * @memberof MatomoInjector
      */
-    init(url: string, id: number = 1, scriptName: string = 'matomo') {
+    init(settings: MatomoSettings) {
+        let { url, id, scriptName, enableLinkTracking } = settings;
         window._paq.push(['trackPageView']);
-        window._paq.push(['enableLinkTracking']);
+
+        if (enableLinkTracking) {
+            window._paq.push(['enableLinkTracking']);
+        }
+
         const u = url;
         window._paq.push(['setTrackerUrl', u + `${scriptName}.php`]);
         window._paq.push(['setSiteId', id.toString()]);
