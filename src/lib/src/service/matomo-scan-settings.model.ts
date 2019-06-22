@@ -14,7 +14,6 @@ export class MatomoScanSettings {
      *
      * If using legacy hash in angular routing you can use `'/' + window.location.hash.substr(1)`.
      *
-     * @default window.location.pathname
      * @example for "https://my-website.com" you will have "/"
      * @example for "https://my-website.com/article you will have "/article"
      * @see https://developer.matomo.org/guides/spa-tracking#tracking-a-new-page-view
@@ -27,7 +26,6 @@ export class MatomoScanSettings {
      * In a SPA you have to update it yourself. Otherwise the document title send will always be the same as
      * the first page you have visited.
      *
-     * @default window.document.title
      * @see https://developer.matomo.org/guides/spa-tracking#tracking-a-new-page-view
      */
     documentTitle?: string = window.document.title;
@@ -41,7 +39,6 @@ export class MatomoScanSettings {
      *
      * Time is in milliseconds.
      *
-     * @default 0
      * @see https://developer.matomo.org/guides/spa-tracking#updating-the-generation-time
      */
     timeItTookToLoadPage: number = 0;
@@ -50,7 +47,6 @@ export class MatomoScanSettings {
      * If you use the link tracking feature to measure outlinks and downloads,
      * Matomo needs to re-scan the entire DOM for newly added links whenever your DOM changes.
      *
-     * @default true
      * @see https://developer.matomo.org/guides/spa-tracking#link-tracking
      */
     enableLinkTracking?: boolean = true;
