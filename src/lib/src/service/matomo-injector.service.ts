@@ -60,15 +60,15 @@ export class MatomoInjector {
      */
     onPageChange(settings?: MatomoScanSettings) {
         const {
-            previousURL,
+            referrer,
             customURL,
             documentTitle,
             timeItTookToLoadPage,
             enableLinkTracking,
         } = Object.assign(new MatomoScanSettings(), settings);
 
-        if (previousURL) {
-            window._paq.push(['setReferrerUrl', previousURL]);
+        if (referrer) {
+            window._paq.push(['setReferrerUrl', referrer]);
         }
 
         if (customURL) {

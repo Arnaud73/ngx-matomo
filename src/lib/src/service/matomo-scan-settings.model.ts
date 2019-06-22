@@ -5,7 +5,7 @@ export class MatomoScanSettings {
      *
      * @see https://developer.matomo.org/guides/spa-tracking#updating-the-referrer
      */
-    previousURL?: string;
+    referrer?: string;
 
     /**
      * On a not SPA application Matomo is able to detect url change when calling 'trackPageView'.
@@ -41,7 +41,7 @@ export class MatomoScanSettings {
      *
      * @see https://developer.matomo.org/guides/spa-tracking#updating-the-generation-time
      */
-    timeItTookToLoadPage: number = 0;
+    timeItTookToLoadPage?: number = 0;
 
     /**
      * If you use the link tracking feature to measure outlinks and downloads,
