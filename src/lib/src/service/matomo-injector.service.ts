@@ -58,8 +58,8 @@ export class MatomoInjector {
      * @param settings
      * @see https://developer.matomo.org/guides/spa-tracking
      */
-    onPageChange(settings: MatomoScanSettings) {
-        let {
+    onPageChange(settings?: MatomoScanSettings) {
+        const {
             previousURL,
             customURL,
             documentTitle,
