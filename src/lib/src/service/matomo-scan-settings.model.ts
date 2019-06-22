@@ -13,12 +13,12 @@ export class MatomoScanSettings {
      * the first page you have visited (probably the main page `https://my-website.com`).
      *
      * If using legacy hash in angular routing you can use `'/' + window.location.hash.substr(1)`.
+     * Be aware that if you provide an incomplete url, Matomo will prepend window.location.hostname to it.
+     * For example `/article` on domain `http://localhost:4200` will become `http://localhost/article`.
      *
-     * @example for "https://my-website.com" you will have "/"
-     * @example for "https://my-website.com/article you will have "/article"
      * @see https://developer.matomo.org/guides/spa-tracking#tracking-a-new-page-view
      */
-    customURL?: string = window.location.pathname;
+    customURL?: string = window.location.href;
 
 
     /**
