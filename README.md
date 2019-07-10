@@ -1,23 +1,24 @@
-# ngx-matomo 
+# ngx-Matomo 
 
 Wrapper for Matomo (aka. Piwik) analytics tracker for applications based on Angular 5, 6, 7 & 8.
 
-## Install through source files
+## Warning
 
-Download directly from github and place the src files in your Angular application. 
+This new release of ngx-Matomo has been rebuilt with Angular CLI 8. As a result, the produced library uses Angular Package Format (APF) v8.0. It has been tested with an Angular 6 application, but if your Angular 5, 6 or 7 application is running into trouble, please create an issue on Github.
 
-## npm install
+## Installation
 
+Use `npm` or `yarn` to add the module to your current project:
 ```npm install --save ngx-matomo```
 
 ## Adding Matomo into to your Angular application
 
 You can add Matomo either via script tag or using the MatomoInjector in your root component.
 
-### Adding Matomo into your application via Script Tag.
+### Initialize Matomo via Script Tag
 
-To illustrate the set up, here's the code to inject into your header to initialize Matomo in your application. Matomo's [site](https://developer.matomo.org/guides/tracking-javascript-guide) has the detailed documentation on how to set up communication between Matomo and your application. 
-Make sure you replace the MATOMO_URL with your Matomo server. You can remove all the _paq methods in this script and set them up in your Angular 5+ application. 
+To illustrate the set up, here's the code to inject into your header to initialize Matomo in your application. Matomo's [site](https://developer.matomo.org/guides/tracking-javascript-guide) has the detailed documentation on how to set up communication between Matomo and your application.
+Make sure you replace the MATOMO_URL with your Matomo server. You can remove all the _paq methods in this script and set them up in your Angular 5+ application.
 
 ```html
 <!-- Matomo -->
@@ -27,16 +28,16 @@ Make sure you replace the MATOMO_URL with your Matomo server. You can remove all
   _paq.push(['enableLinkTracking']);
   (function() {
     var u="//{$MATOMO_URL}/";
-    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
     _paq.push(['setSiteId', {$IDSITE}]);
     var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
   })();
 </script>
 <!-- End Matomo Code -->
 ```
 
-### Initialize Matomo via Root Component 
+### Initialize Matomo via root component and MatomoInjector service
 
 To enable Matomo via your root component you can now inject the MatomoInjector in your root component.
 
@@ -82,7 +83,6 @@ export class AppModule { }
 Once that's done you can import ```MatomoTracker``` into any component in your application.
 
 ```ts
-
 // component
 import { Component } from '@angular/core';
 import { MatomoTracker } from 'ngx-matomo';
@@ -102,7 +102,6 @@ export class AppComponent {
   }
 }
 ```
-
 
 ## Tracking events
 
@@ -128,13 +127,12 @@ export class MyComponent {
 
   whatHappensOnClick(someVal){
     /*
-    * some code...
-    */
+     * some code...
+     */
     this.matomoTracker.trackEvent('category', 'action', 'name', someVal);
   }
 }
 ```
-
 
 ## Original Source
 
