@@ -36,9 +36,9 @@ export class MatomoInjector {
             const u = url;
             window._paq.push(['setTrackerUrl', u + 'piwik.php']);
             window._paq.push(['setSiteId', id.toString()]);
-            const d = document,
-                g = d.createElement('script'),
-                s = d.getElementsByTagName('script')[0];
+            const d = document;
+            const g = d.createElement('script');
+            const s = d.getElementsByTagName('script')[0];
             g.type = 'text/javascript';
             g.async = true;
             g.defer = true;
