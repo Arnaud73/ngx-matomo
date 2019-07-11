@@ -1,19 +1,19 @@
-dist: trusty
-sudo: required
 language: node_js
-node_js:
-  - "8"
-os:
-  - linux
+node_js: "10"
+sudo: true
+
 addons:
   chrome: stable
-before_install:
-  - npm i -g npm@6
-  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
+
+branches:
+  only:
+    - master
+
 install:
   - npm install
+
 script:
   - npm run lint
-  - npm run test:once
-  - npm run integration
-  - npm run coverage
+  - npm run build ngx-matomo
+  - npm run test-headless ngx-matomo
+  - npm run test-headless demo
