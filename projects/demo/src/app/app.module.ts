@@ -5,9 +5,9 @@ import { MatomoModule } from 'ngx-matomo';
 import { AppComponent } from './app.component';
 
 @NgModule({
-    declarations: [AppComponent],
-    imports: [BrowserModule, MatomoModule],
-    providers: [],
-    bootstrap: [AppComponent]
+  declarations: [AppComponent],
+  imports: [BrowserModule, MatomoModule],
+  providers: [],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}
