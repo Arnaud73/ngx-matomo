@@ -4,7 +4,7 @@ Wrapper for Matomo (aka. Piwik) analytics tracker for applications based on Angu
 
 ## Warning
 
-This new release of ngx-Matomo has been rebuilt with Angular CLI 8. As a result, the produced library uses Angular Package Format (APF) v8.0. It has been tested with an Angular 6 application, but if your Angular 5, 6 or 7 application is running into trouble, please create an issue on Github.
+This new release of ngx-Matomo has been rebuilt with Angular CLI v8. As a result, the produced library uses Angular Package Format (APF) v8. It has been tested with an Angular 6 application, but if your Angular 5, 6 or 7 application is running into trouble, please log an issue on GitHub.
 
 ## Installation
 
