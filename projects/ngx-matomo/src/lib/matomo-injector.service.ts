@@ -26,10 +26,11 @@ export class MatomoInjector {
    * Injects the Matomo tracker in the DOM.
    *
    * @param url: URL of the Matomo instance to connect to.
-   * @param id : SiteId for this application/site.
+   * @param id: SiteId for this application/site.
+   * @param [scriptUrl]: Optional URL for the piwik.js/matomo.js script in case it is not at its default location.
    * @memberof MatomoInjector
    */
-  init(url: string, id: number) {
+  init(url: string, id: number, scriptUrl?: string) {
     window._paq.push(['trackPageView']);
     window._paq.push(['enableLinkTracking']);
     (() => {
@@ -42,7 +43,7 @@ export class MatomoInjector {
       g.type = 'text/javascript';
       g.async = true;
       g.defer = true;
-      g.src = u + 'piwik.js';
+      g.src = !!scriptUrl ? scriptUrl : u + 'piwik.js';
       s.parentNode.insertBefore(g, s);
     })();
   }
