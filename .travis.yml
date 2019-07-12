@@ -5,10 +5,6 @@ sudo: true
 addons:
   chrome: stable
 
-branches:
-  only:
-    - master
-
 install:
   - npm install
 
