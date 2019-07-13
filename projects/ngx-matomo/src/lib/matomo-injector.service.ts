@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { MatomoInitSettings } from './matomo-settings.model';
+import { MatomoScanSettings } from './matomo-scan-settings.model';
 
 declare var window: {
   [key: string]: any;
@@ -25,26 +27,72 @@ export class MatomoInjector {
   /**
    * Injects the Matomo tracker in the DOM.
    *
-   * @param url: URL of the Matomo instance to connect to. For example '//analytics.my-website.com/'
-   * @param id : SiteId for this application/site. If this is the first website your matomo is tracking, Id will be 1.
-   * @param scriptName : Name of the script, for legacy support you can use 'piwik'.
+   * @param settings Matomo settings for initialization.
    * @memberof MatomoInjector
    */
-  init(url: string, id: number = 1, scriptName: string = 'matomo') {
-    window._paq.push(['trackPageView']);
-    window._paq.push(['enableLinkTracking']);
-    (() => {
+    init(settings: MatomoInitSettings) {
+      const { url, id, scriptName, enableLinkTracking } = Object.assign(new MatomoInitSettings(), settings);
+      window._paq.push(['trackPageView']);
+
+      if (enableLinkTracking) {
+        window._paq.push(['enableLinkTracking']);
+      }
+
       const u = url;
       window._paq.push(['setTrackerUrl', u + `${scriptName}.php`]);
       window._paq.push(['setSiteId', id.toString()]);
-      const d = document,
-        g = d.createElement('script'),
-        s = d.getElementsByTagName('script')[0];
+      const d = document;
+      const g = d.createElement('script');
+      const s = d.getElementsByTagName('script')[0];
       g.type = 'text/javascript';
       g.async = true;
       g.defer = true;
       g.src = u + `${scriptName}.js`;
       s.parentNode.insertBefore(g, s);
-    })();
-  }
+    }
+
+    /**
+     *
+     * @param settings
+     * @see https://developer.matomo.org/guides/spa-tracking
+     */
+    onPageChange(settings?: MatomoScanSettings) {
+        const {
+            referrer,
+            customURL,
+            documentTitle,
+            timeItTookToLoadPage,
+            enableLinkTracking,
+        } = Object.assign(new MatomoScanSettings(), settings);
+
+        if (referrer) {
+            window._paq.push(['setReferrerUrl', referrer]);
+    }
+
+        if (customURL) {
+            window._paq.push(['setCustomUrl', customURL]);
+        }
+
+        if (documentTitle) {
+            window._paq.push(['setDocumentTitle', documentTitle]);
+        }
+
+        // remove all previously assigned custom variables, requires Matomo (formerly Piwik) 3.0.2
+        window._paq.push(['deleteCustomVariables', 'page']);
+        window._paq.push(['setGenerationTimeMs', timeItTookToLoadPage]);
+        window._paq.push(['trackPageView']);
+
+        // todo
+        // make Matomo aware of newly added content
+        // let content = document.getElementById('content');
+        // _paq.push(['MediaAnalytics::scanForMedia', content]);
+        // _paq.push(['FormAnalytics::scanForForms', content]);
+        // _paq.push(['trackContentImpressionsWithinNode', content]);
+
+        if (enableLinkTracking) {
+            window._paq.push(['enableLinkTracking']);
+        }
+    }
+
+
 }
