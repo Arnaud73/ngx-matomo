@@ -18,7 +18,11 @@ export class AppComponent implements OnInit, AfterViewInit {
    * @memberof AppComponent
    */
   constructor(private matomoInjector: MatomoInjector, private matomoTracker: MatomoTracker) {
-    this.matomoInjector.init('http://localhost:5555/', 1);
+    this.matomoInjector.init(
+      'http://ngx.matomo.cloud/',
+      1,
+      '//cdn.matomo.cloud/ngx.matomo.cloud/matomo.js'
+    );
   }
 
   /**
