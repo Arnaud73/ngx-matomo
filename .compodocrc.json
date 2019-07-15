@@ -1,0 +1,10 @@
+{
+  "tsconfig": "./projects/ngx-matomo/tsconfig.lib.json",
+  "output": "./docs",
+  "disableSourceCode": true,
+  "disableCoverage": true,
+  "disableGraph": true,
+  "disableLifeCycleHooks": true,
+  "disableInternal": true,
+  "disablePrivate": true
+}
