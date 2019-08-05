@@ -19,7 +19,7 @@ export class MatomoInjector {
    *
    * @memberof MatomoInjector
    */
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+  constructor(@Inject(PLATFORM_ID) private platformId) {
     if (isPlatformBrowser(this.platformId)) {
       window._paq = window._paq || [];
     } else {
