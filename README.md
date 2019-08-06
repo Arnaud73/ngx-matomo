@@ -1,5 +1,10 @@
 # ngx-Matomo 
 
+[![Build Status](https://travis-ci.com/Arnaud73/ngx-matomo.svg?branch=master)](https://travis-ci.com/Arnaud73/ngx-matomo)
+[![NPM version](https://img.shields.io/npm/v/ngx-matomo.svg)](https://www.npmjs.com/package/ngx-matomo)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/b650cf6a9d3d4ab393af8d29d63fc8cc)](https://www.codacy.com/app/Arnaud73/ngx-matomo?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Arnaud73/ngx-matomo&amp;utm_campaign=Badge_Grade)
+[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
+
 Wrapper for Matomo (aka. Piwik) analytics tracker for applications based on Angular 5, 6, 7 & 8.
 
 ## Warning
@@ -141,3 +146,12 @@ This module is lousily inspired from [Angular2Piwik](https://github.com/awronka/
 ## License
 
 [MIT](LICENSE)
+
+## See also
+
+Matomo's [site](https://developer.matomo.org/) has the detailed documentation on how to use Matomo and integrate it in an application.
+See also:
+- [Single-Page Application Tracking](https://developer.matomo.org/guides/spa-tracking)
+- [JavaScript Tracking Client](https://developer.matomo.org/guides/tracking-javascript-guide)
+- [JavaScript Tracking Client](https://developer.matomo.org/api-reference/tracking-javascript).
+- [Tracking HTTP API](https://developer.matomo.org/api-reference/tracking-api)
