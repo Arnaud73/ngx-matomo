@@ -2,7 +2,7 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { MatomoTracker, MatomoInjector } from 'ngx-matomo';
 
 /**
- * Main component of the demo application
+ * Main component of the demo application.
  */
 @Component({
   selector: 'app-root',
@@ -13,9 +13,8 @@ export class AppComponent implements OnInit, AfterViewInit {
   /**
    * Creates an instance of AppComponent.
    *
-   * @param matomoInjector
-   * @param matomoTracker
-   * @memberof AppComponent
+   * @param matomoInjector Instance of MatomoInjector provided by DI.
+   * @param matomoTracker Instance of MatomoTracker provided by DI.
    */
   constructor(private matomoInjector: MatomoInjector, private matomoTracker: MatomoTracker) {
     this.matomoInjector.init(
@@ -27,8 +26,6 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   /**
    * OnInit lifecycle hook
-   *
-   * @memberof AppComponent
    */
   ngOnInit() {
     this.matomoTracker.setUserId('UserId');
@@ -37,8 +34,6 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   /**
    * AfterViewInit lifecycle hook
-   *
-   * @memberof AppComponent
    */
   ngAfterViewInit() {
     this.matomoTracker.trackPageView('It Works!');

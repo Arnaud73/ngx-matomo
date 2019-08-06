@@ -1,10 +1,13 @@
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
+/**
+ * Access to the global window variable.
+ */
 declare var window: {
   [key: string]: any;
   prototype: Window;
-  new(): Window;
+  new (): Window;
 };
 
 /**
@@ -17,7 +20,7 @@ export class MatomoInjector {
   /**
    * Creates an instance of MatomoInjector.
    *
-   * @memberof MatomoInjector
+   * @param platformId Angular description of the platform.
    */
   constructor(@Inject(PLATFORM_ID) private platformId) {
     if (isPlatformBrowser(this.platformId)) {
@@ -30,10 +33,9 @@ export class MatomoInjector {
   /**
    * Injects the Matomo tracker in the DOM.
    *
-   * @param url: URL of the Matomo instance to connect to.
-   * @param id: SiteId for this application/site.
-   * @param [scriptUrl]: Optional URL for the piwik.js/matomo.js script in case it is not at its default location.
-   * @memberof MatomoInjector
+   * @param url URL of the Matomo instance to connect to.
+   * @param id SiteId for this application/site.
+   * @param [scriptUrl] Optional URL for the `piwik.js`/`matomo.js` script in case it is not at its default location.
    */
   init(url: string, id: number, scriptUrl?: string) {
     if (isPlatformBrowser(this.platformId)) {
