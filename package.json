@@ -70,9 +70,5 @@
     "tslint": "~5.15.0",
     "typescript": "~3.5.3"
   },
-  "standard-version": {
-    "skip": {
-      "commit": true
-    }
-  }
+  "standard-version": {}
 }
