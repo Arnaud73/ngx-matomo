@@ -1,5 +1,7 @@
 # ngx-Matomo 
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/2b1112dc7d444bc39363ef5a3ffcc6f8)](https://app.codacy.com/app/Arnaud73/ngx-matomo?utm_source=github.com&utm_medium=referral&utm_content=Arnaud73/ngx-matomo&utm_campaign=Badge_Grade_Dashboard)
+
 Wrapper for Matomo (aka. Piwik) analytics tracker for applications based on Angular 5, 6, 7 & 8.
 
 ## Warning
