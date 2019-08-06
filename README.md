@@ -151,7 +151,7 @@ This module is lousily inspired from [Angular2Piwik](https://github.com/awronka/
 
 Matomo's [site](https://developer.matomo.org/) has the detailed documentation on how to use Matomo and integrate it in an application.
 See also:
-- [Single-Page Application Tracking](https://developer.matomo.org/guides/spa-tracking)
-- [JavaScript Tracking Client](https://developer.matomo.org/guides/tracking-javascript-guide)
-- [JavaScript Tracking Client](https://developer.matomo.org/api-reference/tracking-javascript).
-- [Tracking HTTP API](https://developer.matomo.org/api-reference/tracking-api)
+-   [Single-Page Application Tracking](https://developer.matomo.org/guides/spa-tracking)
+-   [JavaScript Tracking Client](https://developer.matomo.org/guides/tracking-javascript-guide)
+-   [JavaScript Tracking Client](https://developer.matomo.org/api-reference/tracking-javascript)
+-   [Tracking HTTP API](https://developer.matomo.org/api-reference/tracking-api)
