@@ -6,7 +6,7 @@ addons:
   chrome: stable
 
 install:
-  - npm install
+  - npm ci
 
 script:
   - npm run lint
