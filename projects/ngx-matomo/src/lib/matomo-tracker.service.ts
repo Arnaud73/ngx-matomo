@@ -139,6 +139,8 @@ export class MatomoTracker {
 
   /**
    * Scans the entire DOM for all content blocks and tracks all impressions once the DOM ready event has been triggered.
+   *
+   * @see {@link https://developer.matomo.org/guides/content-tracking|Content Tracking}
    */
   trackAllContentImpressions(): void {
     try {
@@ -156,6 +158,7 @@ export class MatomoTracker {
    *
    * @param checkOnScroll If true, checks for new content blocks while scrolling the page.
    * @param timeInterval Duration, in milliseconds, between two checks upon scroll.
+   * @see {@link https://developer.matomo.org/guides/content-tracking|Content Tracking}
    */
   trackVisibleContentImpressions(checkOnScroll: boolean, timeInterval: number): void {
     try {
@@ -172,6 +175,7 @@ export class MatomoTracker {
    * if no impression was already tracked for it.
    *
    * @param node DOM node in which to look for content blocks which have not been previously tracked.
+   * @see {@link https://developer.matomo.org/guides/content-tracking|Content Tracking}
    */
   trackContentImpressionsWithinNode(node: Node): void {
     try {
@@ -188,6 +192,7 @@ export class MatomoTracker {
    *
    * @param node DOM node for which to track a content interaction.
    * @param contentInteraction Name of the content interaction.
+   * @see {@link https://developer.matomo.org/guides/content-tracking|Content Tracking}
    */
   trackContentInteractionNode(node: Node, contentInteraction: string): void {
     try {
@@ -205,6 +210,7 @@ export class MatomoTracker {
    * @param contentName Content name.
    * @param contentPiece Content piece.
    * @param contentTarget Content target.
+   * @see {@link https://developer.matomo.org/guides/content-tracking|Content Tracking}
    */
   trackContentImpression(contentName: string, contentPiece: string, contentTarget: string): void {
     try {
@@ -223,6 +229,7 @@ export class MatomoTracker {
    * @param contentName Content name.
    * @param contentPiece Content piece.
    * @param contentTarget Content target.
+   * @see {@link https://developer.matomo.org/guides/content-tracking|Content Tracking}
    */
   trackContentInteraction(
     contentInteraction: string,
