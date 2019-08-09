@@ -974,6 +974,22 @@ export class MatomoTracker {
   }
 
   /**
+   * Deletes all custom variables.
+   *
+   * @param scope Scope of the custom variables to delete.
+   * @see {@link https://matomo.org/docs/custom-variables/|Custom Variables}
+   */
+  deleteCustomVariables(scope: string): void {
+    try {
+      window._paq.push(['deleteCustomVariables', scope]);
+    } catch (e) {
+      if (!(e instanceof ReferenceError)) {
+        throw e;
+      }
+    }
+  }
+
+  /**
    * Retrieves a custom variable.
    *
    * @param index Index of the custom variable to retrieve.
