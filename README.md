@@ -4,6 +4,10 @@
 [![NPM version](https://img.shields.io/npm/v/ngx-matomo.svg)](https://www.npmjs.com/package/ngx-matomo)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b650cf6a9d3d4ab393af8d29d63fc8cc)](https://www.codacy.com/app/Arnaud73/ngx-matomo?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Arnaud73/ngx-matomo&amp;utm_campaign=Badge_Grade)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
+[![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
+[![dependencies Status](https://david-dm.org/Arnaud73/ngx-matomo/status.svg)](https://david-dm.org/Arnaud73/ngx-matomo)
+[![devDependencies Status](https://david-dm.org/Arnaud73/ngx-matomo/dev-status.svg)](https://david-dm.org/Arnaud73/ngx-matomo?type=dev)
+[![peerDependencies Status](https://david-dm.org/Arnaud73/ngx-matomo/peer-status.svg)](https://david-dm.org/Arnaud73/ngx-matomo?type=peer)
 
 Wrapper for Matomo (aka. Piwik) analytics tracker for applications based on Angular 5, 6, 7 & 8.
 
