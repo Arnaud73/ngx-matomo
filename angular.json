@@ -143,5 +143,8 @@
       }
     }
   },
-  "defaultProject": "ngx-matomo"
+  "defaultProject": "ngx-matomo",
+  "cli": {
+    "packageManager": "npm"
+  }
 }
