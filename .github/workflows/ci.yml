@@ -20,8 +20,8 @@ jobs:
       run: |
         npm ci
         npm run lint
-        run build ngx-matomo
-        run test-headless ngx-matomo
-        run test-headless demo
+        npm run build ngx-matomo
+        npm run test-headless ngx-matomo
+        npm run test-headless demo
       env:
         CI: true
