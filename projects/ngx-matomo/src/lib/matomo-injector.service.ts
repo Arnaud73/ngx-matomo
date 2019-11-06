@@ -36,14 +36,15 @@ export class MatomoInjector {
    * @param url URL of the Matomo instance to connect to.
    * @param id SiteId for this application/site.
    * @param [scriptUrl] Optional URL for the `piwik.js`/`matomo.js` script in case it is not at its default location.
+   * @param [trackingUrl] Optional URL for the `piwik.php`/`matomo.php` in case it is not at its default location.
    */
-  init(url: string, id: number, scriptUrl?: string) {
+  init(url: string, id: number, scriptUrl?: string, trackingUrl?: string) {
     if (isPlatformBrowser(this.platformId)) {
       window._paq.push(['trackPageView']);
       window._paq.push(['enableLinkTracking']);
       (() => {
         const u = url;
-        window._paq.push(['setTrackerUrl', u + 'piwik.php']);
+        window._paq.push(['setTrackerUrl', !!trackingUrl ? trackingUrl : u + 'piwik.php']);
         window._paq.push(['setSiteId', id.toString()]);
         const d = document;
         const g = d.createElement('script');
