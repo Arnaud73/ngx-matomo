@@ -36,10 +36,13 @@ export class MatomoInjector {
    * @param url URL of the Matomo instance to connect to.
    * @param id SiteId for this application/site.
    * @param [scriptUrl] Optional URL for the `piwik.js`/`matomo.js` script in case it is not at its default location.
+   * @param [skipTrackingInitialPageView] Optional boolean which, if true, will prevent tracking the initial page as part of init
    */
-  init(url: string, id: number, scriptUrl?: string) {
+  init(url: string, id: number, scriptUrl?: string, skipTrackingInitialPageView?: boolean) {
     if (isPlatformBrowser(this.platformId)) {
-      window._paq.push(['trackPageView']);
+      if (!skipTrackingInitialPageView) {
+        window._paq.push(['trackPageView']);
+      }
       window._paq.push(['enableLinkTracking']);
       (() => {
         const u = url;
