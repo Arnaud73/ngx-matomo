@@ -266,6 +266,112 @@ export class MatomoTracker {
   }
 
   /**
+   * Re-scans the entire document for new forms, with an optional DOM node to restrain to a specific updated area.
+   *
+   * @param [node] DOM node in which to look for updated parts of the page.
+   * @see {@link https://developer.matomo.org/guides/form-analytics/reference|Scan for forms}
+   */
+  scanForForms(node: Node) {
+    try {
+      const args: any[] = [];
+      if (!!node) {
+        args.push(node);
+      }
+      window._paq.push(['FormAnalytics::scanForForms', ...args]);
+    } catch (e) {
+      if (!(e instanceof ReferenceError)) {
+        throw e;
+      }
+    }
+  }
+
+  /**
+   * Manually tracks a form by its DOM node, in case the form element is not used.
+   *
+   * @param node DOM node of the form to manually track.
+   * @see {@link https://developer.matomo.org/guides/form-analytics/reference|Track a form with no form element}
+   */
+  trackForm(node) {
+    try {
+      const args: any[] = [node];
+      window._paq.push(['FormAnalytics::trackForm', ...args]);
+    } catch (e) {
+      if (!(e instanceof ReferenceError)) {
+        throw e;
+      }
+    }
+  }
+
+  /**
+   * Manually logs a form submission with the reference of either the form element submitted,
+   * or any element within that form.
+   *
+   * @param node DOM node of the form.
+   * @see {@link https://developer.matomo.org/guides/form-analytics/reference|Track a form submit manually}
+   */
+  trackFormSubmit(node) {
+    try {
+      const args: any[] = [node];
+      window._paq.push(['FormAnalytics::trackFormSubmit'].concat(args));
+    } catch (e) {
+      if (!(e instanceof ReferenceError)) {
+        throw e;
+      }
+    }
+  }
+
+  /**
+   * Manually logs a form conversion with the reference of either the form element converted,
+   * or any element within that form.
+   *
+   * @param node DOM node of the form, used to logs the form conversion.
+   * @see {@link https://developer.matomo.org/guides/form-analytics/reference|Track a form conversion manually}
+   */
+  trackFormConversionNode(node: Node) {
+    try {
+      const args: any[] = [node];
+      window._paq.push(['FormAnalytics::trackFormConversion', ...args]);
+    } catch (e) {
+      if (!(e instanceof ReferenceError)) {
+        throw e;
+      }
+    }
+  }
+
+  /**
+   * Manually logs a form conversion with the form name and id.
+   * If the form doesn't have a name or id attribute, simply set an empty string.
+   *
+   * @param name form name, leave empty string if the form doesn't have a name.
+   * @param id form id, leave empty string if the form doesn't have an id.
+   * @see {@link https://developer.matomo.org/guides/form-analytics/reference|Track a form conversion manually}
+   */
+  trackFormConversion(name: string, id: string) {
+    try {
+      const args: any[] = [name, id];
+      window._paq.push(['FormAnalytics::trackFormConversion', ...args]);
+    } catch (e) {
+      if (!(e instanceof ReferenceError)) {
+        throw e;
+      }
+    }
+  }
+
+  /**
+   * Log all tracking requests and some more information to the developer console of the browser.
+   * @see {@link https://developer.matomo.org/guides/form-analytics/reference|Debug Mode}
+   */
+  enableDebugMode(): void {
+    try {
+      window._paq.push(['FormAnalytics::enableDebugMode']);
+    } catch (e) {
+      if (!(e instanceof ReferenceError)) {
+        throw e;
+      }
+    }
+  }
+
+  /**
    * Install a Heart beat timer that will regularly send requests to Matomo in order to better measure the time spent on the page.<br />
    * These requests will be sent only when the user is actively viewing the page (when the tab is active and in focus).<br />
    * These requests will not track additional actions or page views.<br />
