@@ -43,7 +43,7 @@ export class MatomoInjector {
       window._paq.push(['enableLinkTracking']);
       (() => {
         const u = url;
-        window._paq.push(['setTrackerUrl', u + 'piwik.php']);
+        window._paq.push(['setTrackerUrl', u + 'matomo.php']);
         window._paq.push(['setSiteId', id.toString()]);
         const d = document;
         const g = d.createElement('script');
@@ -51,7 +51,7 @@ export class MatomoInjector {
         g.type = 'text/javascript';
         g.async = true;
         g.defer = true;
-        g.src = !!scriptUrl ? scriptUrl : u + 'piwik.js';
+        g.src = !!scriptUrl ? scriptUrl : u + 'matomo.js';
         s.parentNode.insertBefore(g, s);
       })();
     }
