@@ -1322,6 +1322,64 @@ export class MatomoTracker {
   }
 
   /**
+   * By default the Matomo tracker assumes consent to tracking.
+   * To change this behavior so nothing is tracked until a user consents, you must call requireConsent.
+   */
+  requireConsent(): void {
+    try {
+      window._paq.push(['requireConsent']);
+    } catch (e) {
+      if (!(e instanceof ReferenceError)) {
+        throw e;
+      }
+    }
+  }
+
+  /**
+   * Marks that the current user has consented.<br />
+   * The consent is one-time only, so in a subsequent browser session, the user will have to consent again.<br />
+   * To remember consent, see the method below: rememberConsentGiven.
+   */
+  setConsentGiven(): void {
+    try {
+      window._paq.push(['setConsentGiven']);
+    } catch (e) {
+      if (!(e instanceof ReferenceError)) {
+        throw e;
+      }
+    }
+  }
+
+  /**
+   * Marks that the current user has consented, and remembers this consent through a browser cookie.<br />
+   * The next time the user visits the site, Matomo will remember that they consented, and track them.<br />
+   * If you call this method, you do not need to call setConsentGiven.
+   */
+  rememberConsentGiven(hoursToExpire: number): void {
+    try {
+      window._paq.push(['rememberConsentGiven', hoursToExpire]);
+    } catch (e) {
+      if (!(e instanceof ReferenceError)) {
+        throw e;
+      }
+    }
+  }
+
+  /**
+   * Removes a user's consent, both if the consent was one-time only and if the consent was remembered.<br />
+   * After calling this method, the user will have to consent again in order to be tracked.
+   */
+  forgetConsentGiven(): void {
+    try {
+      window._paq.push(['forgetConsentGiven']);
+    } catch (e) {
+      if (!(e instanceof ReferenceError)) {
+        throw e;
+      }
+    }
+  }
+
+  /**
    * Disables all first party cookies.<br />
    * Existing Matomo cookies for this websites will be deleted on the next page view.
    */
