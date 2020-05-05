@@ -341,6 +341,29 @@ export class MatomoTracker {
   }
 
   /**
+   * Returns the query parameter to append to links to handle cross domain linking.<br />
+   * Use this to add cross domain support for links that are added to the DOM dynamically.
+   *
+   * @returns Promise for the `pk_vid` query parameter.
+   * @see {@link https://matomo.org/faq/how-to/faq_23654/|Cross Domain Linking}
+   */
+  getCrossDomainLinkingUrlParameter(): Promise<string> {
+    return new Promise((resolve, reject) => {
+      try {
+        window._paq.push([
+          function () {
+            resolve(this.getCrossDomainLinkingUrlParameter());
+          },
+        ]);
+      } catch (e) {
+        if (!(e instanceof ReferenceError)) {
+          reject(e);
+        }
+      }
+    });
+  }
+
+  /**
    * Overrides document.title
    *
    * @param title Title of the document.
