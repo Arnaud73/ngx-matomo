@@ -132,7 +132,7 @@ export class MatomoTracker {
    * @param url Full URL which is to be tracked as a click.
    * @param linkType Either 'link' for an outlink or 'download' for a download.
    */
-  trackLink(url: string, linkType: string): void {
+  trackLink(url: string, linkType: 'link' | 'download'): void {
     try {
       window._paq.push(['trackLink', url, linkType]);
     } catch (e) {
