@@ -258,7 +258,8 @@ export class MatomoTracker {
   }
 
   /**
-   * Logs all found content blocks within a page to the console. This is useful to debug / test content tracking.
+   * Logs all found content blocks within a page to the console.<br />
+   * This is useful to debug / test content tracking.
    */
   logAllContentBlocksOnPage(): void {
     try {
@@ -271,7 +272,7 @@ export class MatomoTracker {
   }
 
   /**
-   * Install a Heart beat timer that will regularly send requests to Matomo in order to better measure the time spent on the page.<br />
+   * Installs a Heart beat timer that will regularly send requests to Matomo in order to better measure the time spent on the page.<br />
    * These requests will be sent only when the user is actively viewing the page (when the tab is active and in focus).<br />
    * These requests will not track additional actions or page views.<br />
    * By default, the delay is set to 15 seconds.
@@ -329,10 +330,11 @@ export class MatomoTracker {
   }
 
   /**
+   * Sets the cross domain linking timeout.<br />
    * By default, the two visits across domains will be linked together when the link is clicked and the page is loaded within
    * a 180 seconds timeout window.
    *
-   * @param timeout Timeout, in seconds, between two actions across two domanes before creating a new visit.
+   * @param timeout Timeout, in seconds, between two actions across two domains before creating a new visit.
    * @see {@link https://matomo.org/faq/how-to/faq_23654/|Cross Domain Linking}
    */
   setCrossDomainLinkingTimeout(timeout: number): void {
@@ -448,8 +450,8 @@ export class MatomoTracker {
   }
 
   /**
-   * Specify the Matomo HTTP API URL endpoint. Points to the root directory of matomo,
-   * e.g. http://matomo.example.org/ or https://example.org/matomo/.<br />
+   * Specifies the Matomo HTTP API URL endpoint.<br />
+   * Points to the root directory of Matomo, e.g. http://matomo.example.org/ or https://example.org/matomo/.<br />
    * This function is only useful when the 'Overlay' report is not working.<br />
    * By default, you do not need to use this function.
    *
@@ -540,7 +542,7 @@ export class MatomoTracker {
   }
 
   /**
-   * Sets list of file extensions to be recognized as downloads.<br />
+   * Sets file extensions to be recognized as downloads.<br />
    * Example: `'docx'` or `['docx', 'xlsx']`.
    *
    * @param extensions Extension, or list of extensions to be recognized as downloads.
@@ -572,7 +574,7 @@ export class MatomoTracker {
   }
 
   /**
-   * Sets file extensions to be removed from the list of download file extensions.<br />
+   * Specifies file extensions to be removed from the list of download file extensions.<br />
    * Example: `'docx'` or `['docx', 'xlsx']`.
    *
    * @param extensions Extension, or list of extensions not to be recognized as downloads.
@@ -603,7 +605,7 @@ export class MatomoTracker {
   }
 
   /**
-   * Set classes to be treated as outlinks (in addition to piwik_link).
+   * Sets classes to be treated as outlinks (in addition to piwik_link).
    *
    * @param classes Class, or list of classes to be treated as outlinks.
    */
@@ -618,7 +620,7 @@ export class MatomoTracker {
   }
 
   /**
-   * Set delay for link tracking (in milliseconds).
+   * Sets delay for link tracking (in milliseconds).
    *
    * @param delay Delay, in milliseconds, for link tracking.
    */
@@ -654,7 +656,7 @@ export class MatomoTracker {
   }
 
   /**
-   * Set to true to not record the hash tag (anchor) portion of URLs.
+   * Sets if or not to record the hash tag (anchor) portion of URLs.
    *
    * @param value If true, the hash tag portion of the URLs won't be recorded.
    */
@@ -700,7 +702,7 @@ export class MatomoTracker {
   }
 
   /**
-   * Set to true to not track users who opt out of tracking using Mozilla's (proposed) Do Not Track setting.
+   * Sets if to not to track users who opt out of tracking using Mozilla's (proposed) Do Not Track setting.
    *
    * @param doNotTrack If true, users who opted for Do Not Track in their settings won't be tracked.
    * @see {@link https://www.w3.org/TR/tracking-dnt/}
@@ -750,6 +752,7 @@ export class MatomoTracker {
    *
    * @param minimumVisitLength Duration before notifying the server for the duration of the visit to a page.
    * @param heartBeatDelay Delay, in seconds, between two updates to the server.
+   * @see {@link https://developer.matomo.org/guides/tracking-javascript-guide#accurately-measure-the-time-spent-on-each-page}
    */
   setHeartBeatTimer(minimumVisitLength: number, heartBeatDelay: number): void {
     try {
@@ -1169,7 +1172,7 @@ export class MatomoTracker {
   }
 
   /**
-   * Set to true to attribute a conversion to the first referrer.<br />
+   * Sets if or not to attribute a conversion to the first referrer.<br />
    * By default, conversion is attributed to the most recent referrer.
    *
    * @param conversionToFirstReferrer If true, Matomo will attribute the Goal conversion to the first referrer used
@@ -1312,7 +1315,7 @@ export class MatomoTracker {
 
   /**
    * Tracks a shopping cart.<br />
-   * Call this javascript function every time a user is adding, updating or deleting a product from the cart.
+   * Call this function every time a user is adding, updating or deleting a product from the cart.
    *
    * @param grandTotal Grand total of the shopping cart.
    */
@@ -1523,7 +1526,7 @@ export class MatomoTracker {
   }
 
   /**
-   * Set to true to enable the Secure cookie flag on all first party cookies.<br />
+   * Sets if or not to enable the Secure cookie flag on all first party cookies.<br />
    * This should be used when your website is only available under HTTPS so that all tracking cookies are always sent
    * over secure connection.
    *
