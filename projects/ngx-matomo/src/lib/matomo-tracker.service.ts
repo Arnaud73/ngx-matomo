@@ -1205,6 +1205,66 @@ export class MatomoTracker {
   }
 
   /**
+   * Removes the specified product from the untracked ecommerce order.
+   *
+   * @param productSKU SKU of the product to remove.
+   */
+  removeEcommerceItem(productSKU: string): void {
+    try {
+      const args: any[] = [productSKU];
+      window._paq.push(['removeEcommerceItem', ...args]);
+    } catch (e) {
+      if (!(e instanceof ReferenceError)) {
+        throw e;
+      }
+    }
+  }
+
+  /**
+   * Removes all products in the untracked ecommerce order.<br />
+   * Note: this is done automatically after trackEcommerceOrder() is called.
+   */
+  clearEcommerceCart() {
+    try {
+      window._paq.push(['clearEcommerceCart']);
+    } catch (e) {
+      if (!(e instanceof ReferenceError)) {
+        throw e;
+      }
+    }
+  }
+
+  /**
+   * Returns all ecommerce items currently in the untracked ecommerce order.
+   * The returned array will be a copy, so changing it won't affect the ecommerce order.<br />
+   * To affect what gets tracked, use the addEcommerceItem()/removeEcommerceItem()/clearEcommerceCart() methods.<br />
+   * Use this method to see what will be tracked before you track an order or cart update.
+   */
+  getEcommerceItems(): Promise<
+    Array<{
+      productSKU: string;
+      productName?: string;
+      productCategory?: string;
+      price?: number;
+      quantity?: number;
+    }>
+  > {
+    return new Promise((resolve, reject) => {
+      try {
+        window._paq.push([
+          function () {
+            resolve(this.getEcommerceItems());
+          },
+        ]);
+      } catch (e) {
+        if (!(e instanceof ReferenceError)) {
+          reject(e);
+        }
+      }
+    });
+  }
+
+  /**
    * Tracks a shopping cart.<br />
    * Call this javascript function every time a user is adding, updating or deleting a product from the cart.
    *
