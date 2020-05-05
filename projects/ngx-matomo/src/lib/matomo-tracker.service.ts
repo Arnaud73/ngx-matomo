@@ -757,6 +757,23 @@ export class MatomoTracker {
   }
 
   /**
+   * Sends a ping request.<br />
+   * Ping requests do not track new actions.
+   * If they are sent within the standard visit length, they will extend the existing visit and the current last action for the visit.
+   * If sent after the standard visit length, ping requests will create a new visit using the last action in the last known visit.<br />
+   * See also enableHeartBeatTimer.
+   */
+  ping() {
+    try {
+      window._paq.push(['ping']);
+    } catch (e) {
+      if (!(e instanceof ReferenceError)) {
+        throw e;
+      }
+    }
+  }
+
+  /**
    * Returns the 16 characters ID for the visitor.
    *
    * @returns Promise for the the 16 characters ID for the visitor.
