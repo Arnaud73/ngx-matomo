@@ -10,6 +10,11 @@ declare var window: {
 };
 
 /**
+ * Matomo scope
+ */
+type MatomoScope = 'page' | 'visit' | 'event';
+
+/**
  * Wrapper for functions available in the Matomo Javascript tracker.
  *
  * @export
@@ -982,11 +987,12 @@ export class MatomoTracker {
    * @param name Name, the name of the variable, for example: Category, Sub-category, UserType.
    * @param value Value, for example: "Sports", "News", "World", "Business"…
    * @param scope Scope of the custom variable:<br />
-   * - "page" means the custom variable applies to the current page view.
-   * - "visit" means the custom variable applies to the current visitor.
+   * - 'page' means the custom variable applies to the current page view.
+   * - 'visit' means the custom variable applies to the current visitor.
+   * - 'event' means the custom variable applies to the current event.
    * @see {@link https://matomo.org/docs/custom-variables/|Custom Variables}
    */
-  setCustomVariable(index: number, name: string, value: string, scope: string): void {
+  setCustomVariable(index: number, name: string, value: string, scope: MatomoScope): void {
     try {
       window._paq.push(['setCustomVariable', index, name, value, scope]);
     } catch (e) {
@@ -1003,7 +1009,7 @@ export class MatomoTracker {
    * @param scope Scope of the custom variable to delete.
    * @see {@link https://matomo.org/docs/custom-variables/|Custom Variables}
    */
-  deleteCustomVariable(index: number, scope: string): void {
+  deleteCustomVariable(index: number, scope: MatomoScope): void {
     try {
       window._paq.push(['deleteCustomVariable', index, scope]);
     } catch (e) {
@@ -1019,7 +1025,7 @@ export class MatomoTracker {
    * @param scope Scope of the custom variables to delete.
    * @see {@link https://matomo.org/docs/custom-variables/|Custom Variables}
    */
-  deleteCustomVariables(scope: string): void {
+  deleteCustomVariables(scope: MatomoScope): void {
     try {
       window._paq.push(['deleteCustomVariables', scope]);
     } catch (e) {
@@ -1037,7 +1043,7 @@ export class MatomoTracker {
    * @returns Promise for the value of custom variable.
    * @see {@link https://matomo.org/docs/custom-variables/|Custom Variables}
    */
-  getCustomVariable(index: number, scope: string): Promise<string> {
+  getCustomVariable(index: number, scope: MatomoScope): Promise<string> {
     return new Promise((resolve, reject) => {
       try {
         window._paq.push([
