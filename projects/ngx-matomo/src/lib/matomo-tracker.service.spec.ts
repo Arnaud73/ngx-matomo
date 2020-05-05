@@ -6,7 +6,7 @@ describe('MatomoTrackerService', () => {
   beforeEach(() => TestBed.configureTestingModule({ providers: [MatomoTracker] }));
 
   it('should be created', () => {
-    const service: MatomoTracker = TestBed.get(MatomoTracker);
+    const service: MatomoTracker = TestBed.inject(MatomoTracker);
     expect(service).toBeTruthy();
   });
 });

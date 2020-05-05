@@ -6,7 +6,7 @@ describe('MatomoInjectorService', () => {
   beforeEach(() => TestBed.configureTestingModule({ providers: [MatomoInjector] }));
 
   it('should be created', () => {
-    const service: MatomoInjector = TestBed.get(MatomoInjector);
+    const service: MatomoInjector = TestBed.inject(MatomoInjector);
     expect(service).toBeTruthy();
   });
 });
