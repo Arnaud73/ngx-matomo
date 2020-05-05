@@ -243,7 +243,7 @@ export class MatomoTracker {
         contentInteraction,
         contentName,
         contentPiece,
-        contentTarget
+        contentTarget,
       ]);
     } catch (e) {
       if (!(e instanceof ReferenceError)) {
@@ -462,9 +462,9 @@ export class MatomoTracker {
     return new Promise((resolve, reject) => {
       try {
         window._paq.push([
-          function() {
+          function () {
             resolve(this.getPiwikUrl());
-          }
+          },
         ]);
       } catch (e) {
         if (!(e instanceof ReferenceError)) {
@@ -484,9 +484,9 @@ export class MatomoTracker {
     return new Promise((resolve, reject) => {
       try {
         window._paq.push([
-          function() {
+          function () {
             resolve(this.getCurrentUrl());
-          }
+          },
         ]);
       } catch (e) {
         if (!(e instanceof ReferenceError)) {
@@ -613,9 +613,9 @@ export class MatomoTracker {
     return new Promise((resolve, reject) => {
       try {
         window._paq.push([
-          function() {
+          function () {
             resolve(this.getLinkTrackingTimer());
-          }
+          },
         ]);
       } catch (e) {
         if (!(e instanceof ReferenceError)) {
@@ -742,9 +742,9 @@ export class MatomoTracker {
     return new Promise((resolve, reject) => {
       try {
         window._paq.push([
-          function() {
+          function () {
             resolve(this.getVisitorId());
-          }
+          },
         ]);
       } catch (e) {
         if (!(e instanceof ReferenceError)) {
@@ -763,9 +763,9 @@ export class MatomoTracker {
     return new Promise((resolve, reject) => {
       try {
         window._paq.push([
-          function() {
+          function () {
             resolve(this.getVisitorInfo());
-          }
+          },
         ]);
       } catch (e) {
         if (!(e instanceof ReferenceError)) {
@@ -786,9 +786,9 @@ export class MatomoTracker {
     return new Promise((resolve, reject) => {
       try {
         window._paq.push([
-          function() {
+          function () {
             resolve(this.getAttributionInfo());
-          }
+          },
         ]);
       } catch (e) {
         if (!(e instanceof ReferenceError)) {
@@ -807,9 +807,9 @@ export class MatomoTracker {
     return new Promise((resolve, reject) => {
       try {
         window._paq.push([
-          function() {
+          function () {
             resolve(this.getAttributionCampaignName());
-          }
+          },
         ]);
       } catch (e) {
         if (!(e instanceof ReferenceError)) {
@@ -828,9 +828,9 @@ export class MatomoTracker {
     return new Promise((resolve, reject) => {
       try {
         window._paq.push([
-          function() {
+          function () {
             resolve(this.getAttributionCampaignKeyword());
-          }
+          },
         ]);
       } catch (e) {
         if (!(e instanceof ReferenceError)) {
@@ -849,9 +849,9 @@ export class MatomoTracker {
     return new Promise((resolve, reject) => {
       try {
         window._paq.push([
-          function() {
+          function () {
             resolve(this.getAttributionReferrerTimestamp());
-          }
+          },
         ]);
       } catch (e) {
         if (!(e instanceof ReferenceError)) {
@@ -870,9 +870,9 @@ export class MatomoTracker {
     return new Promise((resolve, reject) => {
       try {
         window._paq.push([
-          function() {
+          function () {
             resolve(this.getAttributionReferrerUrl());
-          }
+          },
         ]);
       } catch (e) {
         if (!(e instanceof ReferenceError)) {
@@ -892,9 +892,9 @@ export class MatomoTracker {
     return new Promise((resolve, reject) => {
       try {
         window._paq.push([
-          function() {
+          function () {
             resolve(this.getUserId());
-          }
+          },
         ]);
       } catch (e) {
         if (!(e instanceof ReferenceError)) {
@@ -1001,9 +1001,9 @@ export class MatomoTracker {
     return new Promise((resolve, reject) => {
       try {
         window._paq.push([
-          function() {
+          function () {
             resolve(this.getCustomVariable(index, scope));
-          }
+          },
         ]);
       } catch (e) {
         if (!(e instanceof ReferenceError)) {
@@ -1078,9 +1078,9 @@ export class MatomoTracker {
     return new Promise((resolve, reject) => {
       try {
         window._paq.push([
-          function() {
+          function () {
             resolve(this.getCustomDimension(customDimensionId));
-          }
+          },
         ]);
       } catch (e) {
         if (!(e instanceof ReferenceError)) {
@@ -1297,9 +1297,9 @@ export class MatomoTracker {
     return new Promise((resolve, reject) => {
       try {
         window._paq.push([
-          function() {
+          function () {
             resolve(this.hasCookies());
-          }
+          },
         ]);
       } catch (e) {
         if (!(e instanceof ReferenceError)) {
