@@ -1646,4 +1646,20 @@ export class MatomoTracker {
       }
     }
   }
+
+  /**
+   * Disables the feature which groups together multiple tracking requests and send them as a bulk POST request.<br />
+   * Disabling this feature is useful when you want to be able to replay all logs: one must use disableQueueRequest
+   * to disable this behavior to later be able to replay logged Matomo logs (otherwise a subset of the requests
+   * wouldn't be able to be replayed).
+   */
+  disableQueueRequest() {
+    try {
+      window._paq.push(['disableQueueRequest']);
+    } catch (e) {
+      if (!(e instanceof ReferenceError)) {
+        throw e;
+      }
+    }
+  }
 }
