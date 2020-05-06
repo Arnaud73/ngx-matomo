@@ -1063,7 +1063,7 @@ export class MatomoTracker {
   }
 
   /**
-   * When called then the Custom Variables of scope "visit" will be stored (persisted) in a first party cookie
+   * When called then the Custom Variables of scope 'visit' will be stored (persisted) in a first party cookie
    * for the duration of the visit.<br />
    * This is useful if you want to call getCustomVariable later in the visit.<br />
    * (by default custom variables are not stored on the visitor's computer.)
@@ -1642,7 +1642,7 @@ export class MatomoTracker {
 
   /**
    * Sets request Content-Type header value.<br />
-   * Applicable when "POST" request method is used via setRequestMethod.
+   * Applicable when 'POST' request method is used via setRequestMethod.
    *
    * @param contentType Value for Content-Type HTTP header.
    */
