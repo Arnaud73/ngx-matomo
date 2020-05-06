@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { MatomoInjector } from './matomo-injector.service';
+import { MATOMO_CONFIGURATION } from './matomo-configuration';
 
 describe('MatomoInjectorService', () => {
   beforeEach(() =>
