@@ -296,7 +296,7 @@ export class MatomoTracker {
    * left click).<br />
    * A right click (or any click that opens the context menu) on a link will be tracked as clicked even if "Open in new tab"
    * is not selected.<br />
-   * If "false" (default), nothing will be tracked on open context menu or middle click.
+   * If false (default), nothing will be tracked on open context menu or middle click.
    */
   enableLinkTracking(enable: boolean = false): void {
     try {
