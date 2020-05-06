@@ -1,10 +1,10 @@
-import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { Inject, Injectable } from '@angular/core';
+import { MatomoModuleConfiguration, MATOMO_CONFIGURATION } from './matomo-configuration';
 
 /**
  * Access to the global window variable.
  */
-declare var window: {
+declare const window: {
   [key: string]: any;
   prototype: Window;
   new (): Window;
@@ -12,48 +12,75 @@ declare var window: {
 
 /**
  * Service for injecting the Matomo tracker in the application.
- *
- * @export
+ * This service shall no longer be used directly within an application.
  */
 @Injectable()
 export class MatomoInjector {
   /**
    * Creates an instance of MatomoInjector.
    *
-   * @param platformId Angular description of the platform.
+   * @param configuration Matomo configuration provided by DI.
    */
-  constructor(@Inject(PLATFORM_ID) private platformId) {
-    if (isPlatformBrowser(this.platformId)) {
+  constructor(
+    @Inject(MATOMO_CONFIGURATION) private readonly configuration: MatomoModuleConfiguration
+  ) {
+    try {
       window._paq = window._paq || [];
-    } else {
-      console.warn('MatomoInjector can\'t be used on server platform');
+    } catch (e) {
+      if (!(e instanceof ReferenceError)) {
+        throw e;
+      }
     }
   }
 
   /**
    * Injects the Matomo tracker in the DOM.
-   *
-   * @param url URL of the Matomo instance to connect to.
-   * @param id SiteId for this application/site.
-   * @param [scriptUrl] Optional URL for the `piwik.js`/`matomo.js` script in case it is not at its default location.
    */
-  init(url: string, id: number, scriptUrl?: string) {
-    if (isPlatformBrowser(this.platformId)) {
-      window._paq.push(['trackPageView']);
-      window._paq.push(['enableLinkTracking']);
-      (() => {
-        const u = url;
-        window._paq.push(['setTrackerUrl', u + 'piwik.php']);
-        window._paq.push(['setSiteId', id.toString()]);
-        const d = document;
-        const g = d.createElement('script');
-        const s = d.getElementsByTagName('script')[0];
-        g.type = 'text/javascript';
-        g.async = true;
-        g.defer = true;
-        g.src = !!scriptUrl ? scriptUrl : u + 'piwik.js';
-        s.parentNode.insertBefore(g, s);
-      })();
+  init() {
+    try {
+      if (this.configuration?.isConsentRequired === true) {
+        window._paq.push(['requireConsent']);
+      }
+      if (this.configuration?.trackAppStarting === true) {
+        window._paq.push(['trackPageView']);
+        if (
+          this.configuration?.enableLinkTracking === true
+        ) {
+          setTimeout(() => {
+            window._paq.push([
+              'enableLinkTracking',
+              this.configuration?.enableLinkTrackingValue ?? false,
+            ]);
+          }, 0);
+        }
+      }
+      switch (this.configuration.trackers.length) {
+        case 0:
+          // TODO Throw an error if no tracker has been set.
+          break;
+        case 1:
+          const mainTracker = this.configuration.trackers[0];
+          window._paq.push(['setTrackerUrl', mainTracker.trackerUrl]);
+          window._paq.push(['setSiteId', mainTracker.siteId.toString()]);
+        // falls through
+        default:
+          this.configuration.trackers
+            .slice(1)
+            .forEach((tracker) =>
+              window._paq.push(['addTracker', tracker.trackerUrl, tracker.siteId.toString()])
+            );
+      }
+      const script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.async = true;
+      script.defer = true;
+      script.src = this.configuration.scriptUrl;
+      const firstScript = document.getElementsByTagName('script')[0];
+      firstScript.parentNode.insertBefore(script, firstScript);
+    } catch (e) {
+      if (!(e instanceof ReferenceError)) {
+        throw e;
+      }
     }
   }
 }
