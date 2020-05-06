@@ -1607,14 +1607,14 @@ export class MatomoTracker {
   }
 
   /**
-   * Sets the request method to either "GET" or "POST". (The default is "GET".)<br />
+   * Sets the request method to either 'GET' or 'POST'. (The default is 'GET'.)<br />
    * To use the POST request method, either:<br />
    * 1) the Matomo host is the same as the tracked website host (Matomo installed in the same domain as your tracked website), or<br />
    * 2) if Matomo is not installed on the same host as your website, you need to enable CORS (Cross domain requests).
    *
    * @param method HTTP method for sending information to the Matomo server.
    */
-  setRequestMethod(method: string): void {
+  setRequestMethod(method: 'GET' | 'POST'): void {
     try {
       window._paq.push(['setRequestMethod', method]);
     } catch (e) {
