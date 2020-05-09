@@ -36,8 +36,6 @@ export class MatomoTracker {
     }
   }
 
-  // TODO: Reorder methods as in Matomo tracker documentation.
-
   /**
    * Logs a visit to this page.
    *
@@ -266,6 +264,23 @@ export class MatomoTracker {
   logAllContentBlocksOnPage(): void {
     try {
       window._paq.push(['logAllContentBlocksOnPage']);
+    } catch (e) {
+      if (!(e instanceof ReferenceError)) {
+        throw e;
+      }
+    }
+  }
+
+  /**
+   * Sends a ping request.<br />
+   * Ping requests do not track new actions.
+   * If they are sent within the standard visit length, they will extend the existing visit and the current last action for the visit.
+   * If sent after the standard visit length, ping requests will create a new visit using the last action in the last known visit.<br />
+   * See also enableHeartBeatTimer.
+   */
+  ping() {
+    try {
+      window._paq.push(['ping']);
     } catch (e) {
       if (!(e instanceof ReferenceError)) {
         throw e;
@@ -761,23 +776,6 @@ export class MatomoTracker {
   setHeartBeatTimer(minimumVisitLength: number, heartBeatDelay: number): void {
     try {
       window._paq.push(['setHeartBeatTimer', minimumVisitLength, heartBeatDelay]);
-    } catch (e) {
-      if (!(e instanceof ReferenceError)) {
-        throw e;
-      }
-    }
-  }
-
-  /**
-   * Sends a ping request.<br />
-   * Ping requests do not track new actions.
-   * If they are sent within the standard visit length, they will extend the existing visit and the current last action for the visit.
-   * If sent after the standard visit length, ping requests will create a new visit using the last action in the last known visit.<br />
-   * See also enableHeartBeatTimer.
-   */
-  ping() {
-    try {
-      window._paq.push(['ping']);
     } catch (e) {
       if (!(e instanceof ReferenceError)) {
         throw e;
