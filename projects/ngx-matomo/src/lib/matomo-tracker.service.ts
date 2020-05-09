@@ -507,7 +507,7 @@ export class MatomoTracker {
    *
    * @returns Promise for the Matomo server URL.
    */
-  getPiwikUrl(): Promise<string> {
+  getMatomoUrl(): Promise<string> {
     return new Promise((resolve, reject) => {
       try {
         window._paq.push([
