@@ -25,9 +25,17 @@ export interface MatomoModuleConfiguration {
    */
   enableLinkTrackingValue?: boolean;
   /**
-   * If set to true, user consent is required.
+   * If set to true, user consent will be required.
    */
   isConsentRequired?: boolean;
+  /**
+   * If true, automatic route tracking is enabled.
+   */
+  enableRouteTracking?: boolean;
+  /**
+   * List of DOM element ids for tracking content impressions.
+   */
+  contentIds?: Array<string>;
 }
 
 /**
@@ -44,4 +52,5 @@ export const defaultConfiguration: Partial<MatomoModuleConfiguration> = {
   enableLinkTracking: true,
   enableLinkTrackingValue: false,
   isConsentRequired: false,
+  enableRouteTracking: false,
 };
