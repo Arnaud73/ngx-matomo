@@ -27,7 +27,7 @@ export class MatomoTracker {
   constructor() {
     try {
       if (typeof window._paq === 'undefined') {
-        console.warn('Matomo has not yet been initialized! (Did you forget to inject it?)');
+        console.warn('Matomo has not yet been initialized!');
       }
     } catch (e) {
       if (!(e instanceof ReferenceError)) {
@@ -35,6 +35,8 @@ export class MatomoTracker {
       }
     }
   }
+
+  // TODO: Reorder methods as in Matomo tracker documentation.
 
   /**
    * Logs a visit to this page.
@@ -437,6 +439,7 @@ export class MatomoTracker {
    * Specifies the website ID.<br />
    * Redundant: can be specified in getTracker() constructor.
    *
+   * // TODO Investigate if setSiteId needs to be removed from MatomoTracker.
    * @param siteId Site ID for the tracker.
    */
   setSiteId(siteId: number): void {
@@ -471,6 +474,7 @@ export class MatomoTracker {
    * Specifies the Matomo server URL.<br />
    * Redundant: can be specified in getTracker() constructor.
    *
+   * // TODO Investigate if setTrackerUrl needs to be removed from MatomoTracker.
    * @param url URL for the Matomo server.
    */
   setTrackerUrl(url: string): void {

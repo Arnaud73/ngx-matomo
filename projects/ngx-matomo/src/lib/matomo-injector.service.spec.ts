@@ -10,11 +10,12 @@ describe('MatomoInjectorService', () => {
         {
           provide: MATOMO_CONFIGURATION,
           useValue: {
+            trackers: [],
             trackAppStarting: true,
-            isConsentRequired: false,
+            requireConsent: false,
             enableLinkTracking: true,
             enableLinkTrackingValue: false,
-            trackers: [],
+            enableRouteTracking: false,
           },
         },
         MatomoInjector,

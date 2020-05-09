@@ -44,7 +44,8 @@ export class MatomoInjector {
       if (this.configuration?.trackAppStarting === true) {
         window._paq.push(['trackPageView']);
         if (
-          this.configuration?.enableLinkTracking === true
+          this.configuration?.enableLinkTracking === true &&
+          this.configuration?.enableRouteTracking === false
         ) {
           setTimeout(() => {
             window._paq.push([
