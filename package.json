@@ -29,7 +29,8 @@
     "copy-license": "copyfiles ./LICENSE ./dist/ngx-matomo",
     "copy-readme": "copyfiles ./README.md ./dist/ngx-matomo",
     "copy-files": "npm run copy-license && npm run copy-readme",
-    "release": "standard-version"
+    "release": "standard-version",
+    "postinstall": "ngcc"
   },
   "dependencies": {
     "@angular/animations": "~9.1.12",
