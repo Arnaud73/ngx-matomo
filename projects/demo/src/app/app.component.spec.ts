@@ -1,37 +1,31 @@
 import { TestBed, async } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
-import { MatomoModule } from 'ngx-matomo';
+import { MatomoModule, MatomoTracker } from 'ngx-matomo';
 
 describe('Demo App', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [MatomoModule],
-      declarations: [AppComponent]
+      providers: [MatomoTracker],
+      imports: [
+        RouterTestingModule,
+        MatomoModule.forRoot({
+          trackAppStarting: true,
+          isConsentRequired: false,
+          enableRouteTracking: false,
+          enableLinkTracking: true,
+          enableLinkTrackingValue: false,
+          contentIds: [],
+          trackers: [],
+        }),
+      ],
+      declarations: [AppComponent],
     }).compileComponents();
   }));
 
   it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
+    const app = fixture.componentInstance;
     expect(app).toBeTruthy();
-  });
-
-  it('should render title in a h1 tag', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Matomo Tracker Test');
-  });
-
-  it(`should have a Matomo injector`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.matomoInjector).toBeTruthy();
-  });
-
-  it(`should have a Matomo tracker`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.matomoTracker).toBeTruthy();
   });
 });
