@@ -77,12 +77,12 @@ export class MatomoRouteTracker implements OnDestroy {
 
           // Make Matomo aware of newly added content
           this.configuration?.contentIds
-            .filter((content) => !!content)
-            .forEach((contentId) => {
-              const content = document.getElementById(contentId);
-              // TODO To be implemented when Media Analytics will be fully supported.
+            ?.map(document.getElementById)
+            ?.filter((content) => !!content)
+            ?.forEach((content) => {
+              // TODO To be implemented when Media Analytics will be supported.
               // this.matomoTracker.scanForMedia(content);
-              // TODO To be implemented when Form Analytics will be fully supported.
+              // TODO To be implemented when Form Analytics will be supported.
               // this.matomoTracker.scanForForms(content);
               this.matomoTracker.trackContentImpressionsWithinNode(content);
             });
