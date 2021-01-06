@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 
 import { MatomoTracker } from 'ngx-matomo';
@@ -8,7 +8,7 @@ import { MatomoTracker } from 'ngx-matomo';
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.css'],
 })
-export class FormComponent implements OnInit {
+export class FormComponent implements OnInit, AfterViewInit {
   public foodForm = this.formBuilder.group({
     favorite: ['', Validators.required],
     comment: [''],
