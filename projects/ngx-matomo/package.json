@@ -1,8 +1,8 @@
 {
   "name": "ngx-matomo",
-  "version": "0.1.4",
-  "author": "Arnaud Mouronval <arnaud.mouronval@gmail.com>",
-  "description": "Matomo (aka. Piwik) web analytics for applications based on Angular 5, 6, 7 & 8.",
+  "version": "0.2.0",
+  "author": "Leon Mydla <npx-matomo-repository@mydla.dev>",
+  "description": "Matomo (aka. Piwik) web analytics for applications based on Angular 11.",
   "keywords": [
     "matomo",
     "piwik",
@@ -13,9 +13,9 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Arnaud73/ngx-matomo.git"
+    "url": "https://github.com/leonmydla/ngx-matomo.git"
   },
   "peerDependencies": {
-    "@angular/core": ">=5.0.0 <9.0.0"
+    "@angular/core": "11.0.0"
   }
 }
