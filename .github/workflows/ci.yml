@@ -22,6 +22,5 @@ jobs:
         npm run lint
         npm run build ngx-matomo
         npm run test-headless ngx-matomo
-        npm run test-headless demo
       env:
         CI: true
