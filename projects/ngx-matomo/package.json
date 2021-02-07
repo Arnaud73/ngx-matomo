@@ -15,6 +15,9 @@
     "type": "git",
     "url": "https://github.com/leonmydla/ngx-matomo.git"
   },
+  "dependencies": {
+    "tslib": "^2.0.0"
+  },
   "peerDependencies": {
     "@angular/core": "11.0.0"
   }
