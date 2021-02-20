@@ -9,11 +9,11 @@
 [![devDependencies Status](https://david-dm.org/Arnaud73/ngx-matomo/dev-status.svg)](https://david-dm.org/Arnaud73/ngx-matomo?type=dev)
 [![peerDependencies Status](https://david-dm.org/Arnaud73/ngx-matomo/peer-status.svg)](https://david-dm.org/Arnaud73/ngx-matomo?type=peer)
 
-Wrapper for Matomo (aka. Piwik) analytics tracker for applications based on Angular 5, 6, 7 & 8.
+Wrapper for Matomo (aka. Piwik) analytics tracker for applications based on Angular 5+.
 
 ## Warning
 
-This new release of ngx-Matomo has been rebuilt with Angular CLI v8. As a result, the produced library uses Angular Package Format (APF) v8. It has been tested with an Angular 6 application, but if your Angular 5, 6 or 7 application is running into trouble, please log an issue on GitHub.
+This new release of ngx-Matomo has been rebuilt with Angular CLI v8. As a result, the produced library uses Angular Package Format (APF) v8. It has been tested with an Angular 6 application, but if your Angular 5+ application is running into trouble, please log an issue on GitHub.
 
 ## Installation
 
