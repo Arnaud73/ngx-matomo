@@ -25,7 +25,6 @@
     "test-headless": "ng test --codeCoverage=true --watch=false --browsers=ChromeHeadless",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "clean": "rimraf dist/*",
     "compodoc": "compodoc -c ./.compodocrc.json",
     "copy-license": "copyfiles ./LICENSE ./dist/ngx-matomo",
     "copy-readme": "copyfiles ./README.md ./dist/ngx-matomo",
