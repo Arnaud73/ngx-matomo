@@ -27,4 +27,4 @@ jobs:
         CI: true
     - uses: JS-DevTools/npm-publish@v1
       with:
-        token: ${{ GITHUB_TOKEN }}
+        token: ${{ secrets.GITHUB_TOKEN }}
