@@ -8,7 +8,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [10.x]
+        node-version: [14.x]
 
     steps:
     - uses: actions/checkout@v1
@@ -22,5 +22,9 @@ jobs:
         npm run lint
         npm run build ngx-matomo
         npm run test-headless ngx-matomo
+        cd dist/ngx-matomo
       env:
         CI: true
+    - uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ GITHUB_TOKEN }}
