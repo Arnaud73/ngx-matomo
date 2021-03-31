@@ -1,6 +1,6 @@
 {
   "name": "@leonmydla/ngx-matomo",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "author": "Leon Mydla <npx-matomo-repository@mydla.dev>",
   "description": "Matomo (aka. Piwik) web analytics for applications based on Angular 11.",
   "keywords": [
