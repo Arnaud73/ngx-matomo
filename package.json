@@ -1,5 +1,5 @@
 {
-  "name": "@leonmydla/ngx-matomo",
+  "name": "@leonmydla/matomo",
   "version": "11.0.0",
   "author": "Leon Mydla <npmjs@mydla.dev>",
   "description": "Matomo (aka. Piwik) web analytics for applications based on Angular 11.",
