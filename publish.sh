@@ -8,4 +8,4 @@ npm run test-headless ngx-matomo
 npm login --scope=@leonmydla
 
 cd dist/ngx-matomo
-npm publish
+npm publish --access public
