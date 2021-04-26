@@ -40,6 +40,8 @@ export class MatomoInjector {
     try {
       if (this.configuration?.isConsentRequired === true) {
         window._paq.push(['requireConsent']);
+      } else if (this.configuration?.isCookieConsentRequired === true) {
+        window._paq.push(['requireCookieConsent']);
       }
       if (this.configuration?.trackAppStarting === true) {
         window._paq.push(['trackPageView']);

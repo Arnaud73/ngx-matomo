@@ -721,22 +721,6 @@ export class MatomoTracker {
   }
 
   /**
-   * Sets if to not to track users who opt out of tracking using Mozilla's (proposed) Do Not Track setting.
-   *
-   * @param doNotTrack If true, users who opted for Do Not Track in their settings won't be tracked.
-   * @see {@link https://www.w3.org/TR/tracking-dnt/}
-   */
-  setDoNotTrack(doNotTrack: boolean): void {
-    try {
-      window._paq.push(['setDoNotTrack', doNotTrack]);
-    } catch (e) {
-      if (!(e instanceof ReferenceError)) {
-        throw e;
-      }
-    }
-  }
-
-  /**
    * Enables a frame-buster to prevent the tracked web page from being framed/iframed.
    */
   killFrame(): void {
@@ -1387,6 +1371,19 @@ export class MatomoTracker {
   }
 
   /**
+   * Require user cookie consent before storing and using any cookies.
+   */
+  requireCookieConsent(): void {
+    try {
+      window._paq.push(['requireCookieConsent']);
+    } catch (e) {
+      if (!(e instanceof ReferenceError)) {
+        throw e;
+      }
+    }
+  }
+
+  /**
    * Marks that the current user has consented.<br />
    * The consent is one-time only, so in a subsequent browser session, the user will have to consent again.<br />
    * To remember consent, see the method below: rememberConsentGiven.
@@ -1402,13 +1399,55 @@ export class MatomoTracker {
   }
 
   /**
+   * Marks that the current user has consented to store and use cookies.<br />
+   * The consent is one-time only, so in a subsequent browser session, the user will have to consent again.<br />
+   * To remember consent, see the method below: rememberCookieConsentGiven.
+   */
+  setCookieConsentGiven(): void {
+    try {
+      window._paq.push(['setCookieConsentGiven']);
+    } catch (e) {
+      if (!(e instanceof ReferenceError)) {
+        throw e;
+      }
+    }
+  }
+
+  /**
    * Marks that the current user has consented, and remembers this consent through a browser cookie.<br />
    * The next time the user visits the site, Matomo will remember that they consented, and track them.<br />
    * If you call this method, you do not need to call setConsentGiven.
+   *
+   * @param hoursToExpire Expiry period for your user consent.
    */
-  rememberConsentGiven(hoursToExpire: number): void {
+  rememberConsentGiven(hoursToExpire?: number): void {
     try {
-      window._paq.push(['rememberConsentGiven', hoursToExpire]);
+      const args: number[] = [];
+      if (typeof hoursToExpire === 'number') {
+        args.push(hoursToExpire);
+      }
+      window._paq.push(['rememberConsentGiven', ...args]);
+    } catch (e) {
+      if (!(e instanceof ReferenceError)) {
+        throw e;
+      }
+    }
+  }
+
+  /**
+   * Marks that the current user has consented, and remembers this consent through a browser cookie.<br />
+   * The next time the user visits the site, Matomo will remember that they consented, and track them.<br />
+   * If you call this method, you do not need to call setCookieConsentGiven.
+   *
+   * @param hoursToExpire Expiry period for your user consent.
+   */
+  rememberCookieConsentGiven(hoursToExpire?: number): void {
+    try {
+      const args: number[] = [];
+      if (typeof hoursToExpire === 'number') {
+        args.push(hoursToExpire);
+      }
+      window._paq.push(['rememberCookieConsentGiven', ...args]);
     } catch (e) {
       if (!(e instanceof ReferenceError)) {
         throw e;
@@ -1418,11 +1457,43 @@ export class MatomoTracker {
 
   /**
    * Removes a user's consent, both if the consent was one-time only and if the consent was remembered.<br />
+   * This makes sure the cookie that remembered the given consent is deleted.<br />
    * After calling this method, the user will have to consent again in order to be tracked.
    */
   forgetConsentGiven(): void {
     try {
       window._paq.push(['forgetConsentGiven']);
+    } catch (e) {
+      if (!(e instanceof ReferenceError)) {
+        throw e;
+      }
+    }
+  }
+
+  /**
+   * Removes a user's consent, both if the consent was one-time only and if the consent was remembered.<br />
+   * This makes sure the cookie that remembered the given consent is deleted.<br />
+   * After calling this method, the user will have to consent again in order to be tracked.
+   */
+  forgetCookieConsentGiven(): void {
+    try {
+      window._paq.push(['forgetCookieConsentGiven']);
+    } catch (e) {
+      if (!(e instanceof ReferenceError)) {
+        throw e;
+      }
+    }
+  }
+
+  /**
+   * Sets if to not to track users who opt out of tracking using Mozilla's (proposed) Do Not Track setting.
+   *
+   * @param doNotTrack If true, users who opted for Do Not Track in their settings won't be tracked.
+   * @see {@link https://www.w3.org/TR/tracking-dnt/}
+   */
+  setDoNotTrack(doNotTrack: boolean): void {
+    try {
+      window._paq.push(['setDoNotTrack', doNotTrack]);
     } catch (e) {
       if (!(e instanceof ReferenceError)) {
         throw e;
