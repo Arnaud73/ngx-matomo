@@ -27,6 +27,7 @@
     </tbody>
   </table>
   <p>Total price: {{ getGrandTotalPrice() | currency }}</p>
+  <button class="primary" (click)="validateOrder()">Order</button>
 </div>
 
 <ng-template #noOrder>
