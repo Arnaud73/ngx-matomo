@@ -3,10 +3,11 @@ import { MatomoTracker } from 'ngx-matomo';
 
 interface Article {
   id: number;
-  name: string;
-  price: number;
-  description: string;
-  review: number;
+  name?: string;
+  price?: number;
+  description?: string;
+  category?: string;
+  review?: number;
 }
 
 @Component({
@@ -24,6 +25,7 @@ export class ECommerceComponent implements OnInit {
         'Culpa sed tenetur incidunt quia veniam sed mollitia exercitationem. ' +
         'Laboriosam reprehenderit laborum pariatur ea rem qui inventore. In asperiores dignissimos temporibus et. ' +
         'Beatae consequatur corrupti nam praesentium.',
+      category: 'Food',
       review: 78,
     },
     {
@@ -33,6 +35,7 @@ export class ECommerceComponent implements OnInit {
       description:
         'Nam incidunt blanditiis odio inventore. Nobis voluptatum quibusdam laboriosam a numquam. ' +
         'Delectus sequi ipsa possimus ratione repellendus quibusdam. Molestiae fuga laudantium natus dolorem.',
+      category: 'Clothing',
       review: 67,
     },
     {
@@ -50,6 +53,7 @@ export class ECommerceComponent implements OnInit {
       price: 280,
       description:
         'Occaecati dolore assumenda facilis error quaerat. Rem harum alias cum eum quam corporis. Esse numquam vero facilis labore.',
+      category: 'Food',
       review: 78,
     },
     {
@@ -59,6 +63,7 @@ export class ECommerceComponent implements OnInit {
       description:
         'Aut consequatur fugit ut voluptates fugit numquam vero velit. ' +
         'Distinctio minima quo nesciunt maiores voluptatem dolorum. Doloribus quam nisi molestiae nostrum iure sint debitis.',
+      category: 'Clothing',
       review: 107,
     },
     {
@@ -69,6 +74,7 @@ export class ECommerceComponent implements OnInit {
         'Occaecati nam laudantium est quos. Fuga molestias facere consequatur sapiente cum reprehenderit quibusdam. ' +
         'Earum omnis ipsum numquam facilis perspiciatis architecto. Iste reiciendis minus distinctio corrupti eos. ' +
         'Excepturi ut sequi id blanditiis exercitationem.',
+      category: 'Cosmetic',
       review: 104,
     },
     {
@@ -78,6 +84,7 @@ export class ECommerceComponent implements OnInit {
       description:
         'Autem blanditiis similique saepe excepturi at error. Fugit qui accusantium expedita. ' +
         'Illo similique suscipit sunt magni eos est.',
+      category: 'Clothing',
       review: 44,
     },
     {
@@ -87,6 +94,7 @@ export class ECommerceComponent implements OnInit {
       description:
         'Deserunt ad ducimus recusandae praesentium. Repudiandae officia aliquam quas mollitia. ' +
         'Voluptatum ipsam iure eos debitis asperiores iusto repudiandae occaecati. Neque itaque sit totam sunt aspernatur at placeat.',
+      category: 'Food',
       review: 95,
     },
     {
@@ -97,6 +105,7 @@ export class ECommerceComponent implements OnInit {
         'Iure similique perferendis quia optio provident asperiores ad. Perferendis id voluptatibus impedit.' +
         'Rerum totam quam distinctio eligendi omnis id cumque voluptatem. Et qui odio atque voluptatibus consectetur vel aut. ' +
         'Qui voluptatem deleniti laboriosam nulla temporibus.',
+      category: 'Cosmetic',
       review: 153,
     },
     {
@@ -106,6 +115,7 @@ export class ECommerceComponent implements OnInit {
       description:
         'Cum aperiam sapiente non magni sequi facere. Et nihil soluta illum ipsum fuga vero. ' +
         'Magnam nihil quasi illo laudantium pariatur dignissimos. Est officiis quidem fuga dolorem.',
+      category: 'Food',
       review: 29,
     },
     {
@@ -116,6 +126,7 @@ export class ECommerceComponent implements OnInit {
         'Totam repudiandae assumenda facilis quod suscipit repellat delectus eligendi. ' +
         'Nihil repellendus officiis officia distinctio aperiam dolorem veritatis culpa. ' +
         'Ab natus doloremque alias dolores deleniti a accusamus.',
+      category: 'Cosmetic',
       review: 200,
     },
     {
@@ -125,6 +136,7 @@ export class ECommerceComponent implements OnInit {
       description:
         'At non doloribus alias optio delectus sit. Aperiam officiis soluta molestias asperiores similique reiciendis pariatur. ' +
         'Ab dignissimos iure voluptates error temporibus. Velit ullam quod fugiat molestias nisi explicabo blanditiis.',
+      category: 'Clothing',
       review: 68,
     },
     {
@@ -134,6 +146,7 @@ export class ECommerceComponent implements OnInit {
       description:
         'Eligendi rem perspiciatis quas accusamus. Consequatur perferendis placeat qui deleniti amet commodi harum reprehenderit. ' +
         'At quibusdam harum numquam quo.',
+      category: 'Food',
       review: 86,
     },
     {
@@ -142,11 +155,12 @@ export class ECommerceComponent implements OnInit {
       price: 280,
       description:
         'Nisi eos aspernatur exercitationem eius architecto dignissimos. Nam recusandae repellat saepe hic.',
+      category: 'Food',
       review: 135,
     },
   ];
 
-  public order: { id: string; items: Array<{ article: Article; quantity: number }> } = null;
+  public order: { id: string; items: Array<{ article: Article; quantity: number }> } | null = null;
 
   /**
    * Creates an instance of ECommerceComponent.
@@ -158,26 +172,27 @@ export class ECommerceComponent implements OnInit {
   /**
    * Angular OnInit lifecycle hook.
    */
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (!this.order) {
+      this.order = { id: '' + Math.floor(Math.random() * 10000), items: [] };
+    }
+  }
 
   addArticle(articleId: number): void {
-    if (!this.order) {
-      this.order = { id: '123', items: [] };
-    }
-    const item = this.order.items.find((i) => i.article.id === articleId);
+    const item = this.order?.items.find((i) => i.article.id === articleId);
     if (!!item) {
       item.quantity += 1;
     } else {
-      this.order.items.push({
-        article: this.articles.find((a) => a.id === articleId),
+      this.order?.items.push({
+        article: this.articles.find((a) => a.id === articleId) ?? { id: 0 },
         quantity: 1,
       });
     }
     this.matomoTracker.addEcommerceItem(
       '' + articleId,
-      this.articles.find((a) => a.id === articleId).name,
+      this.articles.find((a) => a.id === articleId)?.name,
       '',
-      this.articles.find((a) => a.id === articleId).price,
+      this.articles.find((a) => a.id === articleId)?.price,
       1
     );
     this.matomoTracker.trackEcommerceCartUpdate(this.getGrandTotalPrice());
@@ -198,7 +213,10 @@ export class ECommerceComponent implements OnInit {
 
   getGrandTotalPrice(): number {
     if (!!this.order) {
-      return this.order.items.reduce((acc, cur) => acc + cur.quantity * cur.article.price, 0);
+      return this.order.items.reduce(
+        (acc, cur) => acc + cur.quantity * (cur.article.price ?? 0),
+        0
+      );
     } else {
       return 0;
     }

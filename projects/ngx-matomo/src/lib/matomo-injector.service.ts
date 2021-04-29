@@ -36,7 +36,7 @@ export class MatomoInjector {
   /**
    * Injects the Matomo tracker in the DOM.
    */
-  init() {
+  init(): void {
     try {
       if (this.configuration?.isConsentRequired === true) {
         window._paq.push(['requireConsent']);
@@ -57,21 +57,15 @@ export class MatomoInjector {
           }, 0);
         }
       }
-      switch (this.configuration.trackers.length) {
-        case 0:
-          // TODO Throw an error if no tracker has been set.
-          break;
-        case 1:
-          const mainTracker = this.configuration.trackers[0];
-          window._paq.push(['setTrackerUrl', mainTracker.trackerUrl]);
-          window._paq.push(['setSiteId', mainTracker.siteId.toString()]);
-        // falls through
-        default:
-          this.configuration.trackers
-            .slice(1)
-            .forEach((tracker) =>
-              window._paq.push(['addTracker', tracker.trackerUrl, tracker.siteId.toString()])
-            );
+      if (this.configuration.trackers.length) {
+        const [mainTracker, ...otherTrackers] = this.configuration.trackers;
+        window._paq.push(['setTrackerUrl', mainTracker.trackerUrl]);
+        window._paq.push(['setSiteId', mainTracker.siteId.toString()]);
+        otherTrackers.forEach((tracker) =>
+          window._paq.push(['addTracker', tracker.trackerUrl, tracker.siteId.toString()])
+        );
+      } else {
+        // TODO: Throw an error if no tracker has been configured
       }
       const script = document.createElement('script');
       script.type = 'text/javascript';
@@ -79,7 +73,7 @@ export class MatomoInjector {
       script.defer = true;
       script.src = this.configuration.scriptUrl;
       const firstScript = document.getElementsByTagName('script')[0];
-      firstScript.parentNode.insertBefore(script, firstScript);
+      firstScript.parentNode?.insertBefore(script, firstScript);
     } catch (e) {
       if (!(e instanceof ReferenceError)) {
         throw e;

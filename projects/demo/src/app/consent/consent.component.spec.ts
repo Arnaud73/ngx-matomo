@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MatomoTracker } from 'ngx-matomo';
 import { ConsentComponent } from './consent.component';
@@ -7,12 +7,12 @@ describe('ConsentComponent', () => {
   let component: ConsentComponent;
   let fixture: ComponentFixture<ConsentComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       providers: [MatomoTracker],
       declarations: [ConsentComponent],
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ConsentComponent);
