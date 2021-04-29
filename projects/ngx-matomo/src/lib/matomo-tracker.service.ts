@@ -278,7 +278,7 @@ export class MatomoTracker {
    * If sent after the standard visit length, ping requests will create a new visit using the last action in the last known visit.<br />
    * See also enableHeartBeatTimer.
    */
-  ping() {
+  ping(): void {
     try {
       window._paq.push(['ping']);
     } catch (e) {
@@ -375,7 +375,7 @@ export class MatomoTracker {
     return new Promise((resolve, reject) => {
       try {
         window._paq.push([
-          function () {
+          function (this: any): void {
             resolve(this.getCrossDomainLinkingUrlParameter());
           },
         ]);
@@ -511,7 +511,7 @@ export class MatomoTracker {
     return new Promise((resolve, reject) => {
       try {
         window._paq.push([
-          function () {
+          function (this: any): void {
             resolve(this.getPiwikUrl());
           },
         ]);
@@ -533,7 +533,7 @@ export class MatomoTracker {
     return new Promise((resolve, reject) => {
       try {
         window._paq.push([
-          function () {
+          function (this: any): void {
             resolve(this.getCurrentUrl());
           },
         ]);
@@ -662,7 +662,7 @@ export class MatomoTracker {
     return new Promise((resolve, reject) => {
       try {
         window._paq.push([
-          function () {
+          function (this: any): void {
             resolve(this.getLinkTrackingTimer());
           },
         ]);
@@ -776,7 +776,7 @@ export class MatomoTracker {
     return new Promise((resolve, reject) => {
       try {
         window._paq.push([
-          function () {
+          function (this: any): void {
             resolve(this.getVisitorId());
           },
         ]);
@@ -797,7 +797,7 @@ export class MatomoTracker {
     return new Promise((resolve, reject) => {
       try {
         window._paq.push([
-          function () {
+          function (this: any): void {
             resolve(this.getVisitorInfo());
           },
         ]);
@@ -820,7 +820,7 @@ export class MatomoTracker {
     return new Promise((resolve, reject) => {
       try {
         window._paq.push([
-          function () {
+          function (this: any): void {
             resolve(this.getAttributionInfo());
           },
         ]);
@@ -841,7 +841,7 @@ export class MatomoTracker {
     return new Promise((resolve, reject) => {
       try {
         window._paq.push([
-          function () {
+          function (this: any): void {
             resolve(this.getAttributionCampaignName());
           },
         ]);
@@ -862,7 +862,7 @@ export class MatomoTracker {
     return new Promise((resolve, reject) => {
       try {
         window._paq.push([
-          function () {
+          function (this: any): void {
             resolve(this.getAttributionCampaignKeyword());
           },
         ]);
@@ -883,7 +883,7 @@ export class MatomoTracker {
     return new Promise((resolve, reject) => {
       try {
         window._paq.push([
-          function () {
+          function (this: any): void {
             resolve(this.getAttributionReferrerTimestamp());
           },
         ]);
@@ -904,7 +904,7 @@ export class MatomoTracker {
     return new Promise((resolve, reject) => {
       try {
         window._paq.push([
-          function () {
+          function (this: any): void {
             resolve(this.getAttributionReferrerUrl());
           },
         ]);
@@ -926,7 +926,7 @@ export class MatomoTracker {
     return new Promise((resolve, reject) => {
       try {
         window._paq.push([
-          function () {
+          function (this: any): void {
             resolve(this.getUserId());
           },
         ]);
@@ -1036,7 +1036,7 @@ export class MatomoTracker {
     return new Promise((resolve, reject) => {
       try {
         window._paq.push([
-          function () {
+          function (this: any): void {
             resolve(this.getCustomVariable(index, scope));
           },
         ]);
@@ -1113,7 +1113,7 @@ export class MatomoTracker {
     return new Promise((resolve, reject) => {
       try {
         window._paq.push([
-          function () {
+          function (this: any): void {
             resolve(this.getCustomDimension(customDimensionId));
           },
         ]);
@@ -1259,7 +1259,7 @@ export class MatomoTracker {
    * Removes all products in the untracked ecommerce order.<br />
    * Note: this is done automatically after trackEcommerceOrder() is called.
    */
-  clearEcommerceCart() {
+  clearEcommerceCart(): void {
     try {
       window._paq.push(['clearEcommerceCart']);
     } catch (e) {
@@ -1287,7 +1287,7 @@ export class MatomoTracker {
     return new Promise((resolve, reject) => {
       try {
         window._paq.push([
-          function () {
+          function (this: any): void {
             resolve(this.getEcommerceItems());
           },
         ]);
@@ -1537,7 +1537,7 @@ export class MatomoTracker {
     return new Promise((resolve, reject) => {
       try {
         window._paq.push([
-          function () {
+          function (this: any): void {
             resolve(this.hasCookies());
           },
         ]);
@@ -1735,7 +1735,7 @@ export class MatomoTracker {
    * to disable this behavior to later be able to replay logged Matomo logs (otherwise a subset of the requests
    * wouldn't be able to be replayed).
    */
-  disableQueueRequest() {
+  disableQueueRequest(): void {
     try {
       window._paq.push(['disableQueueRequest']);
     } catch (e) {

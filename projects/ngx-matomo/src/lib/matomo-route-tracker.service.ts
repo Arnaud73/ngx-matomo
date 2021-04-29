@@ -4,6 +4,7 @@ import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular
 import { Subscription } from 'rxjs';
 import { filter, map, pairwise } from 'rxjs/operators';
 
+import { isNonNull } from '../helpers';
 import { MatomoModuleConfiguration, MATOMO_CONFIGURATION } from './matomo-configuration';
 import { MatomoTracker } from './matomo-tracker.service';
 
@@ -17,11 +18,11 @@ export class MatomoRouteTracker implements OnDestroy {
   /**
    * Previous route url of matomo route tracker.
    */
-  private previousPageUrl: string;
+  private previousPageUrl?: string;
   /**
    * Subscription for managing route events.
    */
-  private subscription: Subscription;
+  private subscription?: Subscription;
 
   /**
    * Creates an instance of MatomoRouteTracker.
@@ -44,7 +45,7 @@ export class MatomoRouteTracker implements OnDestroy {
    *
    * This service shall not be used directly within an application.
    */
-  startTracking() {
+  startTracking(): void {
     this.subscription = this.router.events
       .pipe(
         filter((event) => event instanceof NavigationStart || event instanceof NavigationEnd),
@@ -78,7 +79,7 @@ export class MatomoRouteTracker implements OnDestroy {
           // Make Matomo aware of newly added content
           this.configuration?.contentIds
             ?.map(document.getElementById)
-            ?.filter((content) => !!content)
+            ?.filter(isNonNull)
             ?.forEach((content) => {
               // TODO To be implemented when Media Analytics will be supported.
               // this.matomoTracker.scanForMedia(content);
@@ -97,15 +98,14 @@ export class MatomoRouteTracker implements OnDestroy {
   /**
    * Stops tracking route changes.
    */
-  stopTracking() {
-    this.subscription.unsubscribe();
-    this.subscription = null;
+  stopTracking(): void {
+    this.subscription?.unsubscribe();
   }
 
   /**
    * Angular OnDestroy lifecycle hook.
    */
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     if (!!this.subscription) {
       this.subscription.unsubscribe();
     }

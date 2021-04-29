@@ -16,11 +16,13 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of order.items">
+      <tr *ngFor="let item of order?.items">
         <td data-label="Item">{{ item.article.name }}</td>
         <td data-label="Quantity">{{ item.quantity }}</td>
         <td data-label="Unit Price">{{ item.article.price | currency }}</td>
-        <td data-label="Total Price">{{ item.quantity * item.article.price | currency }}</td>
+        <td data-label="Total Price">
+          {{ item.quantity * (item.article?.price || 0) | currency }}
+        </td>
       </tr>
     </tbody>
   </table>

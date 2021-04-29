@@ -29,7 +29,7 @@ export class MatomoModule {
    * @param matomoInjector Instance of MatomoInjector provided by DI.
    */
   constructor(
-    @Inject(PLATFORM_ID) private readonly platformId,
+    @Inject(PLATFORM_ID) private readonly platformId: object,
     private readonly injector: Injector,
     @Inject(MATOMO_CONFIGURATION) private readonly configuration: MatomoModuleConfiguration,
     private readonly matomoInjector: MatomoInjector

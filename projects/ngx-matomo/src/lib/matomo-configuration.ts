@@ -7,7 +7,7 @@ export interface MatomoModuleConfiguration {
   /**
    * URL of the Matomo JS script to execute.
    */
-  scriptUrl?: string;
+  scriptUrl: string;
   /**
    * Array of trackers, each one of them being described by its URL and site id.
    */
@@ -21,13 +21,17 @@ export interface MatomoModuleConfiguration {
    */
   enableLinkTracking?: boolean;
   /**
-   * When link tracking has been enabled, this sets the value to the call to `enableLinkTracking`
+   * When link tracking has been enabled, this sets the value to the call to `enableLinkTracking`.
    */
   enableLinkTrackingValue?: boolean;
   /**
-   * If set to true, user consent will be required.
+   * If set to true, user consent will be required for tracking requests to be sent to Matomo and also cookies to be set.
    */
   isConsentRequired?: boolean;
+  /**
+   * If set to true, user consent will be required for cookies to be stored and used.
+   */
+  isCookieConsentRequired?: boolean;
   /**
    * If true, automatic route tracking is enabled.
    */
