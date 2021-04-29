@@ -191,7 +191,7 @@ export class ECommerceComponent implements OnInit {
     this.matomoTracker.addEcommerceItem(
       '' + articleId,
       this.articles.find((a) => a.id === articleId)?.name,
-      '',
+      this.articles.find((a) => a.id === articleId)?.category,
       this.articles.find((a) => a.id === articleId)?.price,
       1
     );
@@ -219,6 +219,12 @@ export class ECommerceComponent implements OnInit {
       );
     } else {
       return 0;
+    }
+  }
+
+  validateOrder(): void {
+    if (!!this.order) {
+      this.matomoTracker.trackEcommerceOrder(this.order.id, this.getGrandTotalPrice());
     }
   }
 }
