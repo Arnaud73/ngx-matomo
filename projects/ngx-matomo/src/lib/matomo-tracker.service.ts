@@ -69,9 +69,9 @@ export class MatomoTracker {
       const args: any[] = [category, action];
       if (!!name) {
         args.push(name);
-      }
-      if (typeof value === 'number') {
-        args.push(value);
+        if (typeof value === 'number') {
+          args.push(value);
+        }
       }
       window._paq.push(['trackEvent', ...args]);
     } catch (e) {
@@ -94,9 +94,9 @@ export class MatomoTracker {
       const args: any[] = [keyword];
       if (!!category) {
         args.push(category);
-      }
-      if (typeof resultsCount === 'number') {
-        args.push(resultsCount);
+        if (typeof resultsCount === 'number') {
+          args.push(resultsCount);
+        }
       }
       window._paq.push(['trackSiteSearch', ...args]);
     } catch (e) {
@@ -1221,15 +1221,15 @@ export class MatomoTracker {
       const args: any[] = [productSKU];
       if (!!productName) {
         args.push(productName);
-      }
-      if (!!productCategory) {
-        args.push(productCategory);
-      }
-      if (typeof price === 'number') {
-        args.push(price);
-      }
-      if (typeof quantity === 'number') {
-        args.push(quantity);
+        if (!!productCategory) {
+          args.push(productCategory);
+          if (typeof price === 'number') {
+            args.push(price);
+            if (typeof quantity === 'number') {
+              args.push(quantity);
+            }
+          }
+        }
       }
       window._paq.push(['addEcommerceItem', ...args]);
     } catch (e) {
@@ -1332,21 +1332,21 @@ export class MatomoTracker {
     subTotal?: number,
     tax?: number,
     shipping?: number,
-    discount?: number
+    discount?: number | boolean
   ): void {
     try {
       const args: any[] = [orderId, grandTotal];
       if (typeof subTotal === 'number') {
         args.push(subTotal);
-      }
-      if (typeof tax === 'number') {
-        args.push(tax);
-      }
-      if (typeof shipping === 'number') {
-        args.push(shipping);
-      }
-      if (typeof discount === 'number') {
-        args.push(discount);
+        if (typeof tax === 'number') {
+          args.push(tax);
+          if (typeof shipping === 'number') {
+            args.push(shipping);
+            if (typeof discount === 'number' || typeof discount === 'boolean') {
+              args.push(discount);
+            }
+          }
+        }
       }
       window._paq.push(['trackEcommerceOrder', ...args]);
     } catch (e) {
