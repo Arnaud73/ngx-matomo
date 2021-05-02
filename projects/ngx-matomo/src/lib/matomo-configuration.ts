@@ -15,31 +15,36 @@ export interface MatomoModuleConfiguration {
   /**
    * If set to true, automatically track the app being started.
    */
-  trackAppStarting?: boolean;
+  trackAppStart?: boolean;
   /**
    * If set to true, link will be automatically tracked on the first page (if enabled).
    */
-  enableLinkTracking?: boolean;
+  trackLinks?: boolean;
   /**
-   * When link tracking has been enabled, this sets the value to the call to `enableLinkTracking`.
+   * When link tracking has been enabled, this sets the value to the call to `enableLinkTracking`
    */
-  enableLinkTrackingValue?: boolean;
+  trackLinkValue?: boolean;
   /**
-   * If set to true, user consent will be required for tracking requests to be sent to Matomo and also cookies to be set.
+   * If set to true, user consent will be required.
    */
-  isConsentRequired?: boolean;
+  requireConsent?: boolean;
   /**
    * If set to true, user consent will be required for cookies to be stored and used.
    */
-  isCookieConsentRequired?: boolean;
+  requireCookieConsent?: boolean;
   /**
-   * If true, automatic route tracking is enabled.
+   * Parameters related to route tracking.
    */
-  enableRouteTracking?: boolean;
-  /**
-   * List of DOM element ids for tracking content impressions.
-   */
-  contentIds?: Array<string>;
+  routeTracking?: {
+    /**
+     * If true, automatic route tracking is enabled.
+     */
+    enable: boolean;
+    /**
+     * List of DOM element ids for tracking content impressions.
+     */
+    contentIds?: Array<string>;
+  };
 }
 
 /**
@@ -52,9 +57,12 @@ export const MATOMO_CONFIGURATION = new InjectionToken<string>('MATOMO_CONFIGURA
  */
 export const defaultConfiguration: Partial<MatomoModuleConfiguration> = {
   trackers: [],
-  trackAppStarting: true,
-  enableLinkTracking: true,
-  enableLinkTrackingValue: false,
-  isConsentRequired: false,
-  enableRouteTracking: false,
+  trackAppStart: true,
+  trackLinks: true,
+  trackLinkValue: false,
+  requireConsent: false,
+  requireCookieConsent: false,
+  routeTracking: {
+    enable: false,
+  },
 };
