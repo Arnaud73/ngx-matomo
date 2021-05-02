@@ -1,4 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
+
 import { MatomoModuleConfiguration, MATOMO_CONFIGURATION } from './matomo-configuration';
 
 /**
