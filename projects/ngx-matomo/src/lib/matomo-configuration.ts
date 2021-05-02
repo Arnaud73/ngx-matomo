@@ -9,6 +9,11 @@ export interface MatomoModuleConfiguration {
    */
   scriptUrl: string;
   /**
+   * Version of the Matomo JS script to download.
+   * (there is no easy way to know for sure which features will be supported in the script)
+   */
+  scriptVersion: number;
+  /**
    * Array of trackers, each one of them being described by its URL and site id.
    */
   trackers: Array<{ trackerUrl: string; siteId: number }>;
@@ -56,6 +61,7 @@ export const MATOMO_CONFIGURATION = new InjectionToken<string>('MATOMO_CONFIGURA
  * Default configuration for the Matomo module.
  */
 export const defaultConfiguration: Partial<MatomoModuleConfiguration> = {
+  scriptVersion: 4,
   trackers: [],
   trackAppStart: true,
   trackLinks: true,

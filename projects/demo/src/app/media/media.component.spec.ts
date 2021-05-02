@@ -1,7 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { MATOMO_CONFIGURATION, MatomoTracker } from 'ngx-matomo';
+
 import { MediaComponent } from './media.component';
-import { MatomoTracker } from 'ngx-matomo';
 
 describe('MediaComponent', () => {
   let component: MediaComponent;
@@ -9,7 +10,20 @@ describe('MediaComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      providers: [MatomoTracker],
+      providers: [
+        {
+          provide: MATOMO_CONFIGURATION,
+          useValue: {
+            trackers: [],
+            trackAppStarting: true,
+            requireConsent: false,
+            enableLinkTracking: true,
+            enableLinkTrackingValue: false,
+            enableRouteTracking: false,
+          },
+        },
+        MatomoTracker,
+      ],
       declarations: [MediaComponent],
     }).compileComponents();
   });

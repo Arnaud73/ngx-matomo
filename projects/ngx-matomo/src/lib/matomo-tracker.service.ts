@@ -1,4 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
+
+import { MATOMO_CONFIGURATION, MatomoModuleConfiguration } from './matomo-configuration';
 
 /**
  * Access to the global window variable.
@@ -23,8 +25,12 @@ type MatomoScope = 'page' | 'visit' | 'event';
 export class MatomoTracker {
   /**
    * Creates an instance of MatomoTracker.
+   *
+   * @param configuration Matomo configuration provided by DI.
    */
-  constructor() {
+  constructor(
+    @Inject(MATOMO_CONFIGURATION) private readonly configuration: MatomoModuleConfiguration
+  ) {
     try {
       if (typeof window._paq === 'undefined') {
         console.warn('Matomo has not yet been initialized!');
@@ -692,15 +698,18 @@ export class MatomoTracker {
   /**
    * By default Matomo uses the browser DOM Timing API to accurately determine the time it takes to generate and download
    * the page. You may overwrite this value with this function.
+   * This function is deprecated in Matomo 4.x.
    *
    * @param generationTime Time, in milliseconds, of the page generation.
    */
   setGenerationTimeMs(generationTime: number): void {
-    try {
-      window._paq.push(['setGenerationTimeMs', generationTime]);
-    } catch (e) {
-      if (!(e instanceof ReferenceError)) {
-        throw e;
+    if (this.configuration.scriptVersion < 4) {
+      try {
+        window._paq.push(['setGenerationTimeMs', generationTime]);
+      } catch (e) {
+        if (!(e instanceof ReferenceError)) {
+          throw e;
+        }
       }
     }
   }

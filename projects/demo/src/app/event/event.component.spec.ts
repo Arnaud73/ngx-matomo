@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { MATOMO_CONFIGURATION, MatomoTracker } from 'ngx-matomo';
+
 import { EventComponent } from './event.component';
 
 describe('EventComponent', () => {
@@ -8,6 +10,20 @@ describe('EventComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      providers: [
+        {
+          provide: MATOMO_CONFIGURATION,
+          useValue: {
+            trackers: [],
+            trackAppStarting: true,
+            requireConsent: false,
+            enableLinkTracking: true,
+            enableLinkTrackingValue: false,
+            enableRouteTracking: false,
+          },
+        },
+        MatomoTracker,
+      ],
       declarations: [EventComponent],
     }).compileComponents();
   });

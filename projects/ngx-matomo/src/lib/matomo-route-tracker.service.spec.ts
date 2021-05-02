@@ -3,9 +3,9 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
 
+import { MATOMO_CONFIGURATION } from './matomo-configuration';
 import { MatomoTracker } from './matomo-tracker.service';
 import { MatomoRouteTracker } from './matomo-route-tracker.service';
-import { MATOMO_CONFIGURATION } from './matomo-configuration';
 
 describe('MatomoRouteTrackerService', () => {
   beforeEach(() =>

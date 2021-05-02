@@ -10,13 +10,15 @@ describe('Demo App', () => {
       imports: [
         RouterTestingModule,
         MatomoModule.forRoot({
-          trackAppStarting: true,
-          isConsentRequired: false,
-          enableRouteTracking: false,
-          enableLinkTracking: true,
-          enableLinkTrackingValue: false,
-          contentIds: [],
           trackers: [],
+          trackAppStart: true,
+          requireConsent: false,
+          routeTracking: {
+            enable: false,
+            contentIds: [],
+          },
+          trackLinks: true,
+          trackLinkValue: false,
         }),
       ],
       declarations: [AppComponent],

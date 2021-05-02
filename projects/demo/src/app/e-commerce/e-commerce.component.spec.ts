@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MatomoTracker } from 'ngx-matomo';
+import { MATOMO_CONFIGURATION, MatomoTracker } from 'ngx-matomo';
+
 import { ECommerceComponent } from './e-commerce.component';
 
 describe('ECommerceComponent', () => {
@@ -9,7 +10,20 @@ describe('ECommerceComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      providers: [MatomoTracker],
+      providers: [
+        {
+          provide: MATOMO_CONFIGURATION,
+          useValue: {
+            trackers: [],
+            trackAppStarting: true,
+            requireConsent: false,
+            enableLinkTracking: true,
+            enableLinkTrackingValue: false,
+            enableRouteTracking: false,
+          },
+        },
+        MatomoTracker,
+      ],
       declarations: [ECommerceComponent],
     }).compileComponents();
   });
