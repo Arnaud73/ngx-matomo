@@ -41,7 +41,7 @@ export class MatomoModule {
     // Inject the Matomo script and create trackers.
     this.matomoInjector.init();
     // Enable route tracking if requested.
-    if (this.configuration?.enableRouteTracking === true) {
+    if (this.configuration?.routeTracking?.enable === true) {
       // Using Injector instead of DI in order to allow use in routerless apps.
       this.injector.get(MatomoRouteTracker).startTracking();
     }

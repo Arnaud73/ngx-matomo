@@ -38,21 +38,21 @@ export class MatomoInjector {
    */
   init(): void {
     try {
-      if (this.configuration?.isConsentRequired === true) {
+      if (this.configuration?.requireConsent === true) {
         window._paq.push(['requireConsent']);
-      } else if (this.configuration?.isCookieConsentRequired === true) {
+      } else if (this.configuration?.requireCookieConsent === true) {
         window._paq.push(['requireCookieConsent']);
       }
-      if (this.configuration?.trackAppStarting === true) {
+      if (this.configuration?.trackAppStart === true) {
         window._paq.push(['trackPageView']);
         if (
-          this.configuration?.enableLinkTracking === true &&
-          this.configuration?.enableRouteTracking === false
+          this.configuration?.trackLinks === true &&
+          this.configuration?.routeTracking?.enable === false
         ) {
           setTimeout(() => {
             window._paq.push([
               'enableLinkTracking',
-              this.configuration?.enableLinkTrackingValue ?? false,
+              this.configuration?.trackLinkValue ?? false,
             ]);
           }, 0);
         }
@@ -65,7 +65,7 @@ export class MatomoInjector {
           window._paq.push(['addTracker', tracker.trackerUrl, tracker.siteId.toString()])
         );
       } else {
-        // TODO: Throw an error if no tracker has been configured
+        // TODO Throw an error if no tracker has been configured
       }
       const script = document.createElement('script');
       script.type = 'text/javascript';

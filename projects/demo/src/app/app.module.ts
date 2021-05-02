@@ -36,11 +36,10 @@ import { EventComponent } from './event/event.component';
           siteId: 1,
         },
       ],
-      isConsentRequired: true,
-      // routeTracking: {
-      //   enable: true,
-      // },
-      enableRouteTracking: true,
+      requireConsent: true,
+      routeTracking: {
+        enable: true,
+      },
     }),
     AppRoutingModule,
   ],

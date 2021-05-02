@@ -77,7 +77,7 @@ export class MatomoRouteTracker implements OnDestroy {
           this.previousPageUrl = window.location.href;
 
           // Make Matomo aware of newly added content
-          this.configuration?.contentIds
+          this.configuration?.routeTracking?.contentIds
             ?.map(document.getElementById)
             ?.filter(isNonNull)
             ?.forEach((content) => {
@@ -88,8 +88,8 @@ export class MatomoRouteTracker implements OnDestroy {
               this.matomoTracker.trackContentImpressionsWithinNode(content);
             });
 
-          if (this.configuration.enableLinkTracking === true) {
-            this.matomoTracker.enableLinkTracking(this.configuration.enableLinkTrackingValue);
+          if (this.configuration.trackLinks === true) {
+            this.matomoTracker.enableLinkTracking(this.configuration.trackLinkValue);
           }
         },
       });
