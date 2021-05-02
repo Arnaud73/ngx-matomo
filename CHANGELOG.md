@@ -1,6 +1,41 @@
-# Change Log
+# Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+## [1.0.0-rc.0](https://github.com/Arnaud73/ngx-matomo/compare/v0.1.4...v1.0.0-rc.0) (2021-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* **tracker:** Rename getPiwikUrl to getMatomoUrl
+* **injector:** since the injection is now automatic, the old way (0.x) of injecting the tracker manually is no longer compatible with this library.
+
+### Features
+
+* **injector:** Add support for specific script URL ([9b1b022](https://github.com/Arnaud73/ngx-matomo/commit/9b1b022d616df29151abeb0a62191929f2474b4e))
+* **injector:** Inject the Matomo tracker at module import ([a56bfa3](https://github.com/Arnaud73/ngx-matomo/commit/a56bfa39a8d84fde82fa4a810ff590adf51f0db8))
+* **route-tracking:** Add automatic route tracking ([75b0ccf](https://github.com/Arnaud73/ngx-matomo/commit/75b0ccf93b35b188bcf1182afe7bec370d3c0bb6))
+* **ssr:** Add SSR support ([04cfe3f](https://github.com/Arnaud73/ngx-matomo/commit/04cfe3f9f7c878de2b149b2b46bb490a45ab5eb4))
+* **tracker:** Add additional consent management functions ([f257a71](https://github.com/Arnaud73/ngx-matomo/commit/f257a717f51da024baf3fb8e7fa633f0c618f989))
+* **tracker:** Add consent tracking functions ([868eb1b](https://github.com/Arnaud73/ngx-matomo/commit/868eb1b2052f3505c36c3950e2bf5761f09b7c78))
+* **tracker:** Add DeleteCustomVariables function ([9e50ea0](https://github.com/Arnaud73/ngx-matomo/commit/9e50ea099410ae2fd5b989149aae65faf8139cf2))
+* **tracker:** Add disableQueueRequest function ([017aa53](https://github.com/Arnaud73/ngx-matomo/commit/017aa534c3f11f7af5dc002212d9ef2dcabf671f))
+* **tracker:** Add getCrossDomainLinkingUrlParameter function ([e6de929](https://github.com/Arnaud73/ngx-matomo/commit/e6de9297cba2e1b2e77377c2ad7a20777c19a64c))
+* **tracker:** Add missing ecommerce tracking functions ([b3dc0bb](https://github.com/Arnaud73/ngx-matomo/commit/b3dc0bbf2bb8b511cce906594e9931e5e1514ad8))
+* **tracker:** Add ping function ([10b1423](https://github.com/Arnaud73/ngx-matomo/commit/10b1423b74027904dcac6ac16e94ba26233c36a0))
+
+
+### Bug Fixes
+
+* **demo:** Fix missing declaration in FormComponent component ([462330d](https://github.com/Arnaud73/ngx-matomo/commit/462330dc7f53dedf0150cb16e2a36c9eed01b343))
+* **injector:** Add missing MATOMO_CONFIGURATION import ([5e7a1fd](https://github.com/Arnaud73/ngx-matomo/commit/5e7a1fdb9c054cc03a1e12ee4214ba6325ca35c3))
+* **injector:** Fix issue with PLATFORM_ID injection  ([b0c7b59](https://github.com/Arnaud73/ngx-matomo/commit/b0c7b59a0bf7b62571fb94d91f31a6b94693ac38))
+* **route-tracker:** Fix an issue with incorrect content ids in configuration ([5488c01](https://github.com/Arnaud73/ngx-matomo/commit/5488c01c42d5251cbe92ed4cf6b04dd9dc6cab61))
+* **tracker:** Fix incorrect management of optional parameters ([85241d8](https://github.com/Arnaud73/ngx-matomo/commit/85241d84966f164755021ba37b129c3594f1e70c))
+* **tracker:** Handle Matomo deprecated features correctly ([78fa246](https://github.com/Arnaud73/ngx-matomo/commit/78fa246ecba8653f62b5fe06156b1ee21d14ac9f))
+
+
+* **tracker:** Rename getPiwikUrl to getMatomoUrl ([d6da5da](https://github.com/Arnaud73/ngx-matomo/commit/d6da5dadfa85368c034290d319c826f4e5f35673))
 
 <a name="0.1.4"></a>
 ## [0.1.4](https://github.com/Arnaud73/ngx-matomo/compare/v0.1.3...v0.1.4) (2019-05-10)
