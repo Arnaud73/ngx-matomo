@@ -29,7 +29,8 @@ export class MatomoModule {
    * @param matomoInjector Instance of MatomoInjector provided by DI.
    */
   constructor(
-    @Inject(PLATFORM_ID) private readonly platformId: object,
+    // tslint:disable-next-line:ban-types
+    @Inject(PLATFORM_ID) private readonly platformId: Object,
     private readonly injector: Injector,
     @Inject(MATOMO_CONFIGURATION) private readonly configuration: MatomoModuleConfiguration,
     private readonly matomoInjector: MatomoInjector
