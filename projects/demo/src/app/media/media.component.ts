@@ -7,7 +7,7 @@ import { MatomoTracker } from 'ngx-matomo';
 @Component({
   selector: 'app-media',
   templateUrl: './media.component.html',
-  styleUrls: ['./media.component.css'],
+  styleUrls: [],
 })
 export class MediaComponent implements OnInit {
   /**

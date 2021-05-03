@@ -5,7 +5,7 @@ import { MatomoTracker } from 'ngx-matomo';
 @Component({
   selector: 'app-welcome',
   templateUrl: './welcome.component.html',
-  styleUrls: ['./welcome.component.css'],
+  styleUrls: [],
 })
 export class WelcomeComponent implements OnInit {
   /**

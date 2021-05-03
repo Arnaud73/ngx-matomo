@@ -5,7 +5,7 @@ import { MatomoTracker } from 'ngx-matomo';
 @Component({
   selector: 'app-event',
   templateUrl: './event.component.html',
-  styleUrls: ['./event.component.css'],
+  styleUrls: [],
 })
 export class EventComponent implements OnInit {
   /**

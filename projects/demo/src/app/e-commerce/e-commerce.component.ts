@@ -13,7 +13,7 @@ interface Article {
 @Component({
   selector: 'app-e-commerce',
   templateUrl: './e-commerce.component.html',
-  styleUrls: ['./e-commerce.component.css'],
+  styleUrls: [],
 })
 export class ECommerceComponent implements OnInit {
   readonly articles: Array<Article> = [

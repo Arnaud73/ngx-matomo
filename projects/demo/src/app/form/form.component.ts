@@ -6,7 +6,7 @@ import { MatomoTracker } from 'ngx-matomo';
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
-  styleUrls: ['./form.component.css'],
+  styleUrls: [],
 })
 export class FormComponent implements OnInit, AfterViewInit {
   public foodForm = this.formBuilder.group({

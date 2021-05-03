@@ -4,7 +4,7 @@ import { MatomoTracker } from 'ngx-matomo';
 @Component({
   selector: 'app-consent',
   templateUrl: './consent.component.html',
-  styleUrls: ['./consent.component.css'],
+  styleUrls: [],
 })
 export class ConsentComponent implements OnInit {
   /**
