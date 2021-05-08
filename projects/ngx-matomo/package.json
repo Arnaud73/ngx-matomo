@@ -15,12 +15,12 @@
     "type": "git",
     "url": "https://github.com/Arnaud73/ngx-matomo.git"
   },
-  "dependencies": {
-    "tslib": "^2.0.0"
-  },
   "peerDependencies": {
     "@angular/common": ">=9.0.0 <13.0.0",
     "@angular/core": ">=9.0.0 <13.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.1.0"
   },
   "optionalDependencies": {
     "@angular/router": ">=9.0.0 <13.0.0",
