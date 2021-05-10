@@ -1,6 +1,6 @@
 {
   "name": "ngx-matomo",
-  "version": "1.0.0-rc.0",
+  "version": "1.0.0-rc.1",
   "author": "Arnaud Mouronval <arnaud.mouronval@gmail.com>",
   "description": "Matomo (aka. Piwik) web analytics for applications based on Angular 9, 10, 11 or 12.",
   "keywords": [

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-rc.1](https://github.com/Arnaud73/ngx-matomo/compare/v1.0.0-rc.0...v1.0.0-rc.1) (2021-05-10)
+
+
+### Features
+
+* **injector:** Allow operations with a predefined tracker ([805bb60](https://github.com/Arnaud73/ngx-matomo/commit/805bb60d547e069043d985d915daa5d46a8358c8))
+
 ## [1.0.0-rc.0](https://github.com/Arnaud73/ngx-matomo/compare/v0.1.4...v1.0.0-rc.0) (2021-05-02)
 
 
