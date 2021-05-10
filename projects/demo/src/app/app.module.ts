@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { MatomoModule } from 'ngx-matomo';
 
+import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MediaComponent } from './media/media.component';
@@ -28,19 +29,7 @@ import { EventComponent } from './event/event.component';
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    MatomoModule.forRoot({
-      scriptUrl: '//cdn.matomo.cloud/ngx.matomo.cloud/matomo.js',
-      trackers: [
-        {
-          trackerUrl: 'https://ngx.matomo.cloud/matomo.php',
-          siteId: 1,
-        },
-      ],
-      requireConsent: true,
-      routeTracking: {
-        enable: true,
-      },
-    }),
+    MatomoModule.forRoot(environment.matomoConfig),
     AppRoutingModule,
   ],
   providers: [],

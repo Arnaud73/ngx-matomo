@@ -26,7 +26,7 @@ export class MatomoInjector {
     @Inject(MATOMO_CONFIGURATION) private readonly configuration: MatomoModuleConfiguration
   ) {
     try {
-      window._paq = window._paq || [];
+      window._paq = window._paq || (!!this.configuration.scriptUrl ? [] : { push: () => {} });
     } catch (e) {
       if (!(e instanceof ReferenceError)) {
         throw e;
@@ -35,7 +35,7 @@ export class MatomoInjector {
   }
 
   /**
-   * Injects the Matomo tracker in the DOM.
+   * Configures and injects the Matomo tracker in the DOM.
    */
   init(): void {
     try {
@@ -51,10 +51,7 @@ export class MatomoInjector {
           this.configuration?.routeTracking?.enable === false
         ) {
           setTimeout(() => {
-            window._paq.push([
-              'enableLinkTracking',
-              this.configuration?.trackLinkValue ?? false,
-            ]);
+            window._paq.push(['enableLinkTracking', this.configuration?.trackLinkValue ?? false]);
           }, 0);
         }
       }
@@ -65,16 +62,16 @@ export class MatomoInjector {
         otherTrackers.forEach((tracker) =>
           window._paq.push(['addTracker', tracker.trackerUrl, tracker.siteId.toString()])
         );
-      } else {
-        // TODO Throw an error if no tracker has been configured
       }
-      const script = document.createElement('script');
-      script.type = 'text/javascript';
-      script.async = true;
-      script.defer = true;
-      script.src = this.configuration.scriptUrl;
-      const firstScript = document.getElementsByTagName('script')[0];
-      firstScript.parentNode?.insertBefore(script, firstScript);
+      if (!!this.configuration.scriptUrl) {
+        const script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.async = true;
+        script.defer = true;
+        script.src = this.configuration.scriptUrl;
+        const firstScript = document.getElementsByTagName('script')[0];
+        firstScript.parentNode?.insertBefore(script, firstScript);
+      }
     } catch (e) {
       if (!(e instanceof ReferenceError)) {
         throw e;

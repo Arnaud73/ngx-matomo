@@ -7,7 +7,7 @@ export interface MatomoModuleConfiguration {
   /**
    * URL of the Matomo JS script to execute.
    */
-  scriptUrl: string;
+  scriptUrl?: string;
   /**
    * Version of the Matomo JS script to download.
    * (there is no easy way to know for sure which features will be supported in the script)

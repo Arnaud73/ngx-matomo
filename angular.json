@@ -79,6 +79,20 @@
               ],
               "outputHashing": "all"
             },
+            "no-tracking": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true,
+              "fileReplacements": [
+                {
+                  "replace": "projects/demo/src/environments/environment.ts",
+                  "with": "projects/demo/src/environments/environment.no-tracking.ts"
+                }
+              ]
+            },
             "development": {
               "buildOptimizer": false,
               "optimization": false,
@@ -95,6 +109,9 @@
           "configurations": {
             "production": {
               "browserTarget": "demo:build:production"
+            },
+            "no-tracking": {
+              "browserTarget": "demo:build:no-tracking"
             },
             "development": {
               "browserTarget": "demo:build:development"
