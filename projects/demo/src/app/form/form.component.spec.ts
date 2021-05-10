@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormBuilder } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
-import { MATOMO_CONFIGURATION, MatomoTracker } from 'ngx-matomo';
+import { MatomoModule } from 'ngx-matomo';
 
 import { FormComponent } from './form.component';
 
@@ -11,21 +11,7 @@ describe('FormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      providers: [
-        FormBuilder,
-        {
-          provide: MATOMO_CONFIGURATION,
-          useValue: {
-            trackers: [],
-            trackAppStarting: true,
-            requireConsent: false,
-            enableLinkTracking: true,
-            enableLinkTrackingValue: false,
-            enableRouteTracking: false,
-          },
-        },
-        MatomoTracker,
-      ],
+      imports: [ReactiveFormsModule, MatomoModule.forRoot({})],
       declarations: [FormComponent],
     }).compileComponents();
   });

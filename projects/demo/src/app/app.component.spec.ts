@@ -6,21 +6,8 @@ import { MatomoModule, MatomoTracker } from 'ngx-matomo';
 describe('Demo App', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      providers: [MatomoTracker],
-      imports: [
-        RouterTestingModule,
-        MatomoModule.forRoot({
-          trackers: [],
-          trackAppStart: true,
-          requireConsent: false,
-          routeTracking: {
-            enable: false,
-            contentIds: [],
-          },
-          trackLinks: true,
-          trackLinkValue: false,
-        }),
-      ],
+      providers: [],
+      imports: [RouterTestingModule, MatomoModule.forRoot({})],
       declarations: [AppComponent],
     }).compileComponents();
   });
