@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 
 import { MatomoTracker } from 'ngx-matomo';
@@ -8,7 +8,7 @@ import { MatomoTracker } from 'ngx-matomo';
   templateUrl: './form.component.html',
   styleUrls: [],
 })
-export class FormComponent implements OnInit, AfterViewInit {
+export class FormComponent implements AfterViewInit {
   public foodForm = this.formBuilder.group({
     favorite: ['', Validators.required],
     comment: [''],
@@ -26,13 +26,9 @@ export class FormComponent implements OnInit, AfterViewInit {
   ) {}
 
   /**
-   * Angular OnInit lifecycle hook.
-   */
-  ngOnInit(): void {}
-
-  /**
    * Angular AfterViewInit lifecycle hook.
    */
+  // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
   ngAfterViewInit(): void {
     // TODO To be implemented when Form Analytics will be supported.
     // const form = document.getElementById('foodForm');

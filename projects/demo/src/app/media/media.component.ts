@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatomoTracker } from 'ngx-matomo';
 
 /**
@@ -9,18 +9,13 @@ import { MatomoTracker } from 'ngx-matomo';
   templateUrl: './media.component.html',
   styleUrls: [],
 })
-export class MediaComponent implements OnInit {
+export class MediaComponent {
   /**
    * Creates an instance of MediaComponent.
    *
    * @param matomoTracker Instance of MatomoTracker provided by DI.
    */
   constructor(private readonly matomoTracker: MatomoTracker) {}
-
-  /**
-   * Angular OnInit lifecycle hook.
-   */
-  ngOnInit(): void {}
 
   onLike(): void {
     console.log('Like!');

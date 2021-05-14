@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 
 import { MatomoTracker } from 'ngx-matomo';
 
@@ -10,18 +10,13 @@ import { MatomoTracker } from 'ngx-matomo';
   templateUrl: './app.component.html',
   styleUrls: [],
 })
-export class AppComponent implements OnInit, AfterViewInit {
+export class AppComponent implements AfterViewInit {
   /**
    * Creates an instance of AppComponent.
    *
    * @param matomoTracker Instance of MatomoTracker provided by DI.
    */
   constructor(private readonly matomoTracker: MatomoTracker) {}
-
-  /**
-   * Angular OnInit lifecycle hook.
-   */
-  ngOnInit(): void {}
 
   /**
    * Angular AfterViewInit lifecycle hook.
