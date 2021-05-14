@@ -31,6 +31,12 @@
             "tsConfig": "projects/ngx-matomo/tsconfig.spec.json",
             "karmaConfig": "projects/ngx-matomo/karma.conf.js"
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["projects/ngx-matomo/**/*.ts", "projects/ngx-matomo/**/*.html"]
+          }
         }
       }
     },
@@ -136,13 +142,20 @@
             "styles": ["projects/demo/src/styles.css"],
             "scripts": []
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["projects/demo/**/*.ts", "projects/demo/**/*.html"]
+          }
         }
       }
     }
   },
   "cli": {
     "packageManager": "npm",
-    "analytics": "9a3310eb-5121-4213-ab87-6fac0fc74d6f"
+    "analytics": "9a3310eb-5121-4213-ab87-6fac0fc74d6f",
+    "defaultCollection": "@angular-eslint/schematics"
   },
   "defaultProject": "ngx-matomo"
 }

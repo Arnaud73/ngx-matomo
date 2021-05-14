@@ -19,6 +19,7 @@ jobs:
     - name: npm install, build, and test
       run: |
         npm ci
+        npm run lint
         npm run build ngx-matomo
         npm run test-headless ngx-matomo
         npm run test-headless demo
