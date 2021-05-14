@@ -2,7 +2,7 @@
   "name": "ngx-matomo",
   "version": "1.0.0-rc.1",
   "author": "Arnaud Mouronval <arnaud.mouronval@gmail.com>",
-  "description": "Matomo (aka. Piwik) web analytics for applications based on Angular 9, 10, 11 or 12.",
+  "description": "Matomo (aka. Piwik) web analytics for applications based on Angular 12.",
   "keywords": [
     "matomo",
     "piwik",
@@ -16,14 +16,14 @@
     "url": "https://github.com/Arnaud73/ngx-matomo.git"
   },
   "peerDependencies": {
-    "@angular/common": ">=9.0.0 <13.0.0",
-    "@angular/core": ">=9.0.0 <13.0.0"
+    "@angular/common": ">=12.0.0 <13.0.0",
+    "@angular/core": ">=12.0.0 <13.0.0"
   },
   "dependencies": {
     "tslib": "^2.1.0"
   },
   "optionalDependencies": {
-    "@angular/router": ">=9.0.0 <13.0.0",
-    "rxjs": "^6.5.0"
+    "@angular/router": ">=12.0.0 <13.0.0",
+    "rxjs": "^6.6.0"
   }
 }
