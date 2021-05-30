@@ -26,7 +26,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "test-headless": "ng test --codeCoverage=true --watch=false --browsers=ChromeHeadless",
+    "test:ci": "ng test --watch=false --progress=false --code-coverage --browsers=ChromeHeadlessCI",
     "lint": "ng lint",
     "clean": "rimraf dist/*",
     "format:write": "prettier projects/**/*.{ts,json,md,scss} --write",
