@@ -31,7 +31,7 @@
     "clean": "rimraf dist/*",
     "format:write": "prettier projects/**/*.{ts,json,md,scss} --write",
     "format:test": "prettier projects/**/*.{ts,json,md,scss} --list-different",
-    "compodoc": "compodoc -c ./.compodocrc.json",
+    "generate-doc": "compodoc -c ./.compodocrc.json",
     "copy-license": "copyfiles ./LICENSE ./dist/ngx-matomo",
     "copy-readme": "copyfiles ./README.md ./dist/ngx-matomo",
     "copy-files": "npm run copy-license && npm run copy-readme",
