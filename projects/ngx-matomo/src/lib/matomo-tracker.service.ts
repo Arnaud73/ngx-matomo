@@ -1753,4 +1753,18 @@ export class MatomoTracker {
       }
     }
   }
+
+  /**
+   * Disables the recording of heatmap sessions for the current site. This is useful when your matomo instance
+   * has the heatmaps plugin enabled, but you want to disable it for certain sites.
+   */
+     disableHeatmapSessionRecording(): void {
+      try {
+        window. _paq.push(['HeatmapSessionRecording::disable']);
+      } catch (e) {
+        if (!(e instanceof ReferenceError)) {
+          throw e;
+        }
+      }
+    }
 }
