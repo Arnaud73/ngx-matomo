@@ -1760,7 +1760,7 @@ export class MatomoTracker {
    */
      disableHeatmapSessionRecording(): void {
       try {
-        window. _paq.push(['HeatmapSessionRecording::disable']);
+        window._paq.push(['HeatmapSessionRecording::disable']);
       } catch (e) {
         if (!(e instanceof ReferenceError)) {
           throw e;
