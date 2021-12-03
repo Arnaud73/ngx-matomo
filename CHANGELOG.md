@@ -44,6 +44,11 @@ All notable changes to this project will be documented in this file. See [standa
 
 * **tracker:** Rename getPiwikUrl to getMatomoUrl ([d6da5da](https://github.com/Arnaud73/ngx-matomo/commit/d6da5dadfa85368c034290d319c826f4e5f35673))
 
+<a name="0.1.5"></a>
+
+## Update peer dependency after angular 13 update and deprecation
+
+
 <a name="0.1.4"></a>
 ## [0.1.4](https://github.com/Arnaud73/ngx-matomo/compare/v0.1.3...v0.1.4) (2019-05-10)
 
