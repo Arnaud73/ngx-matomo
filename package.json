@@ -1,8 +1,8 @@
 {
-  "name": "ngx-matomo",
-  "version": "1.0.0-rc.1",
-  "author": "Arnaud Mouronval <arnaud.mouronval@gmail.com>",
-  "description": "Matomo (aka. Piwik) web analytics for Angular 12+ applications.",
+  "name": "@leonmydla/matomo",
+  "version": "13.0.0",
+  "author": "Leon Mydla <npmjs@mydla.dev>",
+  "description": "Matomo (aka. Piwik) web analytics for applications based on Angular 13.",
   "keywords": [
     "matomo",
     "piwik",
@@ -14,12 +14,8 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/Arnaud73/ngx-matomo.git"
+    "url": "https://github.com/leonmydla/ngx-matomo.git"
   },
-  "bugs": {
-    "url": "https://github.com/Arnaud73/ngx-matomo/issues"
-  },
-  "homepage": "https://github.com/Arnaud73/ngx-matomo#readme",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
