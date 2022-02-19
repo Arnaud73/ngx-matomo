@@ -1,0 +1,15 @@
+language: node_js
+node_js: "lts/*"
+sudo: true
+
+addons:
+  chrome: stable
+
+install:
+  - npm ci
+
+script:
+  - npm run lint
+  - npm run build ngx-matomo
+  - npm run test:ci ngx-matomo
+  - npm run test:ci demo

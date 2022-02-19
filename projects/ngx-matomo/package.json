@@ -1,8 +1,8 @@
 {
-  "name": "@leonmydla/matomo",
-  "version": "11.0.0",
-  "author": "Leon Mydla <npmjs@mydla.dev>",
-  "description": "Matomo (aka. Piwik) web analytics for applications based on Angular 11.",
+  "name": "ngx-matomo",
+  "version": "1.0.0-rc.1",
+  "author": "Arnaud Mouronval <arnaud.mouronval@gmail.com>",
+  "description": "Matomo (aka. Piwik) web analytics for applications based on Angular 12.",
   "keywords": [
     "matomo",
     "piwik",
@@ -13,12 +13,17 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/leonmydla/ngx-matomo.git"
-  },
-  "dependencies": {
-    "tslib": "^2.0.0"
+    "url": "https://github.com/Arnaud73/ngx-matomo.git"
   },
   "peerDependencies": {
-    "@angular/core": "^11.0.0"
+    "@angular/common": ">=12.0.0 <13.0.0",
+    "@angular/core": ">=12.0.0 <13.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.1.0"
+  },
+  "optionalDependencies": {
+    "@angular/router": ">=12.0.0 <13.0.0",
+    "rxjs": "^6.6.0"
   }
 }
