@@ -12,10 +12,10 @@ Wrapper for Matomo (aka. Piwik) analytics tracker for Angular applications.
 
 Choose the version corresponding to your Angular version:
 
-| Angular | ngx-matomo |
-| ------- | ---------- |
-| 9 to 14 | 1.x+       |
-| 5 to 8  | 0.x+       |
+| Angular  | ngx-matomo |
+| -------- | ---------- |
+| 9 to 14+ | 1.x+       |
+| 5 to 8   | 0.x+       |
 
 # Installation
 
