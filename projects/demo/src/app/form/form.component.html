@@ -4,20 +4,10 @@
 
 <form [formGroup]="foodForm" id="foodForm">
   <fieldset>
-    <div class="input-group vertical">
-      <label for="favoriteFood">Favorite Food</label>
-      <input
-        type="text"
-        placeholder="Favorite food"
-        id="favoriteFood"
-        formControlName="favorite"
-        required
-      />
-    </div>
-    <div class="input-group vertical">
-      <label for="comment">Comment</label>
-      <textarea placeholder="Leave a comment" id="comment" formControlName="comment"></textarea>
-    </div>
+    <label for="favoriteFood">Favorite Food</label>
+    <input type="text" placeholder="Favorite food" id="favoriteFood" formControlName="favorite" required />
+    <label for="comment">Comment</label>
+    <textarea placeholder="Leave a comment" id="comment" formControlName="comment"></textarea>
   </fieldset>
   <button type="submit" class="primary" (click)="onSubmit()" [disabled]="!foodForm.valid">
     Submit

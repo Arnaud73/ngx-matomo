@@ -2,29 +2,25 @@
 
 <p>To be implemented.</p>
 
-<div class="row">
-  <div class="card">
-    <div class="section">
-      <h2>Title</h2>
-      <h3>Subtitle</h3>
-    </div>
-    <img class="section media" src="https://loremflickr.com/640/360" alt="Lorem Flickr" />
-    <p class="section">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-      labore et dolore magna aliqua
-    </p>
-    <div class="section">
+<article>
+  <h2>Title</h2>
+  <h3>Subtitle</h3>
+  <img class="section media" src="https://loremflickr.com/640/360" alt="Lorem Flickr" />
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+    labore et dolore magna aliqua
+  </p>
+  <footer>
+    <div class="grid">
       <button (click)="onLike()">Like</button>
-      <button (click)="onShare()">Share</button>
+      <button class="secondary" (click)="onShare()">Share</button>
     </div>
-  </div>
-  <div class="card">
-    <div class="section">
-      <h2>Title</h2>
-      <h3>Subtitle</h3>
-    </div>
-    <div class="section media">
-      <!-- <iframe
+  </footer>
+</article>
+<article>
+  <h2>Title</h2>
+  <h3>Subtitle</h3>
+  <!-- <iframe
         width="560"
         height="315"
         src="https://www.youtube.com/embed/ScMzIvxBSi4"
@@ -32,14 +28,14 @@
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen
       ></iframe> -->
-    </div>
-    <p class="section">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-      labore et dolore magna aliqua
-    </p>
-    <div class="section">
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+    labore et dolore magna aliqua
+  </p>
+  <footer>
+    <div class="grid">
       <button (click)="onLike()">Like</button>
-      <button (click)="onShare()">Share</button>
+      <button class="secondary" (click)="onShare()">Share</button>
     </div>
-  </div>
-</div>
+  </footer>
+</article>

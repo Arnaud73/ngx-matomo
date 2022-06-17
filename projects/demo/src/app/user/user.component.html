@@ -1,41 +1,50 @@
 <h1>User Id management</h1>
 
-<h2>Visitor data</h2>
+<section>
+  <article>
+    <h2>Visitor data</h2>
+    <p>
+      Information currently know by the Matomo tracker.
+    </p>
+    <figure>
+      <table role="grid">
+        <caption>
+          Visitor data
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">Data</th>
+            <th scope="col">Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Visitor Id</th>
+            <td data-label="Value">{{ visitorId }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Visitor Info</th>
+            <td data-label="Value">{{ visitorInfo | json }}</td>
+          </tr>
+          <tr>
+            <th scope="row">User Id</th>
+            <td data-label="Value">{{ userId }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </figure>
+  </article>
 
-<table>
-  <caption>
-    Visitor attributes
-  </caption>
-  <thead>
-    <tr>
-      <th>Data</th>
-      <th>Value</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td data-label="Data">Visitor Id</td>
-      <td data-label="Value">{{ visitorId }}</td>
-    </tr>
-    <tr>
-      <td data-label="Data">Visitor Info</td>
-      <td data-label="Value">{{ visitorInfo | json }}</td>
-    </tr>
-    <tr>
-      <td data-label="Data">User Id</td>
-      <td data-label="Value">{{ userId }}</td>
-    </tr>
-  </tbody>
-</table>
-
-<h2>User Id handling</h2>
-
-<form [formGroup]="userIdForm">
-  <input type="text" placeholder="User ID" formControlName="userId" required />
-  <button type="submit" class="primary" (click)="onUserIdSubmit()" [disabled]="!userIdForm.valid">
-    Set User ID
-  </button>
-  <button class="secondary" (click)="onUserIdReset()">
-    Reset User ID
-  </button>
-</form>
+  <h2>User Id handling</h2>
+  <form [formGroup]="userIdForm">
+    <div class="grid">
+      <input type="text" placeholder="User ID" formControlName="userId" required />
+      <button type="submit" class="primary" (click)="onUserIdSubmit()" [disabled]="!userIdForm.valid">
+        Set User ID
+      </button>
+      <button class="secondary" (click)="onUserIdReset()">
+        Reset User ID
+      </button>
+    </div>
+  </form>
+</section>
