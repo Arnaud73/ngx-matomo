@@ -43,7 +43,7 @@ export class UserComponent implements OnInit {
   }
 
   onUserIdSubmit(): void {
-    this.matomoTracker.setUserId(this.userIdForm.value.userId);
+    this.matomoTracker.setUserId(this.userIdForm.value.userId || '');
     this.userIdForm.reset();
 
     this.matomoTracker.getUserId().then((uid) => {

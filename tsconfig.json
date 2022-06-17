@@ -6,6 +6,8 @@
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
@@ -15,11 +17,11 @@
     "moduleResolution": "node",
     "importHelpers": true,
     "paths": {
-      "ngx-matomo": ["dist/ngx-matomo/ngx-matomo", "dist/ngx-matomo"]
+      "ngx-matomo": ["dist/ngx-matomo"]
     },
-    "target": "es2017",
+    "target": "es2020",
     "module": "es2020",
-    "lib": ["es2018", "dom"]
+    "lib": ["es2020", "dom"]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

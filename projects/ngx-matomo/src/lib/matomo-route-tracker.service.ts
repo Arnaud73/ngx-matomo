@@ -64,8 +64,8 @@ export class MatomoRouteTracker implements OnDestroy {
             this.matomoTracker.setReferrerUrl(this.previousPageUrl);
           }
           // Track current page
-          if (!!currentRoute.snapshot.data.matomoTitle) {
-            this.matomoTracker.setDocumentTitle(currentRoute.snapshot.data.matomoTitle);
+          if (!!currentRoute.snapshot.data['matomoTitle']) {
+            this.matomoTracker.setDocumentTitle(currentRoute.snapshot.data['matomoTitle']);
           }
           this.matomoTracker.setCustomUrl(window.location.href);
           // Remove all previously assigned custom variables

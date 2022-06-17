@@ -156,6 +156,5 @@
     "packageManager": "npm",
     "analytics": "9a3310eb-5121-4213-ab87-6fac0fc74d6f",
     "defaultCollection": "@angular-eslint/schematics"
-  },
-  "defaultProject": "ngx-matomo"
+  }
 }

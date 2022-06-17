@@ -26,7 +26,7 @@ export class MatomoInjector {
     @Inject(MATOMO_CONFIGURATION) private readonly configuration: MatomoModuleConfiguration
   ) {
     try {
-      window._paq = window._paq || (!!this.configuration.scriptUrl ? [] : { push: () => {} });
+      window['_paq'] = window['_paq'] || (!!this.configuration.scriptUrl ? [] : { push: () => {} });
     } catch (e) {
       if (!(e instanceof ReferenceError)) {
         throw e;
@@ -40,27 +40,27 @@ export class MatomoInjector {
   init(): void {
     try {
       if (this.configuration?.requireConsent === true) {
-        window._paq.push(['requireConsent']);
+        window['_paq'].push(['requireConsent']);
       } else if (this.configuration?.requireCookieConsent === true) {
-        window._paq.push(['requireCookieConsent']);
+        window['_paq'].push(['requireCookieConsent']);
       }
       if (this.configuration?.trackAppStart === true) {
-        window._paq.push(['trackPageView']);
+        window['_paq'].push(['trackPageView']);
         if (
           this.configuration?.trackLinks === true &&
           this.configuration?.routeTracking?.enable === false
         ) {
           setTimeout(() => {
-            window._paq.push(['enableLinkTracking', this.configuration?.trackLinkValue ?? false]);
+            window['_paq'].push(['enableLinkTracking', this.configuration?.trackLinkValue ?? false]);
           }, 0);
         }
       }
       if (this.configuration.trackers.length) {
         const [mainTracker, ...otherTrackers] = this.configuration.trackers;
-        window._paq.push(['setTrackerUrl', mainTracker.trackerUrl]);
-        window._paq.push(['setSiteId', mainTracker.siteId.toString()]);
+        window['_paq'].push(['setTrackerUrl', mainTracker.trackerUrl]);
+        window['_paq'].push(['setSiteId', mainTracker.siteId.toString()]);
         otherTrackers.forEach((tracker) =>
-          window._paq.push(['addTracker', tracker.trackerUrl, tracker.siteId.toString()])
+          window['_paq'].push(['addTracker', tracker.trackerUrl, tracker.siteId.toString()])
         );
       }
       if (!!this.configuration.scriptUrl) {
