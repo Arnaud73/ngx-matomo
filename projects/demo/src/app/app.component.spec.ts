@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
-import { MatomoModule, MatomoTracker } from 'ngx-matomo';
+import { MatomoModule } from 'ngx-matomo';
 
 describe('Demo App', () => {
   beforeEach(async () => {

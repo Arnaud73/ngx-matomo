@@ -13,9 +13,7 @@ describe('MediaComponent', () => {
       imports: [MatomoModule.forRoot({})],
       declarations: [MediaComponent],
     }).compileComponents();
-  });
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(MediaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

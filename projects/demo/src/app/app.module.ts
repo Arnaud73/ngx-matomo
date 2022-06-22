@@ -12,7 +12,6 @@ import { FormComponent } from './form/form.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { UserComponent } from './user/user.component';
 import { ConsentComponent } from './consent/consent.component';
-import { ECommerceComponent } from './e-commerce/e-commerce.component';
 import { EventComponent } from './event/event.component';
 
 @NgModule({
@@ -23,7 +22,6 @@ import { EventComponent } from './event/event.component';
     WelcomeComponent,
     UserComponent,
     ConsentComponent,
-    ECommerceComponent,
     EventComponent,
   ],
   imports: [

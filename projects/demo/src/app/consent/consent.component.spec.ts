@@ -13,9 +13,7 @@ describe('ConsentComponent', () => {
       imports: [MatomoModule.forRoot({})],
       declarations: [ConsentComponent],
     }).compileComponents();
-  });
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(ConsentComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 
-import { MATOMO_CONFIGURATION, MatomoModuleConfiguration } from './matomo-configuration';
+import { MATOMO_CONFIGURATION, MatomoConfiguration } from './matomo-configuration';
 
 /**
  * Access to the global window variable.
@@ -29,7 +29,7 @@ export class MatomoTracker {
    * @param configuration Matomo configuration provided by DI.
    */
   constructor(
-    @Inject(MATOMO_CONFIGURATION) private readonly configuration: MatomoModuleConfiguration
+    @Inject(MATOMO_CONFIGURATION) private readonly configuration: MatomoConfiguration
   ) {
     try {
       if (typeof window['_paq'] === 'undefined') {

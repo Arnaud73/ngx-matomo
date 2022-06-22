@@ -2,11 +2,11 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MATOMO_CONFIGURATION, MatomoTracker } from 'ngx-matomo';
 
-import { ECommerceComponent } from './e-commerce.component';
+import { OrderComponent } from './order.component';
 
-describe('ECommerceComponent', () => {
-  let component: ECommerceComponent;
-  let fixture: ComponentFixture<ECommerceComponent>;
+describe('OrderComponent', () => {
+  let component: OrderComponent;
+  let fixture: ComponentFixture<OrderComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -24,12 +24,12 @@ describe('ECommerceComponent', () => {
         },
         MatomoTracker,
       ],
-      declarations: [ECommerceComponent],
+      declarations: [OrderComponent],
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ECommerceComponent);
+    fixture = TestBed.createComponent(OrderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

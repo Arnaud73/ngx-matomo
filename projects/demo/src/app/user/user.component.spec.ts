@@ -14,9 +14,7 @@ describe('UserComponent', () => {
       imports: [ReactiveFormsModule, MatomoModule.forRoot({})],
       declarations: [UserComponent],
     }).compileComponents();
-  });
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(UserComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

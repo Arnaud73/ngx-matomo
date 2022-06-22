@@ -1,0 +1,9 @@
+<div class="card" *ngIf="article$ | async as article">
+  <h1 class="section">{{ article.name }}</h1>
+  <img
+    src="https://picsum.photos/id/{{ (article$ | async)?.id }}/400/600"
+    alt=""
+    class="section media"
+  />
+  <p class="section">{{ article.description }}</p>
+</div>

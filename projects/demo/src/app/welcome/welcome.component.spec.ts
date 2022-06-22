@@ -13,9 +13,7 @@ describe('WelcomeComponent', () => {
       imports: [MatomoModule.forRoot({})],
       declarations: [WelcomeComponent],
     }).compileComponents();
-  });
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(WelcomeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

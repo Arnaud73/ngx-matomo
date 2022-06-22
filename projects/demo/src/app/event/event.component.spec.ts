@@ -13,9 +13,7 @@ describe('EventComponent', () => {
       imports: [MatomoModule.forRoot({})],
       declarations: [EventComponent],
     }).compileComponents();
-  });
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(EventComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

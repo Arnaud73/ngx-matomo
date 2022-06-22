@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 
-import { MatomoModuleConfiguration, MATOMO_CONFIGURATION } from './matomo-configuration';
+import { MatomoConfiguration, MATOMO_CONFIGURATION } from './matomo-configuration';
 
 /**
  * Access to the global window variable.
@@ -23,7 +23,7 @@ export class MatomoInjector {
    * @param configuration Matomo configuration provided by DI.
    */
   constructor(
-    @Inject(MATOMO_CONFIGURATION) private readonly configuration: MatomoModuleConfiguration
+    @Inject(MATOMO_CONFIGURATION) private readonly configuration: MatomoConfiguration
   ) {
     try {
       window['_paq'] = window['_paq'] || (!!this.configuration.scriptUrl ? [] : { push: () => {} });
@@ -44,8 +44,8 @@ export class MatomoInjector {
       } else if (this.configuration?.requireCookieConsent === true) {
         window['_paq'].push(['requireCookieConsent']);
       }
-      if (this.configuration?.trackAppStart === true) {
-        window['_paq'].push(['trackPageView']);
+      if (this.configuration?.trackAppLaunch === true) {
+        window._paq.push(['trackPageView']);
         if (
           this.configuration?.trackLinks === true &&
           this.configuration?.routeTracking?.enable === false

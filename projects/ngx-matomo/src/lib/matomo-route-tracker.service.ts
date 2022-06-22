@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { filter, map, pairwise } from 'rxjs/operators';
 
 import { isNonNull } from '../helpers';
-import { MatomoModuleConfiguration, MATOMO_CONFIGURATION } from './matomo-configuration';
+import { MatomoConfiguration, MATOMO_CONFIGURATION } from './matomo-configuration';
 import { MatomoTracker } from './matomo-tracker.service';
 
 /**
@@ -33,7 +33,7 @@ export class MatomoRouteTracker implements OnDestroy {
    * @param activatedRoute Instance of ActivatedRoute provided by DI.
    */
   constructor(
-    @Inject(MATOMO_CONFIGURATION) private readonly configuration: MatomoModuleConfiguration,
+    @Inject(MATOMO_CONFIGURATION) private readonly configuration: MatomoConfiguration,
     private readonly matomoTracker: MatomoTracker,
     private readonly router: Router,
     private readonly activatedRoute: ActivatedRoute

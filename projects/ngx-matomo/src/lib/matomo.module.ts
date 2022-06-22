@@ -2,7 +2,8 @@ import { NgModule, ModuleWithProviders, Inject, PLATFORM_ID, Injector } from '@a
 import { isPlatformBrowser } from '@angular/common';
 
 import {
-  MatomoModuleConfiguration,
+  DeprecatedMatomoConfiguration,
+  MatomoConfiguration,
   MATOMO_CONFIGURATION,
   defaultConfiguration,
 } from './matomo-configuration';
@@ -32,7 +33,7 @@ export class MatomoModule {
     // eslint-disable-next-line @typescript-eslint/ban-types
     @Inject(PLATFORM_ID) private readonly platformId: Object,
     private readonly injector: Injector,
-    @Inject(MATOMO_CONFIGURATION) private readonly configuration: MatomoModuleConfiguration,
+    @Inject(MATOMO_CONFIGURATION) private readonly configuration: MatomoConfiguration,
     private readonly matomoInjector: MatomoInjector
   ) {
     // Warn if module is not being loaded by a browser.
@@ -50,10 +51,9 @@ export class MatomoModule {
 
   /**
    * Use this method in your root module to provide the MatomoTracker service.
-   * // TODO Investigate if the TransLoco way of injecting the module with its configuration is a better idea.
    */
   static forRoot(
-    configuration?: Partial<MatomoModuleConfiguration>
+    configuration?: Partial<MatomoConfiguration | DeprecatedMatomoConfiguration>
   ): ModuleWithProviders<MatomoModule> {
     return {
       ngModule: MatomoModule,
