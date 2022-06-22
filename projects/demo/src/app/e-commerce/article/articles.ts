@@ -1,14 +1,11 @@
 import { Article } from './article.model';
 
-export const articles: Array<Article> = [
+export const ARTICLES: Array<Article> = [
   {
     id: 201,
     name: 'Nulla',
     price: 207,
-    description:
-      'Culpa sed tenetur incidunt quia veniam sed mollitia exercitationem. ' +
-      'Laboriosam reprehenderit laborum pariatur ea rem qui inventore. In asperiores dignissimos temporibus et. ' +
-      'Beatae consequatur corrupti nam praesentium.',
+    description: 'You really want to know what Nulla is?',
     category: 'Food',
     review: 78,
   },
@@ -16,9 +13,7 @@ export const articles: Array<Article> = [
     id: 202,
     name: 'Corporis',
     price: 271,
-    description:
-      'Nam incidunt blanditiis odio inventore. Nobis voluptatum quibusdam laboriosam a numquam. ' +
-      'Delectus sequi ipsa possimus ratione repellendus quibusdam. Molestiae fuga laudantium natus dolorem.',
+    description: 'You really want to know what Corporis is?',
     category: 'Clothing',
     review: 67,
   },
@@ -26,17 +21,15 @@ export const articles: Array<Article> = [
     id: 203,
     name: 'Minus',
     price: 295,
-    description:
-      'Quod reiciendis aspernatur ipsum cum debitis. Quisquam tempore doloremque quo ipsum ipsa tempora. ' +
-      'Dignissimos qui ex ad facilis. Quo sequi recusandae eveniet autem ducimus nam.',
+    description: 'You really want to know what Minus is?',
+    category: 'Food',
     review: 116,
   },
   {
     id: 204,
     name: 'Qui',
     price: 280,
-    description:
-      'Occaecati dolore assumenda facilis error quaerat. Rem harum alias cum eum quam corporis. Esse numquam vero facilis labore.',
+    description: 'You really want to know what Qui is?',
     category: 'Food',
     review: 78,
   },
@@ -44,9 +37,7 @@ export const articles: Array<Article> = [
     id: 206,
     name: 'Est',
     price: 296,
-    description:
-      'Aut consequatur fugit ut voluptates fugit numquam vero velit. ' +
-      'Distinctio minima quo nesciunt maiores voluptatem dolorum. Doloribus quam nisi molestiae nostrum iure sint debitis.',
+    description: 'You really want to know what Est is?',
     category: 'Clothing',
     review: 107,
   },
@@ -54,10 +45,7 @@ export const articles: Array<Article> = [
     id: 208,
     name: 'Ratione',
     price: 104,
-    description:
-      'Occaecati nam laudantium est quos. Fuga molestias facere consequatur sapiente cum reprehenderit quibusdam. ' +
-      'Earum omnis ipsum numquam facilis perspiciatis architecto. Iste reiciendis minus distinctio corrupti eos. ' +
-      'Excepturi ut sequi id blanditiis exercitationem.',
+    description: 'You really want to know what Ratione is?',
     category: 'Cosmetic',
     review: 104,
   },
@@ -65,9 +53,7 @@ export const articles: Array<Article> = [
     id: 209,
     name: 'Similique',
     price: 262,
-    description:
-      'Autem blanditiis similique saepe excepturi at error. Fugit qui accusantium expedita. ' +
-      'Illo similique suscipit sunt magni eos est.',
+    description: 'You really want to know what Similique is?',
     category: 'Clothing',
     review: 44,
   },
@@ -75,9 +61,7 @@ export const articles: Array<Article> = [
     id: 210,
     name: 'Molestias',
     price: 145,
-    description:
-      'Deserunt ad ducimus recusandae praesentium. Repudiandae officia aliquam quas mollitia. ' +
-      'Voluptatum ipsam iure eos debitis asperiores iusto repudiandae occaecati. Neque itaque sit totam sunt aspernatur at placeat.',
+    description: 'You really want to know what Molestias is?',
     category: 'Food',
     review: 95,
   },
@@ -85,10 +69,7 @@ export const articles: Array<Article> = [
     id: 211,
     name: 'Modi',
     price: 228,
-    description:
-      'Iure similique perferendis quia optio provident asperiores ad. Perferendis id voluptatibus impedit.' +
-      'Rerum totam quam distinctio eligendi omnis id cumque voluptatem. Et qui odio atque voluptatibus consectetur vel aut. ' +
-      'Qui voluptatem deleniti laboriosam nulla temporibus.',
+    description: 'You really want to know what Modi is?',
     category: 'Cosmetic',
     review: 153,
   },
@@ -96,9 +77,7 @@ export const articles: Array<Article> = [
     id: 212,
     name: 'Voluptatibus',
     price: 172,
-    description:
-      'Cum aperiam sapiente non magni sequi facere. Et nihil soluta illum ipsum fuga vero. ' +
-      'Magnam nihil quasi illo laudantium pariatur dignissimos. Est officiis quidem fuga dolorem.',
+    description: 'You really want to know what Voluptatibus is?',
     category: 'Food',
     review: 29,
   },
@@ -106,10 +85,7 @@ export const articles: Array<Article> = [
     id: 213,
     name: 'Sapiente',
     price: 100,
-    description:
-      'Totam repudiandae assumenda facilis quod suscipit repellat delectus eligendi. ' +
-      'Nihil repellendus officiis officia distinctio aperiam dolorem veritatis culpa. ' +
-      'Ab natus doloremque alias dolores deleniti a accusamus.',
+    description: 'You really want to know what Sapiente is?',
     category: 'Cosmetic',
     review: 200,
   },
@@ -117,9 +93,7 @@ export const articles: Array<Article> = [
     id: 214,
     name: 'Alias',
     price: 152,
-    description:
-      'At non doloribus alias optio delectus sit. Aperiam officiis soluta molestias asperiores similique reiciendis pariatur. ' +
-      'Ab dignissimos iure voluptates error temporibus. Velit ullam quod fugiat molestias nisi explicabo blanditiis.',
+    description: 'You really want to know what Alias is?',
     category: 'Clothing',
     review: 68,
   },
@@ -127,9 +101,7 @@ export const articles: Array<Article> = [
     id: 215,
     name: 'Non',
     price: 189,
-    description:
-      'Eligendi rem perspiciatis quas accusamus. Consequatur perferendis placeat qui deleniti amet commodi harum reprehenderit. ' +
-      'At quibusdam harum numquam quo.',
+    description: 'You really want to know what Non is?',
     category: 'Food',
     review: 86,
   },
@@ -137,8 +109,7 @@ export const articles: Array<Article> = [
     id: 216,
     name: 'Quaerat',
     price: 280,
-    description:
-      'Nisi eos aspernatur exercitationem eius architecto dignissimos. Nam recusandae repellat saepe hic.',
+    description: 'You really want to know what Quaerat is?',
     category: 'Food',
     review: 135,
   },
