@@ -22,9 +22,7 @@ export class MatomoInjector {
    *
    * @param configuration Matomo configuration provided by DI.
    */
-  constructor(
-    @Inject(MATOMO_CONFIGURATION) private readonly configuration: MatomoConfiguration
-  ) {
+  constructor(@Inject(MATOMO_CONFIGURATION) private readonly configuration: MatomoConfiguration) {
     try {
       window['_paq'] = window['_paq'] || (!!this.configuration.scriptUrl ? [] : { push: () => {} });
     } catch (e) {
@@ -44,18 +42,21 @@ export class MatomoInjector {
       } else if (this.configuration?.requireCookieConsent === true) {
         window['_paq'].push(['requireCookieConsent']);
       }
-      if (this.configuration?.trackAppLaunch === true) {
-        window._paq.push(['trackPageView']);
+      if (this.configuration?.skipTrackingInitialPageView === false) {
+        window['_paq'].push(['trackPageView']);
         if (
           this.configuration?.trackLinks === true &&
           this.configuration?.routeTracking?.enable === false
         ) {
           setTimeout(() => {
-            window['_paq'].push(['enableLinkTracking', this.configuration?.trackLinkValue ?? false]);
+            window['_paq'].push([
+              'enableLinkTracking',
+              this.configuration?.trackLinkValue ?? false,
+            ]);
           }, 0);
         }
       }
-      if (this.configuration.trackers.length) {
+      if (this.configuration.trackers?.length) {
         const [mainTracker, ...otherTrackers] = this.configuration.trackers;
         window['_paq'].push(['setTrackerUrl', mainTracker.trackerUrl]);
         window['_paq'].push(['setSiteId', mainTracker.siteId.toString()]);

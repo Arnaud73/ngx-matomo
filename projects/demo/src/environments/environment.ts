@@ -12,6 +12,7 @@ export const environment = {
         siteId: 1,
       },
     ],
+    skipTrackingInitialPageView: false,
     requireConsent: true,
     routeTracking: {
       enable: true,

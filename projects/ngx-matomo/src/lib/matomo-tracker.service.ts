@@ -10,6 +10,9 @@ declare var window: {
   prototype: Window;
   new (): Window;
 };
+// declare interface Window {
+//   _paq: any;
+// }
 
 /**
  * Matomo scope
@@ -28,9 +31,7 @@ export class MatomoTracker {
    *
    * @param configuration Matomo configuration provided by DI.
    */
-  constructor(
-    @Inject(MATOMO_CONFIGURATION) private readonly configuration: MatomoConfiguration
-  ) {
+  constructor(@Inject(MATOMO_CONFIGURATION) private readonly configuration: MatomoConfiguration) {
     try {
       if (typeof window['_paq'] === 'undefined') {
         console.warn('Matomo has not yet been initialized!');

@@ -1,9 +1,6 @@
 import { InjectionToken } from '@angular/core';
 
-/**
- * Matomo module configuration interface.
- */
-export interface MatomoConfiguration {
+export interface SanitizedMatomoConfiguration {
   /**
    * URL of the Matomo JS script to execute.
    */
@@ -18,9 +15,17 @@ export interface MatomoConfiguration {
    */
   trackers: Array<{ trackerUrl: string; siteId: number }>;
   /**
-   * If set to true, automatically track the app being started.
+   * If set to true, user consent will be required.
    */
-  trackAppLaunch?: boolean;
+  requireConsent?: boolean;
+  /**
+   * If set to true, user consent will be required for cookies to be stored and used.
+   */
+  requireCookieConsent?: boolean;
+  /**
+   * If set to true, initial page view will not be tracked.
+   */
+  skipTrackingInitialPageView?: boolean;
   /**
    * If set to true, link will be automatically tracked on the first page (if enabled).
    */
@@ -29,14 +34,6 @@ export interface MatomoConfiguration {
    * When link tracking has been enabled, this sets the value to the call to `enableLinkTracking`
    */
   trackLinkValue?: boolean;
-  /**
-   * If set to true, user consent will be required.
-   */
-  requireConsent?: boolean;
-  /**
-   * If set to true, user consent will be required for cookies to be stored and used.
-   */
-  requireCookieConsent?: boolean;
   /**
    * Parameters related to route tracking.
    */
@@ -52,7 +49,10 @@ export interface MatomoConfiguration {
   };
 }
 
-export interface DeprecatedMatomoConfiguration {
+/**
+ * Matomo module configuration interface.
+ */
+export interface MatomoConfiguration extends SanitizedMatomoConfiguration {
   /**
    * If set to true, automatically track the app being started.
    * @deprecated
@@ -60,13 +60,16 @@ export interface DeprecatedMatomoConfiguration {
   trackAppStart?: boolean;
 }
 
-interface All extends MatomoConfiguration, DeprecatedMatomoConfiguration {}
-
-export function sanitizeConfiguration(configuration: Partial<All>): Partial<MatomoConfiguration> {
-  const sanitizedConfiguration: Partial<MatomoConfiguration> = {};
+export function sanitizeConfiguration(
+  configuration: Partial<MatomoConfiguration>
+): Partial<SanitizedMatomoConfiguration> {
+  const sanitizedConfiguration: Partial<SanitizedMatomoConfiguration> = {
+    ...defaultConfiguration,
+    ...configuration,
+  };
 
   if (configuration.trackAppStart !== undefined && configuration.trackAppStart !== null) {
-    sanitizedConfiguration.trackAppLaunch = configuration.trackAppStart;
+    sanitizedConfiguration.skipTrackingInitialPageView = !configuration.trackAppStart;
   }
 
   if (configuration.routeTracking !== undefined && configuration.routeTracking !== null) {
@@ -84,14 +87,14 @@ export const MATOMO_CONFIGURATION = new InjectionToken<string>('MATOMO_CONFIGURA
 /**
  * Default configuration for the Matomo module.
  */
-export const defaultConfiguration: Partial<MatomoConfiguration> = {
+const defaultConfiguration: Partial<SanitizedMatomoConfiguration> = {
   scriptVersion: 4,
   trackers: [],
-  trackAppLaunch: true,
-  trackLinks: true,
-  trackLinkValue: false,
   requireConsent: false,
   requireCookieConsent: false,
+  skipTrackingInitialPageView: false,
+  trackLinks: true,
+  trackLinkValue: false,
   routeTracking: {
     enable: false,
   },

@@ -41,7 +41,7 @@ export class MatomoRouteTracker implements OnDestroy {
 
   /**
    * Starts tracking route changes.
-   * Matomo DocumentTitle will be set with `data.motomoTitle` of your routes.
+   * Matomo DocumentTitle will be set with `data.matomoTitle` of your routes.
    *
    * This service shall not be used directly within an application.
    */

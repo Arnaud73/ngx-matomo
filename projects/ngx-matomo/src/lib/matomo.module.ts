@@ -1,12 +1,7 @@
 import { NgModule, ModuleWithProviders, Inject, PLATFORM_ID, Injector } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
-import {
-  DeprecatedMatomoConfiguration,
-  MatomoConfiguration,
-  MATOMO_CONFIGURATION,
-  defaultConfiguration,
-} from './matomo-configuration';
+import { MatomoConfiguration, MATOMO_CONFIGURATION } from './matomo-configuration';
 import { MatomoInjector } from './matomo-injector.service';
 import { MatomoTracker } from './matomo-tracker.service';
 import { MatomoRouteTracker } from './matomo-route-tracker.service';
@@ -52,17 +47,13 @@ export class MatomoModule {
   /**
    * Use this method in your root module to provide the MatomoTracker service.
    */
-  static forRoot(
-    configuration?: Partial<MatomoConfiguration | DeprecatedMatomoConfiguration>
-  ): ModuleWithProviders<MatomoModule> {
+  static forRoot(configuration?: Partial<MatomoConfiguration>): ModuleWithProviders<MatomoModule> {
     return {
       ngModule: MatomoModule,
       providers: [
         {
           provide: MATOMO_CONFIGURATION,
-          useValue: !!configuration
-            ? { ...defaultConfiguration, ...configuration }
-            : defaultConfiguration,
+          useValue: configuration,
         },
         MatomoTracker,
         MatomoRouteTracker,
