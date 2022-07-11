@@ -82,7 +82,7 @@ export function sanitizeConfiguration(
 /**
  * Injection token for Matomo configuration.
  */
-export const MATOMO_CONFIGURATION = new InjectionToken<string>('MATOMO_CONFIGURATION');
+export const MATOMO_CONFIGURATION = new InjectionToken<MatomoConfiguration>('MATOMO_CONFIGURATION');
 
 /**
  * Default configuration for the Matomo module.
