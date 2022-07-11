@@ -15,19 +15,19 @@ export interface SanitizedMatomoConfiguration {
    */
   trackers: Array<{ trackerUrl: string; siteId: number }>;
   /**
-   * If set to true, user consent will be required.
+   * If true, user consent will be required.
    */
   requireConsent?: boolean;
   /**
-   * If set to true, user consent will be required for cookies to be stored and used.
+   * If true, user consent will be required for cookies to be stored and used.
    */
   requireCookieConsent?: boolean;
   /**
-   * If set to true, initial page view will not be tracked.
+   * If true, initial page view will not be tracked.
    */
   skipTrackingInitialPageView?: boolean;
   /**
-   * If set to true, link will be automatically tracked on the first page (if enabled).
+   * If true, link will be automatically tracked on the first page (if enabled).
    */
   trackLinks?: boolean;
   /**
@@ -54,7 +54,7 @@ export interface SanitizedMatomoConfiguration {
  */
 export interface MatomoConfiguration extends SanitizedMatomoConfiguration {
   /**
-   * If set to true, automatically track the app being started.
+   * If true, automatically track the app being started.
    * @deprecated
    */
   trackAppStart?: boolean;
