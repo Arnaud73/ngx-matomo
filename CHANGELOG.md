@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/Arnaud73/ngx-matomo/compare/v1.0.0...v1.1.0) (2022-12-29)
+
+
+### Features
+
+* **lib:** Accept Angular 15 ([7a8de83](https://github.com/Arnaud73/ngx-matomo/commit/7a8de8372283ce7460ad0ed99428e04a88c6ce90))
+
+
+### Bug Fixes
+
+* **tracker:** Correct type for MATOMO_CONFIGURATION token ([ad603b8](https://github.com/Arnaud73/ngx-matomo/commit/ad603b807929bbf0f8e6c35c317e5cf0968df27d))
+
 ## [1.0.0](https://github.com/Arnaud73/ngx-matomo/compare/v1.0.0-rc.2...v1.0.0) (2022-07-09)
 
 ## [1.0.0-rc.2](https://github.com/Arnaud73/ngx-matomo/compare/v1.0.0-rc.1...v1.0.0-rc.2) (2022-06-17)
