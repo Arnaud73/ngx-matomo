@@ -17,6 +17,7 @@ export const environment = {
     routeTracking: {
       enable: true,
     },
+    trackLinks: true,
   },
 };
 
