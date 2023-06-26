@@ -8,7 +8,9 @@ import { MatomoTracker } from './matomo-tracker.service';
 import { MatomoRouteTracker } from './matomo-route-tracker.service';
 
 describe('MatomoRouteTrackerService', () => {
-  beforeEach(() =>
+  let service: MatomoRouteTracker;
+
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule.withRoutes([])],
       providers: [
@@ -34,11 +36,11 @@ describe('MatomoRouteTrackerService', () => {
         MatomoTracker,
         MatomoRouteTracker,
       ],
-    })
-  );
+    });
+    service = TestBed.inject(MatomoRouteTracker);
+  });
 
   it('should be created', () => {
-    const service: MatomoRouteTracker = TestBed.inject(MatomoRouteTracker);
     expect(service).toBeTruthy();
   });
 });

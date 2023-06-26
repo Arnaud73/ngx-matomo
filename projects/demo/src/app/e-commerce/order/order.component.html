@@ -24,7 +24,7 @@
               <td data-label="Quantity">{{ item.quantity }}</td>
               <td data-label="Unit Price">{{ item.article.price | currency }}</td>
               <td data-label="Total Price">
-                {{ item.quantity * (item.article?.price || 0) | currency }}
+                {{ item.quantity * (item.article.price || 0) | currency }}
               </td>
             </tr>
           </tbody>

@@ -19,12 +19,12 @@
     "paths": {
       "ngx-matomo": ["dist/ngx-matomo"]
     },
-    "target": "es2020",
-    "module": "es2020",
-    "lib": ["es2020", "dom"]
+    "target": "ES2022",
+    "module": "ES2022",
+    "useDefineForClassFields": false,
+    "lib": ["ES2022", "dom"]
   },
   "angularCompilerOptions": {
-    "compilationMode": "partial",
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,

@@ -11,8 +11,8 @@ describe('OrderComponent', () => {
   let component: OrderComponent;
   let fixture: ComponentFixture<OrderComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(() => {
+    TestBed.configureTestingModule({
       providers: [
         { provide: CATALOG, useValue: ARTICLES },
         {
@@ -28,8 +28,7 @@ describe('OrderComponent', () => {
         MatomoTracker,
       ],
       declarations: [OrderComponent, ArticleComponent],
-    }).compileComponents();
-
+    });
     fixture = TestBed.createComponent(OrderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

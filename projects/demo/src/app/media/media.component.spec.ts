@@ -8,12 +8,11 @@ describe('MediaComponent', () => {
   let component: MediaComponent;
   let fixture: ComponentFixture<MediaComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(() => {
+    TestBed.configureTestingModule({
       imports: [MatomoModule.forRoot({})],
       declarations: [MediaComponent],
-    }).compileComponents();
-
+    });
     fixture = TestBed.createComponent(MediaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

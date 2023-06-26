@@ -4,7 +4,9 @@ import { MATOMO_CONFIGURATION } from './matomo-configuration';
 import { MatomoTracker } from './matomo-tracker.service';
 
 describe('MatomoTrackerService', () => {
-  beforeEach(() =>
+  let service: MatomoTracker;
+
+  beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
         {
@@ -20,11 +22,11 @@ describe('MatomoTrackerService', () => {
         },
         MatomoTracker,
       ],
-    })
-  );
+    });
+    service = TestBed.inject(MatomoTracker);
+  });
 
   it('should be created', () => {
-    const service: MatomoTracker = TestBed.inject(MatomoTracker);
     expect(service).toBeTruthy();
   });
 });

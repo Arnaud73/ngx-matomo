@@ -16,14 +16,15 @@
     "url": "https://github.com/Arnaud73/ngx-matomo.git"
   },
   "peerDependencies": {
-    "@angular/common": ">=14.0.0 <16.0.0",
-    "@angular/core": ">=14.0.0 <16.0.0"
+    "@angular/common": ">=16.0.0 <17.0.0",
+    "@angular/core": ">=16.0.0 <17.0.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"
   },
   "optionalDependencies": {
-    "@angular/router": ">=14.0.0 <16.0.0",
+    "@angular/router": ">=17.0.0 <17.0.0",
     "rxjs": "^7.5.0"
-  }
+  },
+  "sideEffects": false
 }

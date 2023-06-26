@@ -8,12 +8,11 @@ describe('ConsentComponent', () => {
   let component: ConsentComponent;
   let fixture: ComponentFixture<ConsentComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(() => {
+    TestBed.configureTestingModule({
       imports: [MatomoModule.forRoot({})],
       declarations: [ConsentComponent],
-    }).compileComponents();
-
+    });
     fixture = TestBed.createComponent(ConsentComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

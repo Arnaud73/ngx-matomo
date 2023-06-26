@@ -4,7 +4,9 @@ import { MATOMO_CONFIGURATION } from './matomo-configuration';
 import { MatomoInjector } from './matomo-injector.service';
 
 describe('MatomoInjectorService', () => {
-  beforeEach(() =>
+  let service: MatomoInjector;
+
+  beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
         {
@@ -20,11 +22,11 @@ describe('MatomoInjectorService', () => {
         },
         MatomoInjector,
       ],
-    })
-  );
+    });
+    service = TestBed.inject(MatomoInjector);
+  });
 
   it('should be created', () => {
-    const service: MatomoInjector = TestBed.inject(MatomoInjector);
     expect(service).toBeTruthy();
   });
 });
