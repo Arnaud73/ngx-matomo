@@ -56,16 +56,18 @@ export class MatomoRouteTracker implements OnDestroy {
       .subscribe({
         next: ([start, end]) => {
           let currentRoute = this.activatedRoute.root;
-          while (currentRoute.children[0] !== undefined) {
-            currentRoute = currentRoute.children[0];
+          while (currentRoute.firstChild) {
+            currentRoute = currentRoute.firstChild;
           }
           // Set referrer if it exists
           if (this.previousPageUrl) {
             this.matomoTracker.setReferrerUrl(this.previousPageUrl);
           }
           // Track current page
-          if (!!currentRoute.snapshot.data['matomoTitle']) {
-            this.matomoTracker.setDocumentTitle(currentRoute.snapshot.data['matomoTitle']);
+          if (!!currentRoute.snapshot.data['matomoTitle'] || !!currentRoute.snapshot.title) {
+            this.matomoTracker.setDocumentTitle(
+              currentRoute.snapshot.data['matomoTitle'] ?? currentRoute.snapshot.title
+            );
           }
           this.matomoTracker.setCustomUrl(window.location.href);
           // Remove all previously assigned custom variables

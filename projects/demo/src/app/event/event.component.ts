@@ -19,7 +19,7 @@ export class EventComponent {
    * Handles the click on the 'Click Me' button.
    */
   onClick(): void {
-    console.log('Click!');
+    console.log('Button has been pressed!');
     this.matomoTracker.trackEvent('Welcome', 'Button pressed', 'cta');
   }
 }

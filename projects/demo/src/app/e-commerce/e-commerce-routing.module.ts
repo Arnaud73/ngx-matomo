@@ -7,12 +7,12 @@ const routes: Routes = [
   {
     path: '',
     component: OrderComponent,
-    data: { matomoTitle: 'eCommerce Order Page' },
+    title: 'eCommerce Order Page',
   },
   {
     path: 'article/:id',
     component: ArticleComponent,
-    data: { matomoTitle: 'eCommerce Article Page' },
+    title: 'eCommerce Article Page',
   },
 ];
 
