@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0-rc.0](https://github.com/Arnaud73/ngx-matomo/compare/v1.1.0...v2.0.0-rc.0) (2023-06-26)
+
+
+### Features
+
+* **route-tracking:** Make use of Angular router route title ([2bde340](https://github.com/Arnaud73/ngx-matomo/commit/2bde3405c05faca0ae32715cf2a4f033b915c359))
+
 ## [1.1.0](https://github.com/Arnaud73/ngx-matomo/compare/v1.0.0...v1.1.0) (2022-12-29)
 
 
