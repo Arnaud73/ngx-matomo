@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0-rc.1](https://github.com/Arnaud73/ngx-matomo/compare/v2.0.0-rc.0...v2.0.0-rc.1) (2023-06-27)
+
+
+### Bug Fixes
+
+* Fix version requirement for Angular router optional dependency ([ff2e38a](https://github.com/Arnaud73/ngx-matomo/commit/ff2e38a3980bfcab4ad052f659a6d34d8a402ff4))
+
 ## [2.0.0-rc.0](https://github.com/Arnaud73/ngx-matomo/compare/v1.1.0...v2.0.0-rc.0) (2023-06-26)
 
 
