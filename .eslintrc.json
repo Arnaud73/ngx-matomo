@@ -16,7 +16,7 @@
         "@angular-eslint/component-selector": [
           "error",
           {
-            "prefix": "app",
+            "prefix": "matomo",
             "style": "kebab-case",
             "type": "element"
           }
@@ -24,7 +24,7 @@
         "@angular-eslint/directive-selector": [
           "error",
           {
-            "prefix": "app",
+            "prefix": "matomo",
             "style": "camelCase",
             "type": "attribute"
           }
