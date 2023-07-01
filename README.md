@@ -2,7 +2,6 @@
 
 [![GitHub stars](https://img.shields.io/github/stars/Arnaud73/ngx-matomo.svg?style=social&label=Star&maxAge=2592000)](https://GitHub.com/Arnaud73/ngx-matomo/)
 ![Build Status (GitHub)](https://github.com/Arnaud73/ngx-matomo/actions/workflows/ci.yml/badge.svg)
-[![Build Status (Travis)](https://travis-ci.com/Arnaud73/ngx-matomo.svg?branch=master)](https://travis-ci.com/Arnaud73/ngx-matomo)
 [![NPM version](https://img.shields.io/npm/v/ngx-matomo.svg)](https://www.npmjs.com/package/ngx-matomo)
 [![Next NPM version](https://img.shields.io/npm/v/ngx-matomo/next.svg)](https://www.npmjs.com/package/ngx-matomo)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b650cf6a9d3d4ab393af8d29d63fc8cc)](https://www.codacy.com/app/Arnaud73/ngx-matomo?utm_source=github.com&utm_medium=referral&utm_content=Arnaud73/ngx-matomo&utm_campaign=Badge_Grade)
