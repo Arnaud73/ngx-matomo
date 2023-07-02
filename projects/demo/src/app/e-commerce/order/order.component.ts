@@ -22,9 +22,6 @@ export class OrderComponent implements OnInit {
     @Inject(CATALOG) readonly catalog: Array<Article>
   ) {}
 
-  /**
-   * Angular OnInit lifecycle hook.
-   */
   ngOnInit(): void {
     if (!this.order) {
       this.order = { id: '' + Math.floor(Math.random() * 10000), items: [] };

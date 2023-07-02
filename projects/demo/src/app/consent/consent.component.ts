@@ -7,6 +7,10 @@ import { MatomoTracker } from 'ngx-matomo';
   styleUrls: [],
 })
 export class ConsentComponent implements OnInit {
+  public readonly giveConsentCode = 'this.matomoTracker.setConsentGiven();';
+  public readonly removeConsentCode = 'this.matomoTracker.forgetConsentGiven();';
+  public readonly hasCookiesCode = 'this.matomoTracker.hasCookies().then(console.log);';
+
   /**
    * Creates an instance of ConsentComponent.
    *
@@ -15,9 +19,6 @@ export class ConsentComponent implements OnInit {
    */
   constructor(private readonly matomoTracker: MatomoTracker) {}
 
-  /**
-   * Angular OnInit lifecycle hook.
-   */
   ngOnInit(): void {
     this.matomoTracker
       .hasCookies()

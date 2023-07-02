@@ -8,6 +8,11 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: [],
 })
 export class UserComponent implements OnInit {
+  public readonly getUserIdCode =
+    'this.matomoTracker.getUserId().then(console.log);';
+  public readonly setUserIdCode = "this.matomoTracker.setUserId('MyUserId');";
+  public readonly resetUserIdCode = 'this.matomoTracker.resetUserId();';
+
   public userId = '';
   public visitorId = '';
   public visitorInfo: Array<string> = [];
@@ -27,9 +32,6 @@ export class UserComponent implements OnInit {
     private readonly formBuilder: FormBuilder
   ) {}
 
-  /**
-   * Angular OnInit lifecycle hook.
-   */
   ngOnInit(): void {
     this.matomoTracker.getUserId().then((uid) => {
       this.userId = uid;

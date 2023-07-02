@@ -14,7 +14,7 @@ import { Article } from './article.model';
   styleUrls: [],
 })
 export class ArticleComponent {
-  article$: Observable<Article>;
+  public article$: Observable<Article>;
 
   constructor(
     private readonly route: ActivatedRoute,

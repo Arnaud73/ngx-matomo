@@ -25,9 +25,6 @@ export class FormComponent implements AfterViewInit {
     private readonly matomoTracker: MatomoTracker
   ) {}
 
-  /**
-   * Angular AfterViewInit lifecycle hook.
-   */
   // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
   ngAfterViewInit(): void {
     // TODO To be implemented when Form Analytics will be supported.

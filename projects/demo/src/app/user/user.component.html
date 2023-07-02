@@ -3,9 +3,7 @@
 <section>
   <article>
     <h2>Visitor data</h2>
-    <p>
-      Information currently know by the Matomo tracker.
-    </p>
+    <p>Information currently known by the Matomo tracker.</p>
     <figure>
       <table role="grid">
         <caption>
@@ -36,15 +34,36 @@
   </article>
 
   <h2>User Id handling</h2>
+
   <form [formGroup]="userIdForm">
     <div class="grid">
       <input type="text" placeholder="User ID" formControlName="userId" required />
-      <button type="submit" class="primary" (click)="onUserIdSubmit()" [disabled]="!userIdForm.valid">
+      <button
+        type="submit"
+        class="primary"
+        (click)="onUserIdSubmit()"
+        [disabled]="!userIdForm.valid"
+      >
         Set User ID
       </button>
-      <button class="secondary" (click)="onUserIdReset()">
-        Reset User ID
-      </button>
+      <button type="button" class="secondary" (click)="onUserIdReset()">Reset User ID</button>
     </div>
   </form>
 </section>
+
+<h2>Code</h2>
+
+<details>
+  <summary>Getting the User Id</summary>
+  <pre><code class="language-typescript">{{ getUserIdCode }}</code></pre>
+</details>
+
+<details>
+  <summary>Setting the User Id</summary>
+  <pre><code class="language-typescript">{{ setUserIdCode }}</code></pre>
+</details>
+
+<details>
+  <summary>Resetting the User Id</summary>
+  <pre><code class="language-typescript">{{ resetUserIdCode }}</code></pre>
+</details>

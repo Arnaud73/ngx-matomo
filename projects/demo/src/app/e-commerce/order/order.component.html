@@ -43,15 +43,18 @@
 <section>
   <h2>Catalog</h2>
 
-  <div class="grid" style="grid-template-columns: repeat(4, 1fr);">
+  <div class="grid" style="grid-template-columns: repeat(4, 1fr)">
     <article *ngFor="let article of catalog">
       <div routerLink="article/{{ article.id }}">
         <h3>{{ article.name }}</h3>
-        <img src="https://picsum.photos/id/{{ article.id }}/200/300" alt="{{ article.description }}" />
+        <img
+          src="https://picsum.photos/id/{{ article.id }}/200/300"
+          alt="{{ article.description }}"
+        />
         <p>{{ article.price | currency }}</p>
       </div>
       <footer>
-        <div class="grid" style="grid-template-columns: repeat(2, 1fr);">
+        <div class="grid" style="grid-template-columns: repeat(2, 1fr)">
           <button class="primary outline" (click)="addArticle(article.id)">+</button>
           <button class="secondary outline" (click)="removeArticle(article.id)">-</button>
         </div>
