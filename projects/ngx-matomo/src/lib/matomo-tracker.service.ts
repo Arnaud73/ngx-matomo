@@ -16,6 +16,180 @@ declare global {
  */
 type MatomoScope = 'page' | 'visit' | 'event';
 
+const heatmapSessionRecording = {
+  disableAutoDetectNewPageView(): void {
+    try {
+      window['_paq'].push(['HeatmapSessionRecording::disableAutoDetectNewPageView']);
+    } catch (e) {
+      if (!(e instanceof ReferenceError)) {
+        throw e;
+      }
+    }
+  },
+
+  enableAutoDetectNewPageView(): void {
+    try {
+      window['_paq'].push(['HeatmapSessionRecording::enableAutoDetectNewPageView']);
+    } catch (e) {
+      if (!(e instanceof ReferenceError)) {
+        throw e;
+      }
+    }
+  },
+
+  disableRecordMovements(): void {
+    try {
+      window['_paq'].push(['disableRecordMovements']);
+    } catch (e) {
+      if (!(e instanceof ReferenceError)) {
+        throw e;
+      }
+    }
+  },
+
+  enableRecordMovements(): void {
+    try {
+      window['_paq'].push(['enableRecordMovements']);
+    } catch (e) {
+      if (!(e instanceof ReferenceError)) {
+        throw e;
+      }
+    }
+  },
+
+  setNewPageView(): void {
+    try {
+      window['_paq'].push(['setNewPageView + fetchConfig']);
+    } catch (e) {
+      if (!(e instanceof ReferenceError)) {
+        throw e;
+      }
+    }
+  },
+
+  setMaxCaptureTime(): void {
+    try {
+      window['_paq'].push(['setMaxCaptureTime + maxTimeInSeconds']);
+    } catch (e) {
+      if (!(e instanceof ReferenceError)) {
+        throw e;
+      }
+    }
+  },
+
+  setMaxTextInputLength(): void {
+    try {
+      window['_paq'].push(['setMaxTextInputLength + maxLengthCharacters']);
+    } catch (e) {
+      if (!(e instanceof ReferenceError)) {
+        throw e;
+      }
+    }
+  },
+
+  /**
+   * Disables capture keystrokes
+   */
+  disableCaptureKeystrokes(): void {
+    try {
+      window['_paq'].push(['HeatmapSessionRecording::disableCaptureKeystrokes']);
+    } catch (e) {
+      if (!(e instanceof ReferenceError)) {
+        throw e;
+      }
+    }
+  },
+
+  enableCaptureKeystrokes(): void {
+    try {
+      window['_paq'].push(['HeatmapSessionRecording::enableCaptureKeystrokes']);
+    } catch (e) {
+      if (!(e instanceof ReferenceError)) {
+        throw e;
+      }
+    }
+  },
+
+  setTrigger(): void {
+    try {
+      window['_paq'].push(['setTrigger + shouldTriggerFunction']);
+    } catch (e) {
+      if (!(e instanceof ReferenceError)) {
+        throw e;
+      }
+    }
+  },
+
+  matchTrackerUrl(): void {
+    try {
+      window['_paq'].push(['matchTrackerUrl']);
+    } catch (e) {
+      if (!(e instanceof ReferenceError)) {
+        throw e;
+      }
+    }
+  },
+
+  disable(): void {
+    try {
+      window['_paq'].push(['disable']);
+    } catch (e) {
+      if (!(e instanceof ReferenceError)) {
+        throw e;
+      }
+    }
+  },
+
+  enable(): void {
+    try {
+      window['_paq'].push(['enable']);
+    } catch (e) {
+      if (!(e instanceof ReferenceError)) {
+        throw e;
+      }
+    }
+  },
+
+  isEnabled(): void {
+    try {
+      window['_paq'].push(['isEnabled']);
+    } catch (e) {
+      if (!(e instanceof ReferenceError)) {
+        throw e;
+      }
+    }
+  },
+
+  enableDebugMode(): void {
+    try {
+      window['_paq'].push(['enableDebugMode']);
+    } catch (e) {
+      if (!(e instanceof ReferenceError)) {
+        throw e;
+      }
+    }
+  },
+
+  setMatomoTrackers(): void {
+    try {
+      window['_paq'].push(['setMatomoTrackers']);
+    } catch (e) {
+      if (!(e instanceof ReferenceError)) {
+        throw e;
+      }
+    }
+  },
+  getPiwikTrackers(): void {
+    try {
+      window['_paq'].push(['getPiwikTrackers']);
+    } catch (e) {
+      if (!(e instanceof ReferenceError)) {
+        throw e;
+      }
+    }
+  },
+};
+
 /**
  * Wrapper for functions available in the Matomo Javascript tracker.
  *
@@ -23,6 +197,8 @@ type MatomoScope = 'page' | 'visit' | 'event';
  */
 @Injectable()
 export class MatomoTracker {
+  heatmapSessionRecording = heatmapSessionRecording;
+
   /**
    * Matomo configuration provided by DI
    */
@@ -444,6 +620,7 @@ export class MatomoTracker {
 
   /**
    * Overrides the detected Http-Referer.
+   * Matomo recommends you call this method early in your tracking code before you call trackPageView if it should be applied to all tracking requests.
    *
    * @param url URL to be reported for the referer.
    */
@@ -455,6 +632,21 @@ export class MatomoTracker {
         throw e;
       }
     }
+  }
+
+  /**
+   * Set array of hostnames or domains that should be ignored as referrers.
+   * For wildcard subdomains, you can use: setExcludedReferrers('.example.com'); or setExcludedReferrers('*.example.com');.
+   * You can also specify a path along a domain: setExcludedReferrers('*.example.com/subsite1');.
+   ¨* This method is available as of Matomo 4.12.
+  */
+  setExcludedReferrers(urls: string | string[]) {}
+
+  /**
+   * Returns the list of excluded referrers, which was previously set using setExcludedReferrers.
+   */
+  getExcludedReferrers(): Promise<string[]> {
+    return Promise.resolve([]);
   }
 
   /**
@@ -1752,6 +1944,16 @@ export class MatomoTracker {
       if (!(e instanceof ReferenceError)) {
         throw e;
       }
+    }
+  }
+}
+
+function filterOutreferenceErrors(f: () => void): void {
+  try {
+    f();
+  } catch (e) {
+    if (!(e instanceof ReferenceError)) {
+      throw e;
     }
   }
 }
