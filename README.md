@@ -129,8 +129,7 @@ A demo application is available in order to get you quickly up to speed.
 
 1. Clone the ngxMatomo repository: `git clone https://github.com/Arnaud73/ngx-matomo.git`
 2. `cd` into the repository
-3. Build the ngxMatomo library: `npm run build:ngx-matomo:prod`
-4. Run the demo application: `npm run test`
+4. Run the demo application: `npm run demo`
 
 ## Migrating from earlier versions (0.x)
 
