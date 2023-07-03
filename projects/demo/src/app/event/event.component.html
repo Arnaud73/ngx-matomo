@@ -16,18 +16,24 @@
         <td>Regular button - Tracking managed with code</td>
         <td><button (click)="onClick()">Click Me!</button></td>
       </tr>
-      <!-- <tr>
+      <tr>
         <td>Regular button - Tracking managed with directive</td>
-        <td><button>Click Me!</button></td>
-      </tr> -->
+        <td>
+          <button
+            matomoClickCategory="Category"
+            matomoClickAction="Button pressed"
+            matomoClickName="Tracking with directive"
+          >
+            Click Me!
+          </button>
+        </td>
+      </tr>
       <tr>
         <td>Regular link</td>
         <td><a href="https://matomo.org/">Matomo</a></td>
       </tr>
     </tbody>
   </table>
-  <footer>
-  </footer>
 </article>
 
 <h2>Code</h2>

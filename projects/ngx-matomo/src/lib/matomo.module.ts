@@ -5,14 +5,15 @@ import { MATOMO_CONFIGURATION, MatomoConfiguration } from './matomo-configuratio
 import { MatomoInjector } from './matomo-injector.service';
 import { MatomoRouteTracker } from './matomo-route-tracker.service';
 import { MatomoTracker } from './matomo-tracker.service';
+import { MatomoTrackClickDirective } from './matomo-track-click.directive';
 
 /**
  * Angular module encapsulating Matomo features.
  */
 @NgModule({
-  declarations: [],
+  declarations: [MatomoTrackClickDirective],
   imports: [],
-  exports: [],
+  exports: [MatomoTrackClickDirective],
   providers: [MatomoInjector, MatomoTracker, MatomoRouteTracker],
 })
 export class MatomoModule {

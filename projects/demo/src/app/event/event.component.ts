@@ -26,6 +26,6 @@ export class EventComponent {
    */
   onClick(): void {
     console.log('Button has been pressed!');
-    this.matomoTracker.trackEvent('Welcome', 'Button pressed', 'cta');
+    this.matomoTracker.trackEvent('Category', 'Button pressed', 'tracking with code');
   }
 }

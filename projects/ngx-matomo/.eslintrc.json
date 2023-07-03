@@ -20,7 +20,7 @@
           "error",
           {
             "type": "attribute",
-            "prefix": "mat",
+            "prefix": "matomo",
             "style": "camelCase"
           }
         ],
@@ -28,7 +28,7 @@
           "error",
           {
             "type": "element",
-            "prefix": "mat",
+            "prefix": "matomo",
             "style": "kebab-case"
           }
         ]

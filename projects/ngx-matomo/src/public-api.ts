@@ -5,4 +5,5 @@ export { MatomoConfiguration, MATOMO_CONFIGURATION } from './lib/matomo-configur
 export * from './lib/matomo-injector.service';
 export * from './lib/matomo-tracker.service';
 export * from './lib/matomo-route-tracker.service';
+export * from './lib/matomo-track-click.directive';
 export * from './lib/matomo.module';
