@@ -101,15 +101,16 @@ export class MatomoRouteTracker implements OnDestroy {
    * Stops tracking route changes.
    */
   stopTracking(): void {
-    this.subscription?.unsubscribe();
+    if (!!this.subscription) {
+      this.subscription.unsubscribe();
+      this.subscription = undefined;
+    }
   }
 
   /**
    * Angular OnDestroy lifecycle hook.
    */
   ngOnDestroy(): void {
-    if (!!this.subscription) {
-      this.subscription.unsubscribe();
-    }
+    this.stopTracking();
   }
 }
