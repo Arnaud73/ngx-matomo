@@ -3,15 +3,6 @@ import { Inject, Injectable } from '@angular/core';
 import { MatomoConfiguration, MATOMO_CONFIGURATION } from './matomo-configuration';
 
 /**
- * Access to the global window variable.
- */
-declare const window: {
-  [key: string]: any;
-  prototype: Window;
-  new (): Window;
-};
-
-/**
  * Service for injecting the Matomo tracker in the application.
  * This service shall no longer be used directly within an application.
  */

@@ -3,18 +3,6 @@ import { Inject, Injectable } from '@angular/core';
 import { MATOMO_CONFIGURATION, MatomoConfiguration } from './matomo-configuration';
 
 /**
- * Access to the global window variable.
- */
-declare var window: {
-  [key: string]: any;
-  prototype: Window;
-  new (): Window;
-};
-// declare interface Window {
-//   _paq: any;
-// }
-
-/**
  * Matomo scope
  */
 type MatomoScope = 'page' | 'visit' | 'event';
