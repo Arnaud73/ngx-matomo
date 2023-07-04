@@ -2,6 +2,15 @@ import { Inject, Injectable } from '@angular/core';
 
 import { MATOMO_CONFIGURATION, MatomoConfiguration } from './matomo-configuration';
 
+declare global {
+  /**
+   * Extend Window interface in order to introduce the Matomo _paq attribute
+   */
+  interface Window {
+    _paq: any;
+  }
+}
+
 /**
  * Matomo scope
  */

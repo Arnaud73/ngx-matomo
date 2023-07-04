@@ -2,6 +2,15 @@ import { Inject, Injectable } from '@angular/core';
 
 import { MatomoConfiguration, MATOMO_CONFIGURATION } from './matomo-configuration';
 
+declare global {
+  /**
+   * Extend Window interface in order to introduce the Matomo _paq attribute
+   */
+  interface Window {
+    _paq: any;
+  }
+}
+
 /**
  * Service for injecting the Matomo tracker in the application.
  * This service shall no longer be used directly within an application.
