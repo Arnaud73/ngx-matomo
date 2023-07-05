@@ -1,6 +1,7 @@
 export const environment = {
   production: true,
   matomoConfig: {
+    mode: <'ACTIVE'>'ACTIVE',
     scriptUrl: '//cdn.matomo.cloud/ngx.matomo.cloud/matomo.js',
     trackers: [
       {

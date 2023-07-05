@@ -27,7 +27,15 @@ import { EventComponent } from './event/event.component';
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    MatomoModule.forRoot(environment.matomoConfig),
+    MatomoModule.forRoot(
+      // Delay configuration of the Matomo module by 25 seconds.
+      new Promise((resolve, reject) => {
+        setTimeout(() => {
+          console.log('Matomo configuration retrieved');
+          resolve(environment.matomoConfig);
+        }, 25000);
+      })
+    ),
     AppRoutingModule,
   ],
   providers: [],

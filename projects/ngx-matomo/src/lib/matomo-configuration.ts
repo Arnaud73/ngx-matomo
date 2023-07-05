@@ -1,6 +1,13 @@
 import { InjectionToken } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+
+export type Mode = 'ACTIVE' | 'INACTIVE' | 'PRELOADED';
 
 export interface SanitizedMatomoConfiguration {
+  /**
+   * Mode for the Matomo tracker initialization.
+   */
+  mode: Mode;
   /**
    * URL of the Matomo JS script to execute.
    */
@@ -62,11 +69,15 @@ export interface MatomoConfiguration extends SanitizedMatomoConfiguration {
 
 export function sanitizeConfiguration(
   configuration: Partial<MatomoConfiguration>
-): Partial<SanitizedMatomoConfiguration> {
-  const sanitizedConfiguration: Partial<SanitizedMatomoConfiguration> = {
+): SanitizedMatomoConfiguration {
+  const sanitizedConfiguration = {
     ...defaultConfiguration,
     ...configuration,
   };
+
+  if (configuration.mode === undefined) {
+    sanitizedConfiguration.mode = !!configuration.scriptUrl ? 'ACTIVE' : 'INACTIVE';
+  }
 
   if (configuration.trackAppStart !== undefined && configuration.trackAppStart !== null) {
     sanitizedConfiguration.skipTrackingInitialPageView = !configuration.trackAppStart;
@@ -82,12 +93,19 @@ export function sanitizeConfiguration(
 /**
  * Injection token for Matomo configuration.
  */
-export const MATOMO_CONFIGURATION = new InjectionToken<MatomoConfiguration>('MATOMO_CONFIGURATION');
+export const MATOMO_CONFIGURATION = new InjectionToken<Promise<Partial<MatomoConfiguration>>>(
+  'MATOMO_CONFIGURATION'
+);
+
+export const SANITIZED_MATOMO_CONFIGURATION = new InjectionToken<
+  BehaviorSubject<SanitizedMatomoConfiguration>
+>('SANITIZED_MATOMO_CONFIGURATION');
 
 /**
  * Default configuration for the Matomo module.
  */
-const defaultConfiguration: Partial<SanitizedMatomoConfiguration> = {
+const defaultConfiguration = {
+  mode: <Mode>'ACTIVE',
   scriptVersion: 4,
   trackers: [],
   requireConsent: false,

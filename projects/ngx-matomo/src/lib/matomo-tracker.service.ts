@@ -1,6 +1,10 @@
 import { Inject, Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
-import { MATOMO_CONFIGURATION, MatomoConfiguration } from './matomo-configuration';
+import {
+  SANITIZED_MATOMO_CONFIGURATION,
+  SanitizedMatomoConfiguration,
+} from './matomo-configuration';
 
 declare global {
   /**
@@ -28,7 +32,10 @@ export class MatomoTracker {
    *
    * @param configuration Matomo configuration provided by DI.
    */
-  constructor(@Inject(MATOMO_CONFIGURATION) private readonly configuration: MatomoConfiguration) {
+  constructor(
+    @Inject(SANITIZED_MATOMO_CONFIGURATION)
+    private readonly $configuration$: BehaviorSubject<SanitizedMatomoConfiguration | null>
+  ) {
     try {
       if (typeof window['_paq'] === 'undefined') {
         console.warn('Matomo has not yet been initialized!');
@@ -701,7 +708,7 @@ export class MatomoTracker {
    * @param generationTime Time, in milliseconds, of the page generation.
    */
   setGenerationTimeMs(generationTime: number): void {
-    if (this.configuration.scriptVersion < 4) {
+    if ((this.$configuration$.getValue()?.scriptVersion || 4) < 4) {
       try {
         window['_paq'].push(['setGenerationTimeMs', generationTime]);
       } catch (e) {
@@ -1749,6 +1756,16 @@ export class MatomoTracker {
       if (!(e instanceof ReferenceError)) {
         throw e;
       }
+    }
+  }
+}
+
+function filterOutreferenceErrors(f: () => void): void {
+  try {
+    f();
+  } catch (e) {
+    if (!(e instanceof ReferenceError)) {
+      throw e;
     }
   }
 }
