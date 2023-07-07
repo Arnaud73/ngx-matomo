@@ -83,7 +83,7 @@ import { MatomoTracker } from 'ngx-matomo';
 
 @Component({
   selector: 'app-root',
-  template: `<router-outlet></router-outlet>`,
+  template: `<router-outlet />`,
 })
 export class AppComponent {
   constructor(private matomoTracker: MatomoTracker) {}
