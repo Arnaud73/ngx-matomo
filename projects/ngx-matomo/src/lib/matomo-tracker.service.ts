@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 
 import { MATOMO_CONFIGURATION, MatomoConfiguration } from './matomo-configuration';
 
@@ -24,11 +24,14 @@ type MatomoScope = 'page' | 'visit' | 'event';
 @Injectable()
 export class MatomoTracker {
   /**
-   * Creates an instance of MatomoTracker.
-   *
-   * @param configuration Matomo configuration provided by DI.
+   * Matomo configuration provided by DI
    */
-  constructor(@Inject(MATOMO_CONFIGURATION) private readonly configuration: MatomoConfiguration) {
+  private readonly configuration = inject(MATOMO_CONFIGURATION);
+
+  /**
+   * Creates an instance of MatomoTracker.
+   */
+  constructor() {
     try {
       if (typeof window['_paq'] === 'undefined') {
         console.warn('Matomo has not yet been initialized!');

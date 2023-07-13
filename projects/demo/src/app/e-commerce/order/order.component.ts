@@ -1,6 +1,7 @@
-import { Component, Inject, OnInit } from '@angular/core';
-
 import { MatomoTracker } from 'ngx-matomo';
+
+import { Component, inject, OnInit } from '@angular/core';
+
 import { Article } from '../article/article.model';
 import { CATALOG } from '../e-commerce.module';
 
@@ -10,17 +11,10 @@ import { CATALOG } from '../e-commerce.module';
   styleUrls: [],
 })
 export class OrderComponent implements OnInit {
-  public order: { id: string; items: Array<{ article: Article; quantity: number }> } | null = null;
+  private readonly matomoTracker = inject(MatomoTracker);
+  readonly catalog = inject(CATALOG);
 
-  /**
-   * Creates an instance of ECommerceComponent.
-   *
-   * @param matomoTracker Instance of MatomoTracker provided by DI.
-   */
-  constructor(
-    private readonly matomoTracker: MatomoTracker,
-    @Inject(CATALOG) readonly catalog: Array<Article>
-  ) {}
+  public order: { id: string; items: Array<{ article: Article; quantity: number }> } | null = null;
 
   ngOnInit(): void {
     if (!this.order) {

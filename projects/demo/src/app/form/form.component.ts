@@ -1,4 +1,4 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 
 import { MatomoTracker } from 'ngx-matomo';
@@ -9,21 +9,12 @@ import { MatomoTracker } from 'ngx-matomo';
   styleUrls: [],
 })
 export class FormComponent implements AfterViewInit {
-  public foodForm = this.formBuilder.group({
+  private readonly matomoTracker = inject(MatomoTracker);
+
+  public foodForm = inject(FormBuilder).group({
     favorite: ['', Validators.required],
     comment: [''],
   });
-
-  /**
-   * Creates an instance of FormComponent.
-   *
-   * @param formBuilder Instance of FormBuilder provided by DI.
-   * @param matomoTracker Instance of MatomoTracker provided by DI.
-   */
-  constructor(
-    private readonly formBuilder: FormBuilder,
-    private readonly matomoTracker: MatomoTracker
-  ) {}
 
   // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
   ngAfterViewInit(): void {

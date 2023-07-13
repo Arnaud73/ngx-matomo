@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-
 import { MatomoTracker } from 'ngx-matomo';
+
+import { Component, inject } from '@angular/core';
 
 @Component({
   selector: 'app-event',
@@ -8,6 +8,8 @@ import { MatomoTracker } from 'ngx-matomo';
   styleUrls: [],
 })
 export class EventComponent {
+  private readonly matomoTracker = inject(MatomoTracker);
+
   public readonly eventTrackingCode =
     "this.matomoTracker.trackEvent('Category', 'Button pressed', 'tracking with code');";
   public readonly clickTrackingCode =
@@ -18,13 +20,6 @@ export class EventComponent {
 >\n\
   Click Me!\n\
 </button>';
-
-  /**
-   * Creates an instance of EventComponent.
-   *
-   * @param matomoTracker Instance of MatomoTracker provided by DI.
-   */
-  constructor(private readonly matomoTracker: MatomoTracker) {}
 
   /**
    * Handles the click on the 'Click Me' button.

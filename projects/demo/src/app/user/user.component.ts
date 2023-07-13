@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { MatomoTracker } from 'ngx-matomo';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+
+import { MatomoTracker } from 'ngx-matomo';
 
 @Component({
   selector: 'app-user',
@@ -8,8 +9,9 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: [],
 })
 export class UserComponent implements OnInit {
-  public readonly getUserIdCode =
-    'this.matomoTracker.getUserId().then(console.log);';
+  private readonly matomoTracker = inject(MatomoTracker);
+
+  public readonly getUserIdCode = 'this.matomoTracker.getUserId().then(console.log);';
   public readonly setUserIdCode = "this.matomoTracker.setUserId('MyUserId');";
   public readonly resetUserIdCode = 'this.matomoTracker.resetUserId();';
 
@@ -17,20 +19,9 @@ export class UserComponent implements OnInit {
   public visitorId = '';
   public visitorInfo: Array<string> = [];
 
-  public userIdForm = this.formBuilder.group({
+  public userIdForm = inject(FormBuilder).group({
     userId: ['', Validators.required],
   });
-
-  /**
-   * Creates an instance of UserComponent.
-   *
-   * @param matomoTracker Instance of MatomoTracker provided by DI.
-   * @param formBuilder Instance of FormBuilder provided by DI.
-   */
-  constructor(
-    private readonly matomoTracker: MatomoTracker,
-    private readonly formBuilder: FormBuilder
-  ) {}
 
   ngOnInit(): void {
     this.matomoTracker.getUserId().then((uid) => {

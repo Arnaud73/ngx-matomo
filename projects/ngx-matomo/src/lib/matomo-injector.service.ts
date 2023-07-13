@@ -1,6 +1,6 @@
-import { Inject, Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 
-import { MatomoConfiguration, MATOMO_CONFIGURATION } from './matomo-configuration';
+import { MATOMO_CONFIGURATION } from './matomo-configuration';
 
 declare global {
   /**
@@ -18,11 +18,14 @@ declare global {
 @Injectable()
 export class MatomoInjector {
   /**
-   * Creates an instance of MatomoInjector.
-   *
-   * @param configuration Matomo configuration provided by DI.
+   * Matomo configuration provided by DI
    */
-  constructor(@Inject(MATOMO_CONFIGURATION) private readonly configuration: MatomoConfiguration) {
+  private readonly configuration = inject(MATOMO_CONFIGURATION);
+
+  /**
+   * Creates an instance of MatomoInjector.
+   */
+  constructor() {
     try {
       window['_paq'] = window['_paq'] || (!!this.configuration.scriptUrl ? [] : { push: () => {} });
     } catch (e) {

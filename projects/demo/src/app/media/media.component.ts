@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+
 import { MatomoTracker } from 'ngx-matomo';
 
 /**
@@ -10,12 +11,7 @@ import { MatomoTracker } from 'ngx-matomo';
   styleUrls: [],
 })
 export class MediaComponent {
-  /**
-   * Creates an instance of MediaComponent.
-   *
-   * @param matomoTracker Instance of MatomoTracker provided by DI.
-   */
-  constructor(private readonly matomoTracker: MatomoTracker) {}
+  private readonly matomoTracker = inject(MatomoTracker);
 
   onLike(): void {
     console.log('Like!');

@@ -1,11 +1,12 @@
 import { TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
 import { ActivatedRoute } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+
 import { of } from 'rxjs';
 
 import { MATOMO_CONFIGURATION } from './matomo-configuration';
-import { MatomoTracker } from './matomo-tracker.service';
 import { MatomoRouteTracker } from './matomo-route-tracker.service';
+import { MatomoTracker } from './matomo-tracker.service';
 
 describe('MatomoRouteTrackerService', () => {
   let service: MatomoRouteTracker;

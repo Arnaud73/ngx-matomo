@@ -1,10 +1,10 @@
-import { NgModule, ModuleWithProviders, Inject, PLATFORM_ID, Injector } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
+import { Injector, ModuleWithProviders, NgModule, PLATFORM_ID, inject } from '@angular/core';
 
-import { MatomoConfiguration, MATOMO_CONFIGURATION } from './matomo-configuration';
+import { MATOMO_CONFIGURATION, MatomoConfiguration } from './matomo-configuration';
 import { MatomoInjector } from './matomo-injector.service';
-import { MatomoTracker } from './matomo-tracker.service';
 import { MatomoRouteTracker } from './matomo-route-tracker.service';
+import { MatomoTracker } from './matomo-tracker.service';
 
 /**
  * Angular module encapsulating Matomo features.
@@ -17,19 +17,26 @@ import { MatomoRouteTracker } from './matomo-route-tracker.service';
 })
 export class MatomoModule {
   /**
-   * Creates an instance of Matomo module.
-   *
-   * @param platformId Angular platform provided by DI.
-   * @param injector Instance of Angular Injector provided by DI.
-   * @param configuration Matomo configuration provided by DI.
-   * @param matomoInjector Instance of MatomoInjector provided by DI.
+   * platformId provided by DI
    */
-  constructor(
-    @Inject(PLATFORM_ID) private readonly platformId: Object,
-    private readonly injector: Injector,
-    @Inject(MATOMO_CONFIGURATION) private readonly configuration: MatomoConfiguration,
-    private readonly matomoInjector: MatomoInjector
-  ) {
+  private readonly platformId = inject(PLATFORM_ID);
+  /**
+   * Injector provided by DI
+   */
+  private readonly injector = inject(Injector);
+  /**
+   * Matomo configuration provided by DI
+   */
+  private readonly configuration = inject(MATOMO_CONFIGURATION);
+  /**
+   * MatomoInjector provided by DI
+   */
+  private readonly matomoInjector = inject(MatomoInjector);
+
+  /**
+   * Creates an instance of Matomo module.
+   */
+  constructor() {
     // Warn if module is not being loaded by a browser.
     if (!isPlatformBrowser(this.platformId)) {
       console.warn('ngx-Matomo does not support server platform');

@@ -1,11 +1,11 @@
-import { Injectable, Inject, OnDestroy } from '@angular/core';
+import { Injectable, OnDestroy, inject } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
 
 import { Subscription } from 'rxjs';
 import { filter, map, pairwise } from 'rxjs/operators';
 
 import { isNonNull } from '../helpers';
-import { MatomoConfiguration, MATOMO_CONFIGURATION } from './matomo-configuration';
+import { MATOMO_CONFIGURATION } from './matomo-configuration';
 import { MatomoTracker } from './matomo-tracker.service';
 
 /**
@@ -16,6 +16,26 @@ import { MatomoTracker } from './matomo-tracker.service';
 @Injectable()
 export class MatomoRouteTracker implements OnDestroy {
   /**
+   * Configuration provided by DI
+   */
+  private readonly configuration = inject(MATOMO_CONFIGURATION);
+
+  /**
+   * MatomoTracker provided by DI
+   */
+  private readonly matomoTracker = inject(MatomoTracker);
+
+  /**
+   * Router provided by DI
+   */
+  private readonly router = inject(Router);
+
+  /**
+   * Activated route provided by DI
+   */
+  private readonly activatedRoute = inject(ActivatedRoute);
+
+  /**
    * Previous route url of matomo route tracker.
    */
   private previousPageUrl?: string;
@@ -23,21 +43,6 @@ export class MatomoRouteTracker implements OnDestroy {
    * Subscription for managing route events.
    */
   private subscription?: Subscription;
-
-  /**
-   * Creates an instance of MatomoRouteTracker.
-   *
-   * @param configuration Matomo configuration provided by DI.
-   * @param matomoTracker Instance of MatomoTracker provided by DI.
-   * @param router Instance of Router provided by DI.
-   * @param activatedRoute Instance of ActivatedRoute provided by DI.
-   */
-  constructor(
-    @Inject(MATOMO_CONFIGURATION) private readonly configuration: MatomoConfiguration,
-    private readonly matomoTracker: MatomoTracker,
-    private readonly router: Router,
-    private readonly activatedRoute: ActivatedRoute
-  ) {}
 
   /**
    * Starts tracking route changes.

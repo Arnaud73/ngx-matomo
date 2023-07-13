@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
+
 import { MatomoTracker } from 'ngx-matomo';
 
 @Component({
@@ -7,17 +8,11 @@ import { MatomoTracker } from 'ngx-matomo';
   styleUrls: [],
 })
 export class ConsentComponent implements OnInit {
+  private readonly matomoTracker = inject(MatomoTracker);
+
   public readonly giveConsentCode = 'this.matomoTracker.setConsentGiven();';
   public readonly removeConsentCode = 'this.matomoTracker.forgetConsentGiven();';
   public readonly hasCookiesCode = 'this.matomoTracker.hasCookies().then(console.log);';
-
-  /**
-   * Creates an instance of ConsentComponent.
-   *
-   * @param matomoTracker Instance of MatomoTracker provided by DI.
-   * @param formBuilder Instance of FormBuilder provided by DI.
-   */
-  constructor(private readonly matomoTracker: MatomoTracker) {}
 
   ngOnInit(): void {
     this.matomoTracker

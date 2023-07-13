@@ -1,4 +1,4 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { AfterViewInit, Component, inject } from '@angular/core';
 
 import { MatomoTracker } from 'ngx-matomo';
 
@@ -11,16 +11,8 @@ import { MatomoTracker } from 'ngx-matomo';
   styleUrls: [],
 })
 export class AppComponent implements AfterViewInit {
-  /**
-   * Creates an instance of AppComponent.
-   *
-   * @param matomoTracker Instance of MatomoTracker provided by DI.
-   */
-  constructor(private readonly matomoTracker: MatomoTracker) {}
+  private readonly matomoTracker = inject(MatomoTracker);
 
-  /**
-   * Angular AfterViewInit lifecycle hook.
-   */
   ngAfterViewInit(): void {
     this.matomoTracker.getMatomoUrl().then((url: string) => console.log('Matomo URL:', url));
   }
