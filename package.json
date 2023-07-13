@@ -67,6 +67,7 @@
     "@angular/cli": "~16.1.0",
     "@angular/compiler-cli": "^16.1.0",
     "@compodoc/compodoc": "^1.1.21",
+    "@trivago/prettier-plugin-sort-imports": "^4.1.0",
     "@types/jasmine": "~4.3.0",
     "@typescript-eslint/eslint-plugin": "^5.60.0",
     "@typescript-eslint/parser": "^5.60.0",

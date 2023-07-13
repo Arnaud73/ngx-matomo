@@ -1,4 +1,8 @@
 {
   "singleQuote": true,
-  "printWidth": 100
+  "printWidth": 100,
+  "importOrder": ["^@angular/(.*)$", "<THIRD_PARTY_MODULES>", "^[./]"],
+  "importOrderParserPlugins": ["typescript", "decorators-legacy"],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
 }
