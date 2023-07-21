@@ -6,6 +6,9 @@
     If you have configured the Matomo tracker to expect consent for tracking, then no tracking will
     occur until consent is given.
   </p>
+  <p>
+    Is Matomo using cookies? <kbd>{{ hasCookies }}</kbd>
+  </p>
   <footer>
     <div class="grid">
       <button class="primary" (click)="onGiveConsent($event)">Give Consent</button>

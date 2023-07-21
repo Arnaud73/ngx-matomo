@@ -9,28 +9,29 @@ import { MatomoTracker } from 'ngx-matomo';
 })
 export class ConsentComponent implements OnInit {
   private readonly matomoTracker = inject(MatomoTracker);
+  public hasCookies: boolean = false;
 
   public readonly giveConsentCode = 'this.matomoTracker.setConsentGiven();';
   public readonly removeConsentCode = 'this.matomoTracker.forgetConsentGiven();';
   public readonly hasCookiesCode = 'this.matomoTracker.hasCookies().then(console.log);';
 
   ngOnInit(): void {
-    this.matomoTracker
-      .hasCookies()
-      .then((hasCookies: boolean) => console.log('Has Cookies:', hasCookies));
+    this.matomoTracker.hasCookies().then((it) => {
+      this.hasCookies = it;
+    });
   }
 
   onGiveConsent(event: MouseEvent): void {
     this.matomoTracker.setConsentGiven();
-    this.matomoTracker
-      .hasCookies()
-      .then((hasCookies: boolean) => console.log('Has Cookies:', hasCookies));
+    this.matomoTracker.hasCookies().then((it) => {
+      this.hasCookies = it;
+    });
   }
 
   onRemoveConsent(event: MouseEvent): void {
     this.matomoTracker.forgetConsentGiven();
-    this.matomoTracker
-      .hasCookies()
-      .then((hasCookies: boolean) => console.log('Has Cookies:', hasCookies));
+    this.matomoTracker.hasCookies().then((it) => {
+      this.hasCookies = it;
+    });
   }
 }
