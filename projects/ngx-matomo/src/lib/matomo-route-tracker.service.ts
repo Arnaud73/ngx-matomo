@@ -44,6 +44,10 @@ export class MatomoRouteTracker implements OnDestroy {
    */
   private subscription?: Subscription;
 
+  constructor() {
+    console.log('MatomoRouteTracker • constructor');
+  }
+
   /**
    * Starts tracking route changes.
    * Matomo DocumentTitle will be set with `data.matomoTitle` of your routes.

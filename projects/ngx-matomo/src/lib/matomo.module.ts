@@ -13,7 +13,7 @@ import { MatomoTracker } from './matomo-tracker.service';
   declarations: [],
   imports: [],
   exports: [],
-  providers: [MatomoInjector, MatomoTracker, MatomoRouteTracker],
+  providers: [MatomoTracker],
 })
 export class MatomoModule {
   /**
@@ -37,6 +37,7 @@ export class MatomoModule {
    * Creates an instance of Matomo module.
    */
   constructor() {
+    console.log('MatomoModule • constructor');
     // Warn if module is not being loaded by a browser.
     if (!isPlatformBrowser(this.platformId)) {
       console.warn('ngx-Matomo does not support server platform');
@@ -54,16 +55,29 @@ export class MatomoModule {
    * Use this method in your root module to provide the MatomoTracker service.
    */
   static forRoot(configuration?: Partial<MatomoConfiguration>): ModuleWithProviders<MatomoModule> {
-    return {
-      ngModule: MatomoModule,
-      providers: [
-        {
-          provide: MATOMO_CONFIGURATION,
-          useValue: configuration,
-        },
-        MatomoTracker,
-        MatomoRouteTracker,
-      ],
-    };
+    console.log('MatomoModule • forRoot');
+
+    return configuration?.routeTracking?.enable
+      ? {
+          ngModule: MatomoModule,
+          providers: [
+            {
+              provide: MATOMO_CONFIGURATION,
+              useValue: configuration,
+            },
+            MatomoInjector,
+            MatomoRouteTracker,
+          ],
+        }
+      : {
+          ngModule: MatomoModule,
+          providers: [
+            {
+              provide: MATOMO_CONFIGURATION,
+              useValue: configuration,
+            },
+            MatomoInjector,
+          ],
+        };
   }
 }
