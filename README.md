@@ -14,6 +14,7 @@ Choose the version corresponding to your Angular version:
 
 | Angular   | ngx-matomo    |
 | --------- | ------------- |
+| 17        | 3.x           |
 | 16        | 2.x           |
 | 14 and 15 | 1.x           |
 | 13        | not available |
