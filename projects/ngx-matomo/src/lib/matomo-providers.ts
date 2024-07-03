@@ -133,8 +133,10 @@ export function provideMatomoTracking(...features: MatomoFeature[]) {
             matomoTracker.setCookiePath(trackingConfigurationFeature.parameters.cookiePath);
 
           // Set cookie same site if specified
-          if (trackingConfigurationFeature.parameters.cookieSameSite)
-            matomoTracker.setCookieSameSite(trackingConfigurationFeature.parameters.cookieSameSite);
+          if (trackingConfigurationFeature.parameters.cookieSameSiteEnforcement)
+            matomoTracker.setCookieSameSite(
+              trackingConfigurationFeature.parameters.cookieSameSiteEnforcement,
+            );
 
           // Set secure cookies if specified
           if (trackingConfigurationFeature.parameters.secureCookie)
@@ -209,8 +211,7 @@ export function provideMatomoTracking(...features: MatomoFeature[]) {
       provide: ENVIRONMENT_INITIALIZER,
       useFactory:
         (trackers: Promise<MatomoTrackers>, document: Document, debugTracing: boolean) => () =>
-          trackers.then(injectMatomoTrackingScriptFactory(document, debugTracing))
-        ,
+          trackers.then(injectMatomoTrackingScriptFactory(document, debugTracing)),
       deps: [MATOMO_TRACKERS_INTERNAL_CONFIGURATION, DOCUMENT, MATOMO_DEBUG_TRACING],
       multi: true,
     });
@@ -222,9 +223,9 @@ export function provideMatomoTracking(...features: MatomoFeature[]) {
       provide: MATOMO_TRACKERS_INTERNAL_CONFIGURATION,
       useFactory: () =>
         Promise.all([defaultTrackers, trackerInjectionFeature?.parameters]).then(
-          ([defaultTrackers, trackers]) => ({
+          ([defaultTrackers, injectionTrackers]) => ({
             ...defaultTrackers,
-            ...trackers,
+            ...injectionTrackers,
           }),
         ),
     },

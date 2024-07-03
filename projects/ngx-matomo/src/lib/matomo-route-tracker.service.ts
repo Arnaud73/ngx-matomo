@@ -16,7 +16,7 @@ const DefaultIdRegExp = new RegExp(
   [
     '\\d{8,}', // Numerical
     '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}', // UUID / GUID
-    '[a-f\\d]{24}', // MongodDb Id
+    '[a-f\\d]{24}', // ObjectId (MongoDB…)
     '[0-7][0-9A-HJKMNP-TV-Z]{25}', // ULID
     'c[a-z0-9]{24}', // CUID
     '[A-Za-z0-9_-]{21}', // NanoID
@@ -68,11 +68,11 @@ export class MatomoRouteTracker implements OnDestroy {
       .subscribe({
         next: ([start, end]) => {
           if (this.debugTracing)
-            console.groupCollapsed('\x1B[1mngx-Matomo\x1B[m • 🚧 New Route change occurrence');
+            console.groupCollapsed('\x1B[1mngx-Matomo\x1B[m • 🚧 New Route change sequence');
           if (this.debugTracing)
-            console.debug('\x1B[1mngx-Matomo\x1B[m • 🔎 Found NavigationStart event', start.event);
+            console.debug('\x1B[1mngx-Matomo\x1B[m • 🔎 NavigationStart event', start.event);
           if (this.debugTracing)
-            console.debug('\x1B[1mngx-Matomo\x1B[m • 🔎 Found NavigationEnd event', end.event);
+            console.debug('\x1B[1mngx-Matomo\x1B[m • 🔎 NavigationEnd event', end.event);
           const locationUrl = new URL(this.document.location.href);
 
           // Check that the significant part of the location has changed before tracking anything
@@ -140,7 +140,6 @@ export class MatomoRouteTracker implements OnDestroy {
           );
 
           // Track page view
-
           if (currentRoute.data['matomo']?.title)
             this.matomoTracker.trackPageView(currentRoute.data['matomo']?.title);
           else this.matomoTracker.trackPageView();

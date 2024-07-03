@@ -10,6 +10,11 @@ export type MatomoRouteData = {
   idRegExp?: RegExp;
 };
 
+export type Tracker = {
+  siteId: number;
+  trackerUrl: string;
+};
+
 export type MatomoTrackers = {
   /**
    * URL of the Matomo JS script to execute.
@@ -18,12 +23,12 @@ export type MatomoTrackers = {
   /**
    * Array of trackers, each one of them being described by its URL and site id.
    */
-  trackers: { trackerUrl: string; siteId: number }[];
+  trackers: Tracker[];
 };
 
-export const defaultTrackers: Promise<MatomoTrackers> = Promise.resolve({
+export const defaultTrackers: MatomoTrackers = {
   trackers: [],
-});
+};
 
 export type MatomoTrackingConfiguration = {
   disableCrossDomainLinking?: boolean; // TODO: currently inactive
@@ -31,7 +36,7 @@ export type MatomoTrackingConfiguration = {
   secureCookie?: boolean;
   cookieDomain?: string;
   cookiePath?: string;
-  cookieSameSite?: 'Lax' | 'Strict' | 'None';
+  cookieSameSiteEnforcement?: 'Lax' | 'Strict' | 'None';
   doNotUserSendBeacon?: boolean;
   detectBrowserFeatures?: boolean;
   enableDoNotTrack?: boolean;
