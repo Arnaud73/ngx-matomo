@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-types */
 import { InjectionToken } from '@angular/core';
 
 import './matomo-configuration';
@@ -66,12 +65,14 @@ export function getFunctionFactory(dummyMode = false, debugTracing = false) {
 }
 
 export const MATOMO_TRACKER_INVOKE_FUNCTION = new InjectionToken<
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
   (command: string, callback: Function) => void
 >('Matomo tracker invoke function');
 
 export function invokeFunctionFactory(dummyMode = false, debugTracing = false) {
   return !dummyMode
-    ? function (method: string, callback: Function) {
+    ? // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
+      function (method: string, callback: Function) {
         if (debugTracing)
           console.debug(
             `\x1B[1mngx-Matomo\x1B[m • 🚀 Call tracker Invoke method \x1B[4m${method}\x1B[m with`,
@@ -83,7 +84,8 @@ export function invokeFunctionFactory(dummyMode = false, debugTracing = false) {
           if (!(e instanceof ReferenceError)) throw e;
         }
       }
-    : function (method: string, callback: Function) {
+    : // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
+      function (method: string, callback: Function) {
         if (debugTracing)
           console.debug(
             `\x1B[1mngx-Matomo\x1B[m • 🚀 Call dummy tracker Invoke method \x1B[4m${method}\x1B[m with`,
