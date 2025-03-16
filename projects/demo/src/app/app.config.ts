@@ -47,7 +47,7 @@ export const appConfig: ApplicationConfig = {
       // Tracking configuration
       withConfig({
         enableDoNotTrack: false,
-        consentRequirement: 'NONE',
+        consentRequirement: 'requireNone',
         heartBeatTimer: 15,
         trackJavaScriptErrors: true,
         detectBrowserFeatures: true,
@@ -55,7 +55,7 @@ export const appConfig: ApplicationConfig = {
 
       // Route tracking configuration
       withRouteTracking({
-        linkTracking: 'LEFT_CLICK_ONLY',
+        linkTracking: 'leftClickOnly',
         clearIds: true,
         clearQueryParams: true,
         clearHash: true,

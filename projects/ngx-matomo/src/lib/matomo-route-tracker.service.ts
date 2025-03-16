@@ -100,7 +100,7 @@ export class MatomoRouteTracker implements OnDestroy {
             console.debug('\x1B[1mngx-Matomo\x1B[m • 🔎 Current route snapshot', currentRoute);
 
           // Check that the route is not marked as not to be tracked
-          if (currentRoute.data['matomo']?.tracking === 'OFF') return;
+          if (currentRoute.data['matomo']?.tracking === 'off') return;
 
           // Set referrer if appropriate
           if (start.event.id === 1) this.matomoTracker.setReferrerUrl(this.document.referrer);
@@ -144,9 +144,9 @@ export class MatomoRouteTracker implements OnDestroy {
             this.matomoTracker.trackPageView(currentRoute.data['matomo']?.title);
           else this.matomoTracker.trackPageView();
 
-          if (this.routeTrackingConfiguration.linkTracking !== 'NONE')
+          if (this.routeTrackingConfiguration.linkTracking !== 'none')
             this.matomoTracker.enableLinkTracking(
-              this.routeTrackingConfiguration.linkTracking === 'LEFT_CLICK_ONLY' ? false : true,
+              this.routeTrackingConfiguration.linkTracking === 'leftClickOnly' ? false : true,
             );
 
           if (this.debugTracing) console.groupEnd();

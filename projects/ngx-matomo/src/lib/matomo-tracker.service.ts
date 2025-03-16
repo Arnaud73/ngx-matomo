@@ -1203,15 +1203,16 @@ export class MatomoTracker {
   }
 
   /**
-   * defaults to `Lax`. Can be set to `None` or `Strict`.<br />
+   * defaults to `lax`. Can be set to `none` or `strict`.<br />
    * `None` requires all traffic to be on HTTPS and will also automatically set the secure cookie.
    * It can be useful for example if the tracked website is an iframe.<br />
    * `Strict` only works if your Matomo and the website runs on the very same domain.
    *
-   * @param policy Either `Lax`, `Strict` or `None`
+   * @param policy Either `lax`, `strict` or `none`
    * */
-  setCookieSameSite(policy: 'Lax' | 'Strict' | 'None') {
-    this.setFunction('setCookieSameSite', policy);
+  setCookieSameSite(policy: 'lax' | 'strict' | 'none') {
+    const formattedPolicy = policy.charAt(0).toUpperCase() + policy.slice(1);
+    this.setFunction('setCookieSameSite', formattedPolicy);
   }
 
   /**

@@ -45,7 +45,7 @@ declare global {
 export function provideMatomoTracking(...features: MatomoFeature[]) {
   if (
     features.filter((it) =>
-      ['TRACKER_INJECTION', 'EXTERNAL_TRACKER', 'DUMMY_TRACKER'].includes(it.kind),
+      ['trackerInjection', 'preloadedTracker', 'dummyTracker'].includes(it.kind),
     ).length > 1
   ) {
     console.error('One and one only tracker configuration must be used.');
@@ -55,8 +55,8 @@ export function provideMatomoTracking(...features: MatomoFeature[]) {
   try {
     window['_paq'] =
       window['_paq'] ||
-      (features.find((it) => it.kind === 'TRACKER_INJECTION') ||
-      features.find((it) => it.kind === 'EXTERNAL_TRACKER')
+      (features.find((it) => it.kind === 'trackerInjection') ||
+      features.find((it) => it.kind === 'preloadedTracker')
         ? []
         : // eslint-disable-next-line @typescript-eslint/no-empty-function
           { push: () => {} });
@@ -66,15 +66,15 @@ export function provideMatomoTracking(...features: MatomoFeature[]) {
 
   const providers: Provider[] = [MatomoTracker];
 
-  const debugTracingFeature = features.find((it) => it.kind === 'DEBUG_TRACING');
+  const debugTracingFeature = features.find((it) => it.kind === 'debugTracing');
   providers.push({
     provide: MATOMO_DEBUG_TRACING,
     useValue: !!debugTracingFeature,
   });
 
-  const routeTrackingFeature = features.find((it) => it.kind === 'ROUTE_TRACKING') as
+  const routeTrackingFeature = features.find((it) => it.kind === 'routeTracking') as
     | {
-        kind: 'ROUTE_TRACKING';
+        kind: 'routeTracking';
         parameters: Partial<MatomoRouteTrackingConfiguration>;
       }
     | undefined;
@@ -99,10 +99,10 @@ export function provideMatomoTracking(...features: MatomoFeature[]) {
   }
 
   const trackingConfigurationFeature = features.find(
-    (it) => it.kind === 'TRACKING_CONFIGURATION',
+    (it) => it.kind === 'trackingConfiguration',
   ) as
     | {
-        kind: 'TRACKING_CONFIGURATION';
+        kind: 'trackingConfiguration';
         parameters: Partial<MatomoTrackingConfiguration>;
       }
     | undefined;
@@ -165,17 +165,15 @@ export function provideMatomoTracking(...features: MatomoFeature[]) {
             matomoTracker.setDoNotTrack(true);
 
           // Require the right consent
-          if (trackingConfigurationFeature.parameters?.consentRequirement === 'TRACKING')
+          if (trackingConfigurationFeature.parameters?.consentRequirement === 'tracking')
             matomoTracker.requireConsent();
-          else if (trackingConfigurationFeature.parameters?.consentRequirement === 'COOKIE')
+          else if (trackingConfigurationFeature.parameters?.consentRequirement === 'cookie')
             matomoTracker.requireCookieConsent();
 
-          // Set global custom dimensions
           trackingConfigurationFeature.parameters.customDimensions?.forEach((it) => {
             matomoTracker.setCustomDimension(it.index, it.value);
           });
 
-          // Disable Campaign Parameters Tracking
           if (trackingConfigurationFeature.parameters.disableCampaignParametersTracking)
             matomoTracker.disableCampaignParameters();
         },
@@ -192,17 +190,17 @@ export function provideMatomoTracking(...features: MatomoFeature[]) {
     );
   }
 
-  const mockedTrackerFeature = features.find((it) => it.kind === 'DUMMY_TRACKER');
+  const mockedTrackerFeature = features.find((it) => it.kind === 'dummyTracker');
   if (mockedTrackerFeature) {
     // TODO: Changer l'injection des fonctions set / get / invoke
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const preloadedTrackerFeature = features.find((it) => it.kind === 'EXTERNAL_TRACKER');
+  const preloadedTrackerFeature = features.find((it) => it.kind === 'preloadedTracker');
 
-  const trackerInjectionFeature = features.find((it) => it.kind === 'TRACKER_INJECTION') as
+  const trackerInjectionFeature = features.find((it) => it.kind === 'trackerInjection') as
     | {
-        kind: 'TRACKER_INJECTION';
+        kind: 'trackerInjection';
         parameters: Promise<Partial<MatomoTrackers>>;
       }
     | undefined;

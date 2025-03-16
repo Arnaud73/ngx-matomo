@@ -5,21 +5,21 @@ import {
 } from './matomo-configuration';
 
 export type MatomoFeature =
-  | { kind: 'EXTERNAL_TRACKER' }
-  | { kind: 'DUMMY_TRACKER' }
+  | { kind: 'preloadedTracker' }
+  | { kind: 'dummyTracker' }
   | {
-      kind: 'TRACKER_INJECTION';
+      kind: 'trackerInjection';
       parameters: Promise<Partial<MatomoTrackers>>;
     }
   | {
-      kind: 'TRACKING_CONFIGURATION';
+      kind: 'trackingConfiguration';
       parameters: Partial<MatomoTrackingConfiguration>;
     }
   | {
-      kind: 'ROUTE_TRACKING';
+      kind: 'routeTracking';
       parameters: Partial<MatomoRouteTrackingConfiguration>;
     }
-  | { kind: 'DEBUG_TRACING' };
+  | { kind: 'debugTracing' };
 
 /**
  * Require a Matomo script to be loaded and trackers to be set.
@@ -36,29 +36,29 @@ export function withTrackers(
   trackers: Partial<MatomoTrackers> | Promise<Partial<MatomoTrackers>>,
 ): MatomoFeature {
   return {
-    kind: 'TRACKER_INJECTION',
+    kind: 'trackerInjection',
     parameters: Promise.resolve(trackers).then((it) => ({ trackers: [], ...it })),
   };
 }
 
 export function withExternalTracker(): MatomoFeature {
-  return { kind: 'EXTERNAL_TRACKER' };
+  return { kind: 'preloadedTracker' };
 }
 
 export function withDummyTracker(): MatomoFeature {
-  return { kind: 'DUMMY_TRACKER' };
+  return { kind: 'dummyTracker' };
 }
 
 export function withConfig(configuration: Partial<MatomoTrackingConfiguration>): MatomoFeature {
-  return { kind: 'TRACKING_CONFIGURATION', parameters: configuration };
+  return { kind: 'trackingConfiguration', parameters: configuration };
 }
 
 export function withRouteTracking(
   configuration: Partial<MatomoRouteTrackingConfiguration>,
 ): MatomoFeature {
-  return { kind: 'ROUTE_TRACKING', parameters: configuration };
+  return { kind: 'routeTracking', parameters: configuration };
 }
 
 export function withDebugTracing(): MatomoFeature {
-  return { kind: 'DEBUG_TRACING' };
+  return { kind: 'debugTracing' };
 }

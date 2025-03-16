@@ -1,11 +1,11 @@
 import { InjectionToken } from '@angular/core';
 
-type ClickTrackingOption = 'NONE' | 'LEFT_CLICK_ONLY' | 'LEFT_MIDDLE_RIGHT_CLICKS';
+type ClickTrackingOption = 'none' | 'leftClickOnly' | 'leftMiddleRightClicks';
 
-export type MatomoConsentRequirement = 'NONE' | 'COOKIE' | 'TRACKING';
+export type MatomoConsentRequirement = 'requireNone' | 'cookie' | 'tracking';
 
 export type MatomoRouteData = {
-  tracking?: 'AUTO' | 'OFF';
+  tracking?: 'auto' | 'off';
   title?: string;
   idRegExp?: RegExp;
 };
@@ -36,7 +36,7 @@ export type MatomoTrackingConfiguration = {
   secureCookie?: boolean;
   cookieDomain?: string;
   cookiePath?: string;
-  cookieSameSiteEnforcement?: 'Lax' | 'Strict' | 'None';
+  cookieSameSiteEnforcement?: 'lax' | 'strict' | 'none';
   doNotUserSendBeacon?: boolean;
   detectBrowserFeatures?: boolean;
   enableDoNotTrack?: boolean;
@@ -53,7 +53,7 @@ export const defaultTrackingConfiguration: MatomoTrackingConfiguration = {
   disableCookies: false,
   doNotUserSendBeacon: false,
   enableDoNotTrack: false,
-  consentRequirement: 'NONE',
+  consentRequirement: 'requireNone',
   detectBrowserFeatures: false,
   trackJavaScriptErrors: false,
   disableCampaignParametersTracking: false,
@@ -70,7 +70,7 @@ export type MatomoRouteTrackingConfiguration = {
 };
 
 export const defaultRouteTrackingConfiguration: MatomoRouteTrackingConfiguration = {
-  linkTracking: 'NONE',
+  linkTracking: 'none',
   clearIds: false,
   idReplacement: ':id',
   clearMatrixParams: false,
