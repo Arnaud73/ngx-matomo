@@ -112,7 +112,7 @@ export function provideMatomoTracking(...features: MatomoFeature[]): Provider[] 
         provide: ENVIRONMENT_INITIALIZER,
         useFactory: (matomoTracker: MatomoTracker) => () => {
           // Disable use of sendBeacon for transmitting tracked events
-          if (trackingConfigurationFeature.parameters.doNotUserSendBeacon)
+          if (trackingConfigurationFeature.parameters.doNotUseSendBeacon)
             matomoTracker.disableAlwaysUseSendBeacon();
 
           // Disable cookies if specified

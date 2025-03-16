@@ -37,7 +37,7 @@ export type MatomoTrackingConfiguration = {
   cookieDomain?: string;
   cookiePath?: string;
   cookieSameSiteEnforcement?: 'lax' | 'strict' | 'none';
-  doNotUserSendBeacon?: boolean;
+  doNotUseSendBeacon?: boolean;
   detectBrowserFeatures?: boolean;
   enableDoNotTrack?: boolean;
   consentRequirement?: MatomoConsentRequirement;
@@ -51,7 +51,7 @@ export type MatomoTrackingConfiguration = {
 export const defaultTrackingConfiguration: MatomoTrackingConfiguration = {
   disableCrossDomainLinking: false,
   disableCookies: false,
-  doNotUserSendBeacon: false,
+  doNotUseSendBeacon: false,
   enableDoNotTrack: false,
   consentRequirement: 'requireNone',
   detectBrowserFeatures: false,
