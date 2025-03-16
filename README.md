@@ -4,6 +4,7 @@
 ![Build Status (GitHub)](https://github.com/Arnaud73/ngx-matomo/actions/workflows/ci.yml/badge.svg)
 [![NPM version](https://img.shields.io/npm/v/ngx-matomo.svg)](https://www.npmjs.com/package/ngx-matomo)
 [![Next NPM version](https://img.shields.io/npm/v/ngx-matomo/next.svg)](https://www.npmjs.com/package/ngx-matomo)
+[![NPM bundle size](https://img.shields.io/bundlephobia/min/ngx-matomo)](https://bundlephobia.com/package/ngx-matomo)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b650cf6a9d3d4ab393af8d29d63fc8cc)](https://www.codacy.com/app/Arnaud73/ngx-matomo?utm_source=github.com&utm_medium=referral&utm_content=Arnaud73/ngx-matomo&utm_campaign=Badge_Grade)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 [![MIT license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
