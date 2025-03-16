@@ -1266,7 +1266,7 @@ export class MatomoTracker {
    * @param method HTTP method for sending information to the Matomo server.
    * @see {@link https://matomo.org/faq/how-to/faq_18694/|enable CORS (Cross domain requests)}
    */
-  setRequestMethod(method: 'GET' | 'PST'): void {
+  setRequestMethod(method: 'GET' | 'POST'): void {
     this.setFunction('setRequestMethod', method);
   }
 
