@@ -41,7 +41,8 @@ export function withTrackers(
   };
 }
 
-export function withExternalTracker(): MatomoFeature {
+/**
+export function withPreloadedTracker(): MatomoFeature {
   return { kind: 'preloadedTracker' };
 }
 
@@ -54,7 +55,7 @@ export function withConfig(configuration: Partial<MatomoTrackingConfiguration>):
 }
 
 export function withRouteTracking(
-  configuration: Partial<MatomoRouteTrackingConfiguration>,
+  configuration: Partial<MatomoRouteTrackingConfiguration> = {},
 ): MatomoFeature {
   return { kind: 'routeTracking', parameters: configuration };
 }

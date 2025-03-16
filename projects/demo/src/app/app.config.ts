@@ -38,11 +38,11 @@ export const appConfig: ApplicationConfig = {
         }),
       ),
 
-      // With tracker loaded outside of the Angular application (Google Tag Manager, etc.)
-      // withProvidedTracker(),
+      // Connect to tracker loaded externally via Tag Management systems (Google Tag Manager, Matomo Tag Manager, etc.)
+      // withPreloadedTracker(),
 
-      // Use fake tracker
-      // withMockedTracker(),
+      // Use dummy tracker
+      // withDummyTracker(),
 
       // Tracking configuration
       withConfig({

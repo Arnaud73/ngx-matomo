@@ -4,7 +4,7 @@ import { ActivatedRoute, provideRouter } from '@angular/router';
 
 import { of } from 'rxjs';
 
-import { withDummyTracker } from './matomo-features';
+import { withDummyTracker, withRouteTracking } from './matomo-features';
 import { provideMatomoTracking } from './matomo-providers';
 import { MatomoRouteTracker } from './matomo-route-tracker.service';
 
@@ -22,7 +22,7 @@ describe('MatomoRouteTrackerService', () => {
             params: of({}),
           },
         },
-        provideMatomoTracking(withDummyTracker()),
+        provideMatomoTracking(withDummyTracker(), withRouteTracking()),
       ],
     });
     service = TestBed.inject(MatomoRouteTracker);

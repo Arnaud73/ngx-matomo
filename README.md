@@ -74,33 +74,33 @@ For NgModule based applications, put the `provideMatomoTracking` in the provider
 
 ### Tracker features
 
-**ngx-Matomo** provides you with several solutions for dealing with the Matomo tracker:
+**ngx-Matomo** provides you with several approaches for integrating with the Matomo tracker:
 
-- Take advantage of Matomo tracker set up by a third party such as any Tag Manager (Google Tag Manager, Matomo Tag Manager…)
-- Inject the Matomo JavaScript script directly in the DOM from a known configuration.
-- Inject the Matomo JavaScript script directly in the DOM from a delayed configuration (configuration received after the application has started).
-- Inject a dummy tracker for testing purposes.
+- Use a preloaded Matomo tracker that has been set up externally (such as through Google Tag Manager, Matomo Tag Manager, or other third-party tools)
+- Inject the Matomo JavaScript script directly into the DOM using a static configuration
+- Inject the Matomo JavaScript script directly into the DOM using an asynchronous configuration (where configuration details are received after the application has started)
+- Use a dummy tracker for development and testing purposes
 
 **ngx-Matomo** expects to interact with Matomo version 4 or later. If you plan to use the Route Tracking feature, please use Matomo 4.5 or later.
 
 **ngx-Matomo** requires one tracker feature, and one only, to be defined.
 
-#### Externally provided tracker
+#### Preloaded tracker
 
-When the tracker will be initialized outside of your Angular application, add the `withExternalTracker` feature to your `provideMatomoTracking` providers function:
+When the tracker will be initialized outside of your Angular application, add the `withPreloadedTracker` feature to your `provideMatomoTracking` providers function:
 
 ```ts
-providers: [provideMatomoTracking(withExternalTracker(),…)];
+providers: [provideMatomoTracking(withPreloadedTracker(), …)];
 ```
 
-Warning: it is advised not to have the external tracker track the first page view, or some additional parameters you may wish to set, won't have any effect.
+Warning: it is advised not to have the preloaded tracker track the first page view, or some additional parameters you may wish to set, won't have any effect.
 
 #### Locally defined tracker • Synchronous configuration
 
 When you want your application to handle the injection of the Matomo tracker, with statically defined information regarding the Matomo JS script and Matomo trackers, add the `withTrackers` feature to your `provideMatomoTracking` providers function:
 
 ```ts
-providers: [provideMatomoTracking(withTrackers(trackers),…)];
+providers: [provideMatomoTracking(withTrackers(trackers), …)];
 ```
 
 The `trackers` object contains the following elements:
@@ -167,7 +167,7 @@ Manual definition of the `MATOMO_TRACKERS_INTERNAL_CONFIGURATION` injection toke
 ```ts
 providers: [
   …,
-  provideMatomoTracking(withTrackers()…),
+  provideMatomoTracking(withTrackers(), …),
   {
     provide: MATOMO_TRACKERS_INTERNAL_CONFIGURATION,
     useFactory: (dependencies) => {
@@ -184,7 +184,7 @@ providers: [
 When you need your code not to make any real Matomo request, add the `withDummyTracker` feature to your `provideMatomoTracking` providers function:
 
 ```ts
-providers: [provideMatomoTracking(withDummyTracker(),…)];
+providers: [provideMatomoTracking(withDummyTracker(), …)];
 ```
 
 ### Configuration features
@@ -192,7 +192,7 @@ providers: [provideMatomoTracking(withDummyTracker(),…)];
 In order to specify common configuration options, add the `withConfig` feature to your `provideMatomoTracking` providers function:
 
 ```ts
-providers: [provideMatomoTracking(…,withConfig(configuration),…)];
+providers: [provideMatomoTracking(…, withConfig(configuration), …)];
 ```
 
 where `configuration`· is an object containing some of the following options:
@@ -222,7 +222,7 @@ In a single page application, the browser won't request the server for the conte
 In order to activate the Route Tracking feature, add the `withRouteTracking` feature to your `provideMatomoTracking` providers function:
 
 ```ts
-providers: [provideMatomoTracking(…,withRouteTracking(routeTrackingConfiguration),…)];
+providers: [provideMatomoTracking(…, withRouteTracking(routeTrackingConfiguration), …)];
 ```
 
 where `routeTrackingConfiguration` is an object containing some of the following options:
@@ -252,7 +252,7 @@ Additionally, you may want to add a `matomo` object to your defined `RouteData` 
 **ngx-Matomo** provides you with a debug tracing feature. In order to activate it, just add the following feature to your `provideMatomoTracking` providers function:
 
 ```ts
-providers: [provideRouter(…,withDebugTracing(),…)];
+providers: [provideRouter(…, withDebugTracing(), …)];
 ```
 
 ### Tracking events

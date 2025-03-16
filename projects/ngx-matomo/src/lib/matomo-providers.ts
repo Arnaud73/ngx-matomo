@@ -42,7 +42,7 @@ declare global {
  * @param {...*} features List of features to include in order to provide the correct list of providers.
  * @returns providers required for Matomo tracking.
  */
-export function provideMatomoTracking(...features: MatomoFeature[]) {
+export function provideMatomoTracking(...features: MatomoFeature[]): Provider[] {
   if (
     features.filter((it) =>
       ['trackerInjection', 'preloadedTracker', 'dummyTracker'].includes(it.kind),
@@ -190,10 +190,8 @@ export function provideMatomoTracking(...features: MatomoFeature[]) {
     );
   }
 
-  const mockedTrackerFeature = features.find((it) => it.kind === 'dummyTracker');
-  if (mockedTrackerFeature) {
-    // TODO: Changer l'injection des fonctions set / get / invoke
-  }
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const dummyTrackerFeature = features.find((it) => it.kind === 'dummyTracker');
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const preloadedTrackerFeature = features.find((it) => it.kind === 'preloadedTracker');

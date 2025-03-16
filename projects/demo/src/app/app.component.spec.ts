@@ -2,7 +2,7 @@ import { provideLocationMocks } from '@angular/common/testing';
 import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 
-import { provideMatomoTracking, withConfig } from 'ngx-matomo';
+import { provideMatomoTracking, withDummyTracker } from 'ngx-matomo';
 
 import { AppComponent } from './app.component';
 
@@ -13,7 +13,7 @@ describe('AppComponent', () => {
       providers: [
         provideRouter([]),
         provideLocationMocks(),
-        provideMatomoTracking(withConfig({ trackers: [] })),
+        provideMatomoTracking(withDummyTracker()),
       ],
     }).compileComponents();
   });
