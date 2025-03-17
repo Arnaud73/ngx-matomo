@@ -1,7 +1,5 @@
 import { InjectionToken } from '@angular/core';
 
-import './matomo-configuration';
-
 export const MATOMO_TRACKER_SET_FUNCTION = new InjectionToken<
   (command: string, ...args: unknown[]) => void
 >('Matomo tracker set function');

@@ -1,19 +1,19 @@
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
-import { ENVIRONMENT_INITIALIZER, PLATFORM_ID, Provider } from '@angular/core';
+import { ENVIRONMENT_INITIALIZER, PLATFORM_ID, type Provider } from '@angular/core';
 
 import {
   MATOMO_DEBUG_TRACING,
   MATOMO_ROUTE_TRACKING_INTERNAL_CONFIGURATION,
   MATOMO_TRACKERS_INTERNAL_CONFIGURATION,
   MATOMO_TRACKING_INTERNAL_CONFIGURATION,
-  MatomoRouteTrackingConfiguration,
-  MatomoTrackers,
-  MatomoTrackingConfiguration,
+  type MatomoRouteTrackingConfiguration,
+  type MatomoTrackers,
+  type MatomoTrackingConfiguration,
   defaultRouteTrackingConfiguration,
   defaultTrackers,
   defaultTrackingConfiguration,
 } from './matomo-configuration';
-import { MatomoFeature } from './matomo-features';
+import { type MatomoFeature } from './matomo-features';
 import {
   MATOMO_TRACKER_GET_FUNCTION,
   MATOMO_TRACKER_INVOKE_FUNCTION,

@@ -1,7 +1,7 @@
 import {
-  MatomoRouteTrackingConfiguration,
-  MatomoTrackers,
-  MatomoTrackingConfiguration,
+  type MatomoRouteTrackingConfiguration,
+  type MatomoTrackers,
+  type MatomoTrackingConfiguration,
 } from './matomo-configuration';
 
 export type MatomoFeature =
@@ -51,6 +51,9 @@ export function withDummyTracker(): MatomoFeature {
 }
 
 export function withConfig(configuration: Partial<MatomoTrackingConfiguration>): MatomoFeature {
+export function withConfig(
+  configuration: Partial<MatomoTrackingConfiguration> = {},
+): MatomoFeature {
   return { kind: 'trackingConfiguration', parameters: configuration };
 }
 
