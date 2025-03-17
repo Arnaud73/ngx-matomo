@@ -5,7 +5,7 @@
  * @returns defined
  */
 export function isNonNull<T>(value: T | undefined | null): value is T | undefined {
-  return value != null;
+  return value !== null;
 }
 
 /**

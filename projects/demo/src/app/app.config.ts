@@ -56,6 +56,7 @@ export const appConfig: ApplicationConfig = {
       // Route tracking configuration
       withRouteTracking({
         linkTracking: 'leftClickOnly',
+        idTypes: ['nanoId'],
         clearIds: true,
         clearQueryParams: true,
         clearHash: true,
