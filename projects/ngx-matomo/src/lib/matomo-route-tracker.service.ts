@@ -33,6 +33,7 @@ export class MatomoRouteTracker {
   private readonly activatedRoute = inject(ActivatedRoute);
   private readonly titleService = inject(Title);
   private readonly document = inject(DOCUMENT);
+  private readonly destroyRef = inject(DestroyRef);
   private subscription?: Subscription;
 
   /**
