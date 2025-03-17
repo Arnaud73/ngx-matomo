@@ -117,7 +117,7 @@ export class MatomoRouteTracker {
           // Set custom URL for tracking
           let customUrl =
             (this.routeTrackingConfiguration.clearMatrixParams
-              ? locationUrl.href.replace(/;[\w,%]+=[\w,%]+/g, '')
+              ? locationUrl.href.replace(/;[\w,%]+=[\w,%-]+/g, '')
               : locationUrl.href) +
             (this.routeTrackingConfiguration.clearQueryParams ? '' : locationUrl.search) +
             (this.routeTrackingConfiguration.clearHash ? '' : locationUrl.hash);
