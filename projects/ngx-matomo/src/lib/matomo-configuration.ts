@@ -4,6 +4,8 @@ type ClickTrackingOption = 'none' | 'leftClickOnly' | 'leftMiddleRightClicks';
 
 export type MatomoConsentRequirement = 'requireNone' | 'cookie' | 'tracking';
 
+export type IdType = 'numerical' | 'UUID' | 'objectId' | 'ULID' | 'CUID' | 'nanoId';
+
 export type MatomoRouteData = {
   tracking?: 'auto' | 'off';
   title?: string;
@@ -63,6 +65,7 @@ export type MatomoRouteTrackingConfiguration = {
   linkTracking: ClickTrackingOption;
   clearIds: boolean;
   idRegExp?: RegExp;
+  idTypes?: IdType[];
   idReplacement?: string;
   clearMatrixParams: boolean;
   clearQueryParams: boolean;

@@ -12,18 +12,6 @@ import {
 } from './matomo-configuration';
 import { MatomoTracker } from './matomo-tracker.service';
 
-const DefaultIdRegExp = new RegExp(
-  [
-    '\\d{8,}', // Numerical
-    '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}', // UUID / GUID
-    '[a-f\\d]{24}', // ObjectId (MongoDB…)
-    '[0-7][0-9A-HJKMNP-TV-Z]{25}', // ULID
-    'c[a-z0-9]{24}', // CUID
-    '[A-Za-z0-9_-]{21}', // NanoID
-  ].join('|'),
-  'g',
-);
-
 /**
  * Service for tracking route changes.
  *
@@ -31,6 +19,7 @@ const DefaultIdRegExp = new RegExp(
  */
 @Injectable({ providedIn: 'root' })
 export class MatomoRouteTracker implements OnDestroy {
+  private idRegExp: RegExp | undefined;
   private previousRouteKey: string | null = null;
   private readonly routeTrackingConfiguration = inject(
     MATOMO_ROUTE_TRACKING_INTERNAL_CONFIGURATION,
@@ -42,6 +31,24 @@ export class MatomoRouteTracker implements OnDestroy {
   private readonly titleService = inject(Title);
   private readonly document = inject(DOCUMENT);
   private subscription?: Subscription;
+
+  constructor() {
+    const idRegExps: string[] = [];
+    const idTypes = this.routeTrackingConfiguration.idTypes;
+    if (idTypes?.includes('numerical')) idRegExps.push('\\d{8,}');
+    if (idTypes?.includes('UUID'))
+      idRegExps.push(
+        '(?:\\b)([0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)(?:\\b|[^0-9a-f])',
+      );
+    if (idTypes?.includes('objectId')) idRegExps.push('(?:\\b)[a-f\\d]{24}(?:\\b|[^a-f\\d])');
+    if (idTypes?.includes('ULID'))
+      idRegExps.push('(?:\\b)[0-7][0-9A-HJKMNP-TV-Z]{25}(?:\\b|[^0-9A-HJKMNP-TV-Z])');
+    if (idTypes?.includes('CUID')) idRegExps.push('(?:\\b)(c[a-z0-9]{24})(?:\\b|[^a-z0-9])');
+    if (idTypes?.includes('nanoId'))
+      idRegExps.push('(?:\\b)([A-Za-z0-9_-]{21})(?:\\b|[^A-Za-z0-9_-])');
+
+    this.idRegExp = new RegExp(idRegExps.join('|'), 'g');
+  }
 
   /**
    * Starts tracking route changes.
@@ -106,24 +113,23 @@ export class MatomoRouteTracker implements OnDestroy {
           if (start.event.id === 1) this.matomoTracker.setReferrerUrl(this.document.referrer);
 
           // Set custom URL for tracking
-          const customUrl =
+          let customUrl =
             (this.routeTrackingConfiguration.clearMatrixParams
               ? locationUrl.href.replace(/;[\w,%]+=[\w,%]+/g, '')
               : locationUrl.href) +
             (this.routeTrackingConfiguration.clearQueryParams ? '' : locationUrl.search) +
             (this.routeTrackingConfiguration.clearHash ? '' : locationUrl.hash);
-          this.matomoTracker.setCustomUrl(
-            this.routeTrackingConfiguration.clearIds
-              ? customUrl.replace(
-                  currentRoute.data['matomo']?.idRegExp instanceof RegExp
-                    ? currentRoute.data['matomo']?.idRegExp
-                    : this.routeTrackingConfiguration?.idRegExp instanceof RegExp
-                      ? this.routeTrackingConfiguration?.idRegExp
-                      : DefaultIdRegExp,
-                  this.routeTrackingConfiguration.idReplacement!,
-                )
-              : customUrl,
-          );
+          if (this.routeTrackingConfiguration.clearIds) {
+            const idRegExp =
+              currentRoute.data['matomo']?.idRegExp instanceof RegExp
+                ? currentRoute.data['matomo']?.idRegExp
+                : this.routeTrackingConfiguration?.idRegExp instanceof RegExp
+                  ? this.routeTrackingConfiguration?.idRegExp
+                  : this.idRegExp;
+            customUrl = customUrl.replace(idRegExp, this.routeTrackingConfiguration.idReplacement!);
+            idRegExp.lastIndex = 0;
+          }
+          this.matomoTracker.setCustomUrl(customUrl);
 
           // Remove all previously assigned custom variables
           this.matomoTracker.deleteCustomVariables('page');
