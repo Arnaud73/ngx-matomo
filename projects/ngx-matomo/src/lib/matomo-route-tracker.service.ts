@@ -14,9 +14,11 @@ import {
 import { MatomoTracker } from './matomo-tracker.service';
 
 /**
- * Service for tracking route changes.
+ * Service for tracking route changes and sending data to Matomo.
+ * This service should not be used directly within an application.
  *
  * @export
+ * @class MatomoRouteTracker
  */
 @Injectable({ providedIn: 'root' })
 export class MatomoRouteTracker {
@@ -33,6 +35,12 @@ export class MatomoRouteTracker {
   private readonly document = inject(DOCUMENT);
   private subscription?: Subscription;
 
+  /**
+   * Creates an instance of MatomoRouteTracker.
+   * Initializes the regular expressions for ID types based on the configuration.
+   *
+   * @memberof MatomoRouteTracker
+   */
   constructor() {
     const idRegExps: string[] = [];
     const idTypes = this.routeTrackingConfiguration.idTypes;
@@ -54,8 +62,9 @@ export class MatomoRouteTracker {
   /**
    * Starts tracking route changes.
    * Matomo DocumentTitle will be set with the `title` or `data.matomo.title` of your routes.
+   * This service should not be used directly within an application.
    *
-   * This service shall not be used directly within an application.
+   * @memberof MatomoRouteTracker
    */
   startTracking(): void {
     if (this.debugTracing)
@@ -163,6 +172,9 @@ export class MatomoRouteTracker {
 
   /**
    * Stops tracking route changes.
+   * Unsubscribes from the router events to stop tracking.
+   *
+   * @memberof MatomoRouteTracker
    */
   stopTracking(): void {
     if (this.subscription) {

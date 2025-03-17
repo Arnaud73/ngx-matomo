@@ -37,10 +37,38 @@ declare global {
 }
 
 /**
- * Prepares Matomo tracking by returning a list of providers.
+ * Configures and provides Matomo analytics tracking for an Angular application.
  *
- * @param {...*} features List of features to include in order to provide the correct list of providers.
- * @returns providers required for Matomo tracking.
+ * This function returns the necessary providers to set up Matomo tracking
+ * based on the specified features. It should be used in your app.config.ts
+ * or in the providers array of your NgModule.
+ *
+ * @param {...MatomoFeature} features - Configuration features that determine how Matomo
+ *   tracking will be set up. Features can be created using helper functions like:
+ *   - withTrackers() - Configures Matomo tracker instances
+ *   - withPreloadedTracker() - Uses an externally loaded Matomo script
+ *   - withDummyTracker() - Uses a non-operational tracker for testing
+ *   - withConfig() - Sets global tracking configuration options
+ *   - withRouteTracking() - Enables automatic route tracking
+ *   - withDebugTracing() - Enables debug logging for tracking calls
+ *
+ * @example
+ * // In your app.config.ts:
+ * export const appConfig: ApplicationConfig = {
+ *   providers: [
+ *     provideMatomoTracking(
+ *       withTrackers({
+ *         scriptUrl: 'https://your-matomo-instance.com/matomo.js',
+ *         trackers: [{ siteId: 1, trackerUrl: 'https://your-matomo-instance.com/matomo.php' }]
+ *       }),
+ *       withRouteTracking({ linkTracking: 'leftClickOnly', clearIds: true }),
+ *       withConfig({ disableCookies: false, trackJavaScriptErrors: true })
+ *     )
+ *   ]
+ * };
+ *
+ * @returns {Provider[]} An array of Angular providers that enable Matomo tracking
+ *   according to the specified configuration.
  */
 export function provideMatomoTracking(...features: MatomoFeature[]): Provider[] {
   if (
@@ -111,65 +139,82 @@ export function provideMatomoTracking(...features: MatomoFeature[]): Provider[] 
       {
         provide: ENVIRONMENT_INITIALIZER,
         useFactory: (matomoTracker: MatomoTracker) => () => {
-          // Disable use of sendBeacon for transmitting tracked events
+          // Disable Navigator.sendBeacon() API for transmitting tracking data
+          // This can be useful for ensuring all tracking requests are completed before page unload
           if (trackingConfigurationFeature.parameters.doNotUseSendBeacon)
             matomoTracker.disableAlwaysUseSendBeacon();
 
-          // Disable cookies if specified
+          // Disable all cookies used by Matomo tracker
+          // This helps with privacy compliance (e.g., GDPR) when cookies aren't permitted
           if (trackingConfigurationFeature.parameters.disableCookies)
             matomoTracker.disableCookies();
 
           // Disable cross domain linking if specified
+          // Cross-domain linking allows visitors to be tracked across multiple domains
           // TODO: investigate how this is done with GTM parameters.
           // if (trackingConfigurationFeature.parameters.disableCrossDomainLinking)
           //   matomoTracker.disableCrossDomainLinking();
 
-          // Set cookie domain if specified
+          // Set cookie domain - allows cookies to be shared across subdomains
+          // Example: setting to '.example.com' will share cookies across all subdomains
           if (trackingConfigurationFeature.parameters.cookieDomain)
             matomoTracker.setCookieDomain(trackingConfigurationFeature.parameters.cookieDomain);
 
-          // Set cookie path if specified
+          // Set cookie path - restricts cookies to a specific path on the domain
+          // Default is '/' which makes cookies available across the entire domain
           if (trackingConfigurationFeature.parameters.cookiePath)
             matomoTracker.setCookiePath(trackingConfigurationFeature.parameters.cookiePath);
 
-          // Set cookie same site if specified
+          // Set SameSite attribute for cookies to control cross-site request behavior
+          // Options include 'Lax', 'Strict', or 'None' (requires Secure)
           if (trackingConfigurationFeature.parameters.cookieSameSiteEnforcement)
             matomoTracker.setCookieSameSite(
               trackingConfigurationFeature.parameters.cookieSameSiteEnforcement,
             );
 
-          // Set secure cookies if specified
+          // Enable Secure flag on cookies - restricts cookies to HTTPS connections only
+          // This improves security by preventing transmission over unencrypted connections
           if (trackingConfigurationFeature.parameters.secureCookie)
             matomoTracker.setSecureCookie(true);
 
-          // Enable Browser Feature Detection if specified
+          // Enable detection of browser features (like cookies, java, flash) as custom dimensions
+          // This provides additional analytics data about visitor capabilities
           if (trackingConfigurationFeature.parameters.detectBrowserFeatures)
             matomoTracker.enableBrowserFeatureDetection();
 
-          // Enable JavaScript error tracking (as events)
+          // Track JavaScript errors as events in Matomo
+          // Helps identify client-side issues affecting user experience
           if (trackingConfigurationFeature.parameters.trackJavaScriptErrors)
             matomoTracker.enableJSErrorTracking();
 
-          // Enable Heart Beat Timer if specified
+          // Enable heart beat timer to accurately measure time spent on page
+          // Periodically sends pings to track engaged time, even without user interaction
           if (typeof trackingConfigurationFeature.parameters.heartBeatTimer !== 'number')
             matomoTracker.enableHeartBeatTimer(
               trackingConfigurationFeature.parameters.heartBeatTimer,
             );
 
-          // Set local domains
+          // Set domains that should be treated as local/internal in link tracking
+          // Helps distinguish between internal navigation and outbound links
           if (Array.isArray(trackingConfigurationFeature.parameters.localDomains))
             matomoTracker.setDomains(trackingConfigurationFeature.parameters.localDomains);
 
-          // Enable DoNotTrack
+          // Respect browser's DoNotTrack setting
+          // When enabled, visitors with DoNotTrack enabled won't be tracked
           if (trackingConfigurationFeature.parameters.enableDoNotTrack)
             matomoTracker.setDoNotTrack(true);
 
-          // Require the right consent
+          // Configure consent requirements before tracking
+          // 'requireNone' requires no consent
+          // 'tracking' requires consent for all tracking
+          // 'cookie' requires consent only for cookie usage
           if (trackingConfigurationFeature.parameters?.consentRequirement === 'tracking')
             matomoTracker.requireConsent();
           else if (trackingConfigurationFeature.parameters?.consentRequirement === 'cookie')
             matomoTracker.requireCookieConsent();
 
+          // Set global custom dimensions to be included with all tracking requests
+          // Custom dimensions allow sending additional metadata with each tracking event
           trackingConfigurationFeature.parameters.customDimensions?.forEach((it) => {
             matomoTracker.setCustomDimension(it.index, it.value);
           });

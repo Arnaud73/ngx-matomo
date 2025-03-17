@@ -13,7 +13,7 @@ Wrapper for Matomo (aka. Piwik) analytics tracker for Angular applications.
 
 Choose the version corresponding to your Angular version:
 
-| **Angular** | **ngx-matomo**                             |
+| **Angular** | **ngx-Matomo**                             |
 | ----------- | ------------------------------------------ |
 | 18          | 3.x                                        |
 | 17          | 2.x - with limitations (no route tracking) |
@@ -93,7 +93,7 @@ When the tracker will be initialized outside of your Angular application, add th
 providers: [provideMatomoTracking(withPreloadedTracker(), …)];
 ```
 
-Warning: it is advised not to have the preloaded tracker track the first page view, or some additional parameters you may wish to set, won't have any effect.
+Warning: it is advised not to have the external tracker track the first page view, or some additional parameters you may wish to set, won't have any effect.
 
 #### Locally defined tracker • Synchronous configuration
 
@@ -205,7 +205,7 @@ where `configuration`· is an object containing some of the following options:
 | `cookieDomain`                      | `string`, optional                             | Defines the cookie domain.                                                                                                                                                                         |
 | `cookiePath`                        | `string`, optional                             | Defines the cookie path.                                                                                                                                                                           |
 | `cookieSameSite`                    | `'lax'` , `'strict'` or `'none'`, optional     | Defines policy for cookies used in cross domain linking                                                                                                                                            |
-| `doNotUserSendBeacon`               | `boolean`, default: `false`                    | Prevents the use of `navigator.sendBeacon()`                                                                                                                                                       |
+| `doNotUseSendBeacon`                | `boolean`, default: `false`                    | Prevents the use of `navigator.sendBeacon()`                                                                                                                                                       |
 | `detectBrowserFeatures`             | `boolean`, default: `false`                    | Enables the detection of browser features (mainly, the screen resolution)                                                                                                                          |
 | `enableDoNotTrack`                  | `boolean`, default: `false`                    | Respects browser's DNT option if set.                                                                                                                                                              |
 | `consentRequirement`                | `'requireNone'`, `'cookie'` or `'tracking'`    | Defines the consent requirements: `'NONE'`: no consent is required, `'COOKIE'`: consent is required for cookies and tracking, `'TRACKING'`: consent is required for tracking, but not for cookies. |
@@ -235,13 +235,13 @@ where `routeTrackingConfiguration` is an object containing some of the following
 | `idReplacement`     | `string`, default value: `:id`                                                     | When `clearIds` is set, defines the string to replace Ids with.                                                                           |
 | `clearMatrixParams` | `boolean`, default: `false`                                                        | Removes matrix parameters from the tracked URL.                                                                                           |
 | `clearQueryParams`  | `boolean`, default: `false`                                                        | Removers query parameters from the tracked URL.                                                                                           |
-| `clearHash`         | ` boolean`, default: `false`                                                            | Removers hash value from the tracked URL.                                                                                                 |
+| `clearHash`         | ` boolean`, default: `false`                                                       | Removers hash value from the tracked URL.                                                                                                 |
 
 Additionally, you may want to add a `matomo` object to your defined `RouteData` (see [Angular Router Reference](https://angular.dev/guide/routing/router-reference)) in order to have options applying only to specific routes. Here are the options you may define in this object:
 
 | Option     | Type                                   | Description                                                                                                                         |
 | ---------- | -------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| `tracking` | `'AUTO'` or `'OFF'`, default: `'AUTO'` | When set to `'OFF'`, the route won't be tracked.                                                                                    |
+| `tracking` | `'auto'` or `'off'`, default: `'auto'` | When set to `'off'`, the route won't be tracked.                                                                                    |
 | `title`    | `string`, optional                     | By default, Matomo will get the title from `document.title`, use this option to overwrite it (useful for maintaining uniform texts) |
 | `idRegExp` | `RegExp`, optional                     | Overwrites the Id RegExp for this route.                                                                                            |
 
@@ -303,7 +303,7 @@ export class MyComponent {
 
   onClick(event: ClickEvent) {
     /*
-     * Some logic…
+     * Your logic…
      */
     this.matomoTracker.trackEvent('category', 'action', 'name', someVal);
   }
