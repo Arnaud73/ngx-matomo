@@ -1,5 +1,6 @@
 import { DOCUMENT } from '@angular/common';
-import { Injectable, OnDestroy, inject } from '@angular/core';
+import { DestroyRef, Injectable, inject } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
 
@@ -18,7 +19,7 @@ import { MatomoTracker } from './matomo-tracker.service';
  * @export
  */
 @Injectable({ providedIn: 'root' })
-export class MatomoRouteTracker implements OnDestroy {
+export class MatomoRouteTracker {
   private idRegExp: RegExp | undefined;
   private previousRouteKey: string | null = null;
   private readonly routeTrackingConfiguration = inject(
@@ -71,6 +72,7 @@ export class MatomoRouteTracker implements OnDestroy {
         })),
         pairwise(),
         filter(([a, b]) => a.event instanceof NavigationStart && b.event instanceof NavigationEnd),
+        takeUntilDestroyed(this.destroyRef),
       )
       .subscribe({
         next: ([start, end]) => {
@@ -135,7 +137,6 @@ export class MatomoRouteTracker implements OnDestroy {
           this.matomoTracker.deleteCustomVariables('page');
 
           // Track page performance timing
-          // TODO: Improve performance tracking
           this.matomoTracker.setPagePerformanceTiming(
             undefined,
             undefined,
@@ -168,12 +169,5 @@ export class MatomoRouteTracker implements OnDestroy {
       this.subscription.unsubscribe();
       this.subscription = undefined;
     }
-  }
-
-  /**
-   * Angular OnDestroy lifecycle hook.
-   */
-  ngOnDestroy(): void {
-    this.stopTracking();
   }
 }
